@@ -1,4 +1,5 @@
 package org.akomeshi
+package websocket
 
 // Networking & web
 import java.net.http.WebSocket
@@ -12,7 +13,7 @@ import java.util.concurrent.CompletionStage
 
 /**
  * Created by KaNguy - 6/28/2021
- * File WebSocketListener.scala
+ * File websocket/WebSocketListener.scala
  */
 
 case class WebSocketListener() extends Listener {
