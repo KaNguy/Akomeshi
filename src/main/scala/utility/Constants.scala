@@ -1,6 +1,11 @@
 package org.akomeshi
 package utility
 
+/**
+ * Created by KaNguy - 6/30/2021
+ * File utility/Constants.scala
+ */
+
 case object Constants {
   val packageName: String = "Akomeshi"
   val packageVersion: String = "0.0.1"
