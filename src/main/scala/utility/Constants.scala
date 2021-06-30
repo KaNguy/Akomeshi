@@ -20,4 +20,8 @@ case object Constants {
   val templateURL: String = "https://discord.new"
 
   val userAgent: String = s"DiscordBot (${packageName}, ${packageVersion})"
+
+  val $os: String = System.getProperty("os.name")
+  val $browser: String = "Akomeshi"
+  val $device: String = "Akomeshi"
 }
