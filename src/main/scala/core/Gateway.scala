@@ -1,29 +1,33 @@
 package org.akomeshi
 package core
 
-import org.akomeshi.websocket.{AkoWebSocket, WebSocketListener, WebSocketEvents}
-
-import java.net.http.WebSocket
-import java.util.concurrent.CompletionStage
-
 /**
  * Created by KaNguy - 6/28/2021
  * File core/Gateway.scala
  */
 
+// Library
+import org.akomeshi.websocket.{AkoWebSocket, WebSocketListener, WebSocketEvents}
+import org.akomeshi.core.Events
+import org.akomeshi.utility.Constants
+
+// WebSocket
+import java.net.http.WebSocket
+
+// Utilites
+import java.util.concurrent.CompletionStage
+
 class Gateway {
-
-}
-
-object Gateway extends App {
-  val wsListener = new WebSocketListener {
+  var connectionState: Int = 0
+  val webSocketListener: WebSocketListener = new WebSocketListener {
     override def onOpen(webSocket: WebSocket): Unit = {
-      println("WebSocket connection opened")
+      Events.dataEmitter.emit("WS_OPEN", "1")
+      connectionState = 1
       super.onOpen(webSocket)
     }
 
     override def onText(webSocket: WebSocket, data: CharSequence, last: Boolean): CompletionStage[_] = {
-      println("Data: " + data)
+      println(data)
       super.onText(webSocket, data, last)
     }
 
@@ -38,6 +42,9 @@ object Gateway extends App {
     }
   }
 
-  val ws = new AkoWebSocket("wss://echo.websocket.org", wsListener)
-  ws.close(1000, "Normal closure")
+  val connection = new AkoWebSocket(Constants.gatewayURL, this.webSocketListener)
+}
+
+object Gateway extends App {
+  new Gateway()
 }
