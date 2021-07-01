@@ -6,11 +6,16 @@ import org.akomeshi.websocket.{AkoWebSocket, WebSocketListener, WebSocketEvents}
 import java.net.http.WebSocket
 import java.util.concurrent.CompletionStage
 
-class IncomingData {
+/**
+ * Created by KaNguy - 6/28/2021
+ * File core/Gateway.scala
+ */
+
+class Gateway {
 
 }
 
-object IncomingData extends App {
+object Gateway extends App {
   val wsListener = new WebSocketListener {
     override def onOpen(webSocket: WebSocket): Unit = {
       println("WebSocket connection opened")
