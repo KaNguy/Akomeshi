@@ -6,6 +6,9 @@ package core
  * File core/Events.scala
  */
 
-object Events {
+// Event emission
+import org.akomeshi.utility.Emitter
 
+object Events {
+  val dataEmitter: Emitter[String] = new Emitter[String]()
 }
