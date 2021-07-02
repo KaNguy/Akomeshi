@@ -5,6 +5,9 @@ package utility
 import java.util
 import java.util.Scanner
 
+// Collections
+import scala.jdk.CollectionConverters._
+
 /**
  * Created by KaNguy - 07/01/2021
  * File utility/AkoJSON.scala
@@ -12,7 +15,11 @@ import java.util.Scanner
  */
 
 object AkoJSON {
-  def parse(data: String): Any = {
+  def parse(json: String): Map[Any, Any] = {
+    this.parseJSON(json.toString).asInstanceOf[java.util.HashMap[Any, Any]].asScala.toMap
+  }
+  
+  private def parseJSON(data: String): Any = {
     val input = removeWhitespace(data)
     val i0 = input(0)
     if (i0 == '{') {
