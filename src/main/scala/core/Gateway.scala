@@ -2,7 +2,7 @@ package org.akomeshi
 package core
 
 /**
- * Created by KaNguy - 6/28/2021
+ * Created by KaNguy - 06/28/2021
  * File core/Gateway.scala
  */
 
