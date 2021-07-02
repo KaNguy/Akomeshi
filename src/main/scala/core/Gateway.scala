@@ -8,14 +8,17 @@ package core
 
 // Library
 import org.akomeshi.websocket.{AkoWebSocket, WebSocketListener, WebSocketEvents}
+import org.akomeshi.utility.{Constants, JSON}
 import org.akomeshi.core.Events
-import org.akomeshi.utility.Constants
 
 // WebSocket
 import java.net.http.WebSocket
 
 // Utilites
 import java.util.concurrent.CompletionStage
+
+// Collections
+import scala.jdk.CollectionConverters._
 
 class Gateway {
   var connectionState: Int = 0
@@ -27,7 +30,9 @@ class Gateway {
     }
 
     override def onText(webSocket: WebSocket, data: CharSequence, last: Boolean): CompletionStage[_] = {
-      println(data)
+      // Testing
+      println(JSON.parse(data.toString, true).asInstanceOf[java.util.HashMap[Any, Any]].asScala)
+
       super.onText(webSocket, data, last)
     }
 
