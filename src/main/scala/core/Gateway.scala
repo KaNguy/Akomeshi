@@ -30,9 +30,11 @@ class Gateway {
     }
 
     override def onText(webSocket: WebSocket, data: CharSequence, last: Boolean): CompletionStage[_] = {
-      // Testing
-      println(JSON.parse(data.toString, true).asInstanceOf[java.util.HashMap[Any, Any]].asScala)
+      Events.mapEmitter.on("WS_MESSAGE", (channel, data) => {
+        println(data)
+      })
 
+      Events.mapEmitter.emit("WS_MESSAGE", JSON.parse(data.toString, true).asInstanceOf[java.util.HashMap[Any, Any]].asScala.toMap)
       super.onText(webSocket, data, last)
     }
 
