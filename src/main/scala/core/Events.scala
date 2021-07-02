@@ -11,4 +11,5 @@ import org.akomeshi.utility.Emitter
 
 object Events {
   val dataEmitter: Emitter[String] = new Emitter[String]()
+  val mapEmitter: Emitter[Map[Any, Any]] = new Emitter[Map[Any, Any]]()
 }
