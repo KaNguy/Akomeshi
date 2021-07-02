@@ -17,9 +17,6 @@ import java.net.http.WebSocket
 // Utilites
 import java.util.concurrent.CompletionStage
 
-// Collections
-import scala.jdk.CollectionConverters._
-
 class Gateway {
   var connectionState: Int = 0
   val webSocketListener: WebSocketListener = new WebSocketListener {
@@ -34,7 +31,7 @@ class Gateway {
         println(data)
       })
 
-      Events.mapEmitter.emit("WS_MESSAGE", JSON.parse(data.toString, true).asInstanceOf[java.util.HashMap[Any, Any]].asScala.toMap)
+      Events.mapEmitter.emit("WS_MESSAGE", JSON.parse(data.toString, true))
       super.onText(webSocket, data, last)
     }
 
