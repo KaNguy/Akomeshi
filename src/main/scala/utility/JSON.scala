@@ -14,9 +14,18 @@ import scala.annotation.tailrec
 import java.text.{NumberFormat, DecimalFormat}
 import java.util.Locale
 
+// Akomeshi
+import org.akomeshi.utility.AkoJSON
+
 object JSON {
   def parse(json: String): Any = {
     JSONParser.parse(json)
+  }
+
+  def parse(json: String, latter: Boolean): Any = {
+    if (latter) {
+      AkoJSON.parse(json)
+    } else JSON.parse(json)
   }
 
   private trait Token {
@@ -82,7 +91,7 @@ object JSON {
         case IsNull(_) => continue(Token.NULL)
         case String(str) => continue(Token.StringToken(str))
         case Number(str) => continue(Token.NumberToken(str))
-        case error => println(s"""Could not complete action: $error"""); tokens.reverse
+        case error => println(s"""Could not complete: $error"""); tokens.reverse
       }
     }
   }
@@ -209,5 +218,5 @@ object JSON {
    * @param malformed The malformed data
    * @param JSON The JSON data
    */
-  private case class MalformedJSONException(malformed: String, JSON: String) extends RuntimeException(s"""Due to $malformed, the data could not be parsed: $JSON""")
+  private case class MalformedJSONException(malformed: String, JSON: String) extends RuntimeException(s"""$malformed, the data could not be parsed: $JSON""")
 }
