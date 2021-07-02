@@ -22,10 +22,10 @@ object JSON {
     JSONParser.parse(json)
   }
 
-  def parse(json: String, latter: Boolean): Any = {
+  def parse(json: String, latter: Boolean): Map[Any, Any] = {
     if (latter) {
       AkoJSON.parse(json)
-    } else JSON.parse(json)
+    } else JSON.parse(json).asInstanceOf[Map[Any, Any]]
   }
 
   private trait Token {
