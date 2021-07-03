@@ -20,10 +20,6 @@ import java.util.concurrent.CompletionStage
 class Gateway {
   var connectionState: Int = 0
 
-  Events.mapEmitter.on("WS_MESSAGE", (channel, data) => {
-    if (data.getOrElse("op", "op").equals("10")) connection.send(JSONString.encode(PayloadModels.identifyPayload("")), true)
-  });
-
   val webSocketListener: WebSocketListener = new WebSocketListener {
     override def onOpen(webSocket: WebSocket): Unit = {
       Events.dataEmitter.emit("WS_OPEN", "1")
@@ -32,10 +28,9 @@ class Gateway {
     }
 
     override def onText(webSocket: WebSocket, data: CharSequence, last: Boolean): CompletionStage[_] = {
+      println(data)
       Events.mapEmitter.on("WS_MESSAGE", (channel, data) => {
-        println(JSONString.encode(PayloadModels.identifyPayload("")))
         if (data.getOrElse("op", "op").equals("10")) connection.send(JSONString.encode(PayloadModels.identifyPayload("")), true)
-        println(data)
       })
 
       Events.mapEmitter.emit("WS_MESSAGE", JSON.parse(data.toString, true))
@@ -53,7 +48,12 @@ class Gateway {
     }
   }
 
+  Events.mapEmitter.on("WS_MESSAGE", (channel, data) => {
+    println(data)
+    //if (data.getOrElse("op", "op").equals("10"))
+  });
   val connection = new AkoWebSocket(Constants.gatewayURL, this.webSocketListener)
+  connection.send(JSONString.encode(PayloadModels.identifyPayload("")), true)
 }
 
 object Gateway extends App {
