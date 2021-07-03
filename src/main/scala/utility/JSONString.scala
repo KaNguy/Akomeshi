@@ -11,15 +11,15 @@ package utility
 import scala.collection.mutable.ListBuffer
 
 case object JSONString {
-  def CollectionsToJSON(collections: Any): String = {
+  def encode(collections: Any): String = {
     val JSON = new ListBuffer[String]()
     collections match {
       case map: Map[_, _] =>
         for ((k, v) <- map) {
           val key = k.asInstanceOf[String].replaceAll("\"" , "\\\\\"")
           v match {
-            case map: Map[_, _] => JSON += s""""$key": ${CollectionsToJSON(map)}""";
-            case list: List[_] => JSON += s""""$key": ${CollectionsToJSON(list)}""";
+            case map: Map[_, _] => JSON += s""""$key": ${encode(map)}""";
+            case list: List[_] => JSON += s""""$key": ${encode(list)}""";
             case int: Int => JSON += s""""$key": $int""";
             case boolean: Boolean => JSON += s""""$key": $boolean""";
             case string: String => JSON += s""""$key": "${string.replaceAll("\"" , "\\\\\"")}""""
@@ -31,8 +31,8 @@ case object JSONString {
         val list = new ListBuffer[String]()
         for (listing <- theList) {
           listing match {
-            case map: Map[_, _] => list += CollectionsToJSON(map);
-            case caseList: List[_] => list += CollectionsToJSON(caseList);
+            case map: Map[_, _] => list += encode(map);
+            case caseList: List[_] => list += encode(caseList);
             case int: Int => list += int.toString;
             case boolean: Boolean => list += boolean.toString;
             case string: String => list += s""""${string.replaceAll("\"" , "\\\\\"")}"""";
