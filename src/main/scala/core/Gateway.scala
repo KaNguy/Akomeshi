@@ -8,8 +8,8 @@ package core
 
 // Library
 import org.akomeshi.websocket.{AkoWebSocket, WebSocketListener, WebSocketEvents}
-import org.akomeshi.utility.{Constants, JSON}
-import org.akomeshi.core.Events
+import org.akomeshi.utility.{Constants, JSON, JSONString}
+import org.akomeshi.core.{Events, PayloadModels}
 
 // WebSocket
 import java.net.http.WebSocket
@@ -19,6 +19,11 @@ import java.util.concurrent.CompletionStage
 
 class Gateway {
   var connectionState: Int = 0
+
+  Events.mapEmitter.on("WS_MESSAGE", (channel, data) => {
+    if (data.getOrElse("op", "op").equals("10")) connection.send(JSONString.encode(PayloadModels.identifyPayload("")), true)
+  });
+
   val webSocketListener: WebSocketListener = new WebSocketListener {
     override def onOpen(webSocket: WebSocket): Unit = {
       Events.dataEmitter.emit("WS_OPEN", "1")
@@ -28,6 +33,8 @@ class Gateway {
 
     override def onText(webSocket: WebSocket, data: CharSequence, last: Boolean): CompletionStage[_] = {
       Events.mapEmitter.on("WS_MESSAGE", (channel, data) => {
+        println(JSONString.encode(PayloadModels.identifyPayload("")))
+        if (data.getOrElse("op", "op").equals("10")) connection.send(JSONString.encode(PayloadModels.identifyPayload("")), true)
         println(data)
       })
 
