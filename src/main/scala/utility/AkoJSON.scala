@@ -130,7 +130,7 @@ object AkoJSON {
         }
 
         if (input(index) == '"') {
-          val (v: String, i) = loadsString(input.substring(index+1))
+          val (v: String, i) = loadsString(input.substring(index + 1))
           index += i + 1
           result.put(k, v)
         } else if (input(index) == '{') {
@@ -139,12 +139,12 @@ object AkoJSON {
           index += i
           result.put(k, v)
         } else if (input(index) == '[') {
-          index+=1
+          index += 1
           val (v: Array[Object], i) = loadsList(input.substring(index))
           index += i
           result.put(k, v)
         } else if (input(index) == 't') {
-          if (input.substring(index, index+4).equals("true")) {
+          if (input.substring(index, index + 4).equals("true")) {
             index += 4
             result.put(k, true)
           } else {
@@ -270,7 +270,7 @@ object AkoJSON {
       } else if (" \t\n\r".contains(next)) {
         index += 1
       } else if (next == 'n') {
-        if (input.substring(index, index+4).equals("null")) {
+        if (input.substring(index, index + 4).equals("null")) {
           index += 4
           result.add(null)
           isNextComma = true
@@ -311,7 +311,7 @@ object AkoJSON {
         throw new Exception("Parser Error: List has no closure")
       }
     }
-    (result.toArray(), index+1)
+    (result.toArray(), index + 1)
   }
 
   private def loadsNumber(input: String): (Any, Integer) = {
@@ -361,7 +361,7 @@ object AkoJSON {
 
     while ((index < input.length) && loop) {
       if (input(index) == '\\') {
-        if ((index+1 < input.length) && (input(index+1) == '"')) {
+        if ((index + 1 < input.length) && (input(index + 1) == '"')) {
           index += 2
         } else {
           index += 1
