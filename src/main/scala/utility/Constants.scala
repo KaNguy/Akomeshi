@@ -13,13 +13,13 @@ case object Constants {
   private val APIVersion: Int = 9
   private val portNumber: Int = 443
 
-  val gatewayURL: String = s"wss://gateway.discord.gg:${portNumber.toString}?v=${APIVersion.toString}&encoding=json"
+  val gatewayURL: String = s"wss://gateway.discord.gg:${portNumber.toString}?v=${APIVersion.toString}&encoding=json&compress=zlib-stream"
   val apiURL: String = "https://discord.com/api"
   val cdnURL: String = "https://cdn.discordapp.com"
   val inviteURL: String = "https://discord.gg"
   val templateURL: String = "https://discord.new"
 
-  val userAgent: String = s"DiscordBot (${packageName}, ${packageVersion})"
+  val userAgent: String = s"DiscordBot ($packageName, $packageVersion)"
 
   val $os: String = System.getProperty("os.name")
   val $browser: String = "Akomeshi"
