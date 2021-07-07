@@ -1,5 +1,5 @@
 package org.akomeshi
-package utility
+package event
 
 /**
  * Created by KaNguy - 6/29/2021
