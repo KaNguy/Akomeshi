@@ -7,11 +7,6 @@ package event
  */
 
 class Pair[T, U](T: T, U: U) {
-  def getT(): T = {
-    return T
-  }
-
-  def getU(): U = {
-    return U
-  }
+  def getT: T = T
+  def getU: U = U
 }
