@@ -37,8 +37,17 @@ class Gateway {
       data.get(dataArray)
 
       val decompressedData = Zlib.decompress(dataArray)
-      // TODO: Emit this later
-      println(new String(decompressedData, StandardCharsets.UTF_8))
+
+      val decodedMessage: String = new String(decompressedData, StandardCharsets.UTF_8)
+
+      var JSONData: Map[Any, Any] = Map.empty[Any, Any]
+      try {
+        JSONData = JSON.parseAsMap(decodedMessage)
+      } catch {
+        case _: Throwable => ()
+      }
+
+      if (JSONData.nonEmpty) Events.mapEmitter.emit("WS_MESSAGE", JSONData)
 
       super.onBinary(webSocket, data, last)
     }
@@ -73,11 +82,10 @@ class Gateway {
   }
 
   Events.mapEmitter.on("WS_MESSAGE", (channel, data) => {
+    // TODO: Remove this test later
     println(data)
-    //if (data.getOrElse("op", "op").equals("10"))
   });
   val connection = new AkoWebSocket(Constants.gatewayURL, this.webSocketListener)
-
 }
 
 object Gateway extends App {
