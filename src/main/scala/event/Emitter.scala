@@ -1,5 +1,5 @@
 package org.akomeshi
-package utility
+package event
 
 /**
  * Created by KaNguy - 6/29/2021
@@ -7,6 +7,7 @@ package utility
  */
 
 // Utilities
+
 import java.util
 import java.util.UUID
 
