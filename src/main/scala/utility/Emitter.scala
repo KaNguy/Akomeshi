@@ -7,37 +7,35 @@ package utility
  */
 
 // Utilities
-import java.util.{HashMap, LinkedList, UUID}
-
-// Local
-import org.akomeshi.utility.{Pair, Callback}
+import java.util
+import java.util.UUID
 
 class Emitter[T] {
 
-  private val callbacks: HashMap[String, LinkedList[Pair[String, Callback[T]]]] = new HashMap()
+  private val callbacks: util.HashMap[String, util.LinkedList[Pair[String, Callback[T]]]] = new util.HashMap()
 
   def emit(channel: String, data: T): Unit = {
     if (channel.equals("*")) {
       callbacks.entrySet().forEach(entry => {
         entry.getValue.forEach(callbackPair => {
-          callbackPair.getU.call(channel, data)
-        });
-      });
+          callbackPair.getU().call(channel, data)
+        })
+      })
     } else {
       var callbackPairList = callbacks.get("*")
       if (callbackPairList != null) {
         callbackPairList.forEach(callbackPair =>
-          callbackPair.getU.call(channel, data)
-        );
+          callbackPair.getU().call(channel, data)
+        )
       }
 
       callbackPairList = callbacks.get(channel)
       if (callbackPairList == null) return
 
       callbackPairList.forEach(callbackPair => {
-          callbackPair.getU.call(channel, data)
+          callbackPair.getU().call(channel, data)
         }
-      );
+      )
     }
   }
 
@@ -45,18 +43,18 @@ class Emitter[T] {
     val uuid = UUID.randomUUID.toString
     var callbackPairList = callbacks.get(channel)
     if (callbackPairList == null) {
-      callbackPairList = new LinkedList()
+      callbackPairList = new util.LinkedList()
       callbackPairList.add(new Pair(uuid, callback))
       callbacks.put(channel, callbackPairList)
     } else callbackPairList.add(new Pair(uuid, callback))
 
-    return uuid
+    uuid
   }
 
   def off(uuid: String): Unit = {
     callbacks.entrySet.forEach(entry => {
-        entry.getValue.removeIf(pair => pair.getT.equals(uuid))
+        entry.getValue.removeIf(pair => pair.getT().equals(uuid))
       }
-    );
+    )
   }
 }
