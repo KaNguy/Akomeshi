@@ -7,20 +7,42 @@ package core
  */
 
 // Library
-import org.akomeshi.websocket.{AkoWebSocket, WebSocketListener, WebSocketEvents}
-import org.akomeshi.utility.{Constants, JSON, JSONString}
+import org.akomeshi.websocket.{AkoWebSocket, WebSocketEvents, WebSocketListener}
+import org.akomeshi.utility.{Constants, JSONString, BufferConversions, Zlib}
 import org.akomeshi.core.{Events, PayloadModels}
+import org.akomeshi.json.JSON
+
+import java.nio.ByteBuffer
+import java.nio.charset.StandardCharsets
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.util.zip.Deflater
+import java.util.zip.DeflaterOutputStream
+import java.util.zip.InflaterInputStream
+import java.util.zip._
 
 // WebSocket
 import java.net.http.WebSocket
 
-// Utilites
+// Utilities
 import java.util.concurrent.CompletionStage
 
 class Gateway {
   var connectionState: Int = 0
 
   val webSocketListener: WebSocketListener = new WebSocketListener {
+    override def onBinary(webSocket: WebSocket, data: ByteBuffer, last: Boolean): CompletionStage[_] = {
+
+      val dataArray = new Array[Byte](data.remaining())
+      data.get(dataArray)
+
+      val decompressedData = Zlib.decompress(dataArray)
+      // TODO: Emit this later
+      println(new String(decompressedData, StandardCharsets.UTF_8))
+
+      super.onBinary(webSocket, data, last)
+    }
+
     override def onOpen(webSocket: WebSocket): Unit = {
       Events.dataEmitter.emit("WS_OPEN", "1")
       connectionState = 1
@@ -28,12 +50,14 @@ class Gateway {
     }
 
     override def onText(webSocket: WebSocket, data: CharSequence, last: Boolean): CompletionStage[_] = {
-      println(data)
+      val stringBuilder: StringBuilder = new StringBuilder()
+      stringBuilder.append(data)
+
       Events.mapEmitter.on("WS_MESSAGE", (channel, data) => {
-        if (data.getOrElse("op", "op").equals("10")) connection.send(JSONString.encode(PayloadModels.identifyPayload("")), true)
+        if (data.getOrElse("op", "op").equals("10")) connection.send(JSONString.encode(PayloadModels.identifyPayload("")), last = true)
       })
 
-      Events.mapEmitter.emit("WS_MESSAGE", JSON.parse(data.toString, true))
+      Events.mapEmitter.emit("WS_MESSAGE", JSON.parseAsMap(stringBuilder.toString()))
       super.onText(webSocket, data, last)
     }
 
@@ -53,7 +77,7 @@ class Gateway {
     //if (data.getOrElse("op", "op").equals("10"))
   });
   val connection = new AkoWebSocket(Constants.gatewayURL, this.webSocketListener)
-  connection.send(JSONString.encode(PayloadModels.identifyPayload("")), true)
+
 }
 
 object Gateway extends App {
