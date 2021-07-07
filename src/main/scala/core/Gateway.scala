@@ -11,6 +11,8 @@ import json.{JSON, JSONString}
 import utility.{Constants, Zlib}
 import websocket.{AkoWebSocket, WebSocketListener}
 
+import org.akomeshi.event.EventObjects
+
 // NIO
 import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
@@ -41,13 +43,13 @@ class Gateway {
         case _: Throwable => ()
       }
 
-      if (JSONData.nonEmpty) Events.mapEmitter.emit("WS_MESSAGE", JSONData)
+      if (JSONData.nonEmpty) EventObjects.mapEmitter.emit("WS_MESSAGE", JSONData)
 
       super.onBinary(webSocket, data, last)
     }
 
     override def onOpen(webSocket: WebSocket): Unit = {
-      Events.dataEmitter.emit("WS_OPEN", "1")
+      EventObjects.dataEmitter.emit("WS_OPEN", "1")
       connectionState = 1
       super.onOpen(webSocket)
     }
@@ -56,11 +58,11 @@ class Gateway {
       val stringBuilder: StringBuilder = new StringBuilder()
       stringBuilder.append(data)
 
-      Events.mapEmitter.on("WS_MESSAGE", (channel, data) => {
+      EventObjects.mapEmitter.on("WS_MESSAGE", (channel, data) => {
         if (data.getOrElse("op", "op").equals("10")) connection.send(JSONString.encode(PayloadModels.identifyPayload("")), last = true)
       })
 
-      Events.mapEmitter.emit("WS_MESSAGE", JSON.parseAsMap(stringBuilder.toString()))
+      EventObjects.mapEmitter.emit("WS_MESSAGE", JSON.parseAsMap(stringBuilder.toString()))
       super.onText(webSocket, data, last)
     }
 
@@ -75,7 +77,7 @@ class Gateway {
     }
   }
 
-  Events.mapEmitter.on("WS_MESSAGE", (channel, data) => {
+  EventObjects.mapEmitter.on("WS_MESSAGE", (channel, data) => {
     // TODO: Remove this test later
     println(data)
   });
