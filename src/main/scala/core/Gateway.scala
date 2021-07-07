@@ -7,8 +7,8 @@ package core
  */
 
 // Library
-import json.JSON
-import utility.{Constants, JSONString, Zlib}
+import json.{JSON, JSONString}
+import utility.{Constants, Zlib}
 import websocket.{AkoWebSocket, WebSocketListener}
 
 // NIO
@@ -20,12 +20,9 @@ import java.net.http.WebSocket
 
 // Utilities
 import java.util.concurrent.CompletionStage
-import java.util.logging.Logger
 
 class Gateway {
   var connectionState: Int = 0
-
-  val logger: Logger = new Logger()
 
   val webSocketListener: WebSocketListener = new WebSocketListener {
     override def onBinary(webSocket: WebSocket, data: ByteBuffer, last: Boolean): CompletionStage[_] = {
@@ -68,12 +65,12 @@ class Gateway {
     }
 
     override def onClose(webSocket: WebSocket, statusCode: Int, reason: String): CompletionStage[_] = {
-      logger.info("Connection closed: " + statusCode + ", " + reason)
+      println("Connection closed: " + statusCode + ", " + reason)
       super.onClose(webSocket, statusCode, reason)
     }
 
     override def onError(webSocket: WebSocket, error: Throwable): Unit = {
-      logger.warning("Error: " + error)
+      println("Error: " + error)
       super.onError(webSocket, error)
     }
   }
