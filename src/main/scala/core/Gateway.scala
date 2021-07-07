@@ -20,9 +20,12 @@ import java.net.http.WebSocket
 
 // Utilities
 import java.util.concurrent.CompletionStage
+import java.util.logging.Logger
 
 class Gateway {
   var connectionState: Int = 0
+
+  val logger: Logger = new Logger()
 
   val webSocketListener: WebSocketListener = new WebSocketListener {
     override def onBinary(webSocket: WebSocket, data: ByteBuffer, last: Boolean): CompletionStage[_] = {
@@ -65,12 +68,12 @@ class Gateway {
     }
 
     override def onClose(webSocket: WebSocket, statusCode: Int, reason: String): CompletionStage[_] = {
-      println("Connection closed: " + statusCode + ", " + reason)
+      logger.info("Connection closed: " + statusCode + ", " + reason)
       super.onClose(webSocket, statusCode, reason)
     }
 
     override def onError(webSocket: WebSocket, error: Throwable): Unit = {
-      println("Error: " + error)
+      logger.warning("Error: " + error)
       super.onError(webSocket, error)
     }
   }
