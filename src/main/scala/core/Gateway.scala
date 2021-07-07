@@ -7,19 +7,13 @@ package core
  */
 
 // Library
-import org.akomeshi.websocket.{AkoWebSocket, WebSocketEvents, WebSocketListener}
-import org.akomeshi.utility.{Constants, JSONString, BufferConversions, Zlib}
-import org.akomeshi.core.{Events, PayloadModels}
-import org.akomeshi.json.JSON
+import json.JSON
+import utility.{Constants, JSONString, Zlib}
+import websocket.{AkoWebSocket, WebSocketListener}
 
+// NIO
 import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
-import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
-import java.util.zip.Deflater
-import java.util.zip.DeflaterOutputStream
-import java.util.zip.InflaterInputStream
-import java.util.zip._
 
 // WebSocket
 import java.net.http.WebSocket
