@@ -6,7 +6,7 @@ package utility
  * File utility/Emitter.scala
  */
 
-// Utilties
+// Utilities
 import java.util.{HashMap, LinkedList, UUID}
 
 // Local
