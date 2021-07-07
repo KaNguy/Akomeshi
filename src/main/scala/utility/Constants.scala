@@ -24,4 +24,6 @@ case object Constants {
   val $os: String = System.getProperty("os.name")
   val $browser: String = "Akomeshi"
   val $device: String = "Akomeshi"
+
+  val zlibSuffix: Int = 0x0000FFFF
 }
