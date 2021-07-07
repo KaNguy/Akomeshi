@@ -1,10 +1,9 @@
 package org.akomeshi
-package utility
+package json
 
 /**
- * Created by KaNguy - 07/02/2021
- * File utility/JSONString.scala
- * Software reused from the HTTPS-Requests-Scala repository
+ * Created by KaNguy - 7/02/2021
+ * File json/JSONString.scala
  */
 
 // Collections
@@ -16,13 +15,13 @@ case object JSONString {
     collections match {
       case map: Map[_, _] =>
         for ((k, v) <- map) {
-          val key = k.asInstanceOf[String].replaceAll("\"" , "\\\\\"")
+          val key = k.asInstanceOf[String].replaceAll("\"", "\\\\\"")
           v match {
             case map: Map[_, _] => JSON += s""""$key": ${encode(map)}""";
             case list: List[_] => JSON += s""""$key": ${encode(list)}""";
             case int: Int => JSON += s""""$key": $int""";
             case boolean: Boolean => JSON += s""""$key": $boolean""";
-            case string: String => JSON += s""""$key": "${string.replaceAll("\"" , "\\\\\"")}""""
+            case string: String => JSON += s""""$key": "${string.replaceAll("\"", "\\\\\"")}""""
             case _ => ();
           }
         };
@@ -35,7 +34,7 @@ case object JSONString {
             case caseList: List[_] => list += encode(caseList);
             case int: Int => list += int.toString;
             case boolean: Boolean => list += boolean.toString;
-            case string: String => list += s""""${string.replaceAll("\"" , "\\\\\"")}"""";
+            case string: String => list += s""""${string.replaceAll("\"", "\\\\\"")}"""";
             case _ => ();
           }
         }
