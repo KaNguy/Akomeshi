@@ -21,13 +21,12 @@ import java.nio.charset.StandardCharsets
 import java.net.http.WebSocket
 
 // Utilities
-import java.util.concurrent.{CompletionStage, ScheduledExecutorService, Executors}
+import java.util.concurrent.CompletionStage
 import java.util
 
 class Gateway {
   var connectionState: Int = 0
 
-  val scheduledExecutorService: ScheduledExecutorService = Executors.newScheduledThreadPool(1)
   var heartBeatInterval: Int = _
 
   val webSocketListener: WebSocketListener = new WebSocketListener {
@@ -77,14 +76,14 @@ class Gateway {
     }
   }
 
-  val connection = new AkoWebSocket(Constants.gatewayURL, this.webSocketListener)
   EventObjects.mapEmitter.on("WS_MESSAGE", (channel, data) => {
+    println(data)
     if (data.getOrElse("d", "d").asInstanceOf[util.HashMap[Any, Any]].containsKey("heartbeat_interval")) {
       heartBeatInterval = Integer.parseInt(data.getOrElse("d", "d").asInstanceOf[util.HashMap[Any, Any]].get("heartbeat_interval").toString)
-      println(heartBeatInterval)
+      Heartbeat.sendHeartbeat(heartBeatInterval, connection = connection)
     }
-    //scheduledExecutorService.scheduleAtFixedRate()
   })
+  val connection = new AkoWebSocket(Constants.gatewayURL, this.webSocketListener)
 
 }
 
