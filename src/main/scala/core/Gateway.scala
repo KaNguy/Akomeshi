@@ -21,10 +21,14 @@ import java.nio.charset.StandardCharsets
 import java.net.http.WebSocket
 
 // Utilities
-import java.util.concurrent.CompletionStage
+import java.util.concurrent.{CompletionStage, ScheduledExecutorService, Executors}
+import java.util
 
 class Gateway {
   var connectionState: Int = 0
+
+  val scheduledExecutorService: ScheduledExecutorService = Executors.newScheduledThreadPool(1)
+  var heartBeatInterval: Int = _
 
   val webSocketListener: WebSocketListener = new WebSocketListener {
     override def onBinary(webSocket: WebSocket, data: ByteBuffer, last: Boolean): CompletionStage[_] = {
@@ -58,10 +62,6 @@ class Gateway {
       val stringBuilder: StringBuilder = new StringBuilder()
       stringBuilder.append(data)
 
-      EventObjects.mapEmitter.on("WS_MESSAGE", (channel, data) => {
-        if (data.getOrElse("op", "op").equals("10")) connection.send(JSONString.encode(PayloadModels.identifyPayload("")), last = true)
-      })
-
       EventObjects.mapEmitter.emit("WS_MESSAGE", JSON.parseAsMap(stringBuilder.toString()))
       super.onText(webSocket, data, last)
     }
@@ -77,11 +77,15 @@ class Gateway {
     }
   }
 
-  EventObjects.mapEmitter.on("WS_MESSAGE", (channel, data) => {
-    // TODO: Remove this test later
-    println(data)
-  });
   val connection = new AkoWebSocket(Constants.gatewayURL, this.webSocketListener)
+  EventObjects.mapEmitter.on("WS_MESSAGE", (channel, data) => {
+    if (data.getOrElse("d", "d").asInstanceOf[util.HashMap[Any, Any]].containsKey("heartbeat_interval")) {
+      heartBeatInterval = Integer.parseInt(data.getOrElse("d", "d").asInstanceOf[util.HashMap[Any, Any]].get("heartbeat_interval").toString)
+      println(heartBeatInterval)
+    }
+    //scheduledExecutorService.scheduleAtFixedRate()
+  })
+
 }
 
 object Gateway extends App {
