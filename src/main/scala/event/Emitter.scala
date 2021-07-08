@@ -19,14 +19,14 @@ class Emitter[T] {
     if (channel.equals("*")) {
       callbacks.entrySet().forEach(entry => {
         entry.getValue.forEach(callbackPair => {
-          callbackPair.getU().call(channel, data)
+          callbackPair.getU.call(channel, data)
         })
       })
     } else {
       var callbackPairList = callbacks.get("*")
       if (callbackPairList != null) {
         callbackPairList.forEach(callbackPair =>
-          callbackPair.getU().call(channel, data)
+          callbackPair.getU.call(channel, data)
         )
       }
 
@@ -34,7 +34,7 @@ class Emitter[T] {
       if (callbackPairList == null) return
 
       callbackPairList.forEach(callbackPair => {
-          callbackPair.getU().call(channel, data)
+          callbackPair.getU.call(channel, data)
         }
       )
     }
@@ -54,7 +54,7 @@ class Emitter[T] {
 
   def off(uuid: String): Unit = {
     callbacks.entrySet.forEach(entry => {
-        entry.getValue.removeIf(pair => pair.getT().equals(uuid))
+        entry.getValue.removeIf(pair => pair.getT.equals(uuid))
       }
     )
   }
