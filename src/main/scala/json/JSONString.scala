@@ -22,7 +22,7 @@ case object JSONString {
             case int: Int => JSON += s""""$key": $int""";
             case boolean: Boolean => JSON += s""""$key": $boolean""";
             case string: String => JSON += s""""$key": "${string.replaceAll("\"", "\\\\\"")}""""
-            case _ => ();
+            case _ => JSON += s"""$key: null""";
           }
         };
 
@@ -35,7 +35,7 @@ case object JSONString {
             case int: Int => list += int.toString;
             case boolean: Boolean => list += boolean.toString;
             case string: String => list += s""""${string.replaceAll("\"", "\\\\\"")}"""";
-            case _ => ();
+            case _ => list += "null";
           }
         }
 
