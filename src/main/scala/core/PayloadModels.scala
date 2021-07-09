@@ -7,7 +7,7 @@ package core
  */
 
 // Akomeshi
-import org.akomeshi.utility.Constants
+import utility.Constants
 
 object PayloadModels {
   val identifyPayload: String => Map[Any, Any] = token => Map("op" -> 2, "d" ->
