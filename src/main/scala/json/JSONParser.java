@@ -55,7 +55,7 @@ public class JSONParser {
         char current;
 
         try {
-            while (Utility.isWhitespace((current = JSONData.charAt(i)))) i++;
+            while (JSONUtility.isWhitespace((current = JSONData.charAt(i)))) i++;
         } catch (IndexOutOfBoundsException e) {
             throw new JSONParseException("Provided JSON string did not contain a value");
         }
@@ -72,10 +72,10 @@ public class JSONParser {
         } else if (current == '"') {
             currentType = Token.STRING;
             fieldStart = i;
-        } else if (Utility.isLetter(current)) {
+        } else if (JSONUtility.isLetter(current)) {
             currentType = Token.CONSTANT;
             fieldStart = i;
-        } else if (Utility.isNumberStarter(current)) {
+        } else if (JSONUtility.isNumberStarter(current)) {
             currentType = Token.NUMBER;
             fieldStart = i;
         } else {
@@ -85,7 +85,7 @@ public class JSONParser {
         while (i <= end) {
             current = JSONData.charAt(i);
             switch (currentType) {
-                case KEY:
+                case KEY -> {
                     try {
                         ExtractedString extracted = extractString(JSONData, i);
                         i = extracted.sourceEnd;
@@ -96,8 +96,8 @@ public class JSONParser {
                     currentType = Token.HEURISTIC;
                     expectingColon = true;
                     i++;
-                    break;
-                case STRING:
+                }
+                case STRING -> {
                     try {
                         ExtractedString extracted = extractString(JSONData, i);
                         i = extracted.sourceEnd;
@@ -105,7 +105,6 @@ public class JSONParser {
                     } catch (StringIndexOutOfBoundsException e) {
                         throw new JSONParseException(stateStack, "String did not have ending quote.");
                     }
-
                     if (currentContainer == null) {
                         return value;
                     } else {
@@ -119,10 +118,9 @@ public class JSONParser {
 
                         }
                     }
-
                     i++;
-                    break;
-                case NUMBER: {
+                }
+                case NUMBER -> {
                     boolean withDecimal = false;
                     boolean withE = false;
                     do {
@@ -131,7 +129,7 @@ public class JSONParser {
                             withDecimal = true;
                         } else if (!withE && (current == 'e' || current == 'E')) {
                             withE = true;
-                        } else if (!Utility.isNumberStarter(current) && current != '+') {
+                        } else if (!JSONUtility.isNumberStarter(current) && current != '+') {
                             break;
                         }
                     } while (i++ < end);
@@ -160,33 +158,25 @@ public class JSONParser {
                             currentType = Token.ARRAY;
                         }
                     }
-                    break;
                 }
-                case CONSTANT:
-                    while (Utility.isLetter(current) && i++ < end) {
+                case CONSTANT -> {
+                    while (JSONUtility.isLetter(current) && i++ < end) {
                         current = JSONData.charAt(i);
                     }
-
                     String valueString = JSONData.substring(fieldStart, i);
                     switch (valueString) {
-                        case "false":
-                            value = false;
-                            break;
-                        case "true":
-                            value = true;
-                            break;
-                        case "null":
-                            value = null;
-                            break;
-                        default:
+                        case "false" -> value = false;
+                        case "true" -> value = true;
+                        case "null" -> value = null;
+                        default -> {
                             if (currentContainer instanceof Map) {
                                 stateStack.push(new State(propertyName, currentContainer, Token.OBJECT));
                             } else if (currentContainer instanceof List) {
                                 stateStack.push(new State(propertyName, currentContainer, Token.ARRAY));
                             }
                             throw new JSONParseException(stateStack, String.format("\"%s\" is not a valid constant.", valueString));
+                        }
                     }
-
                     if (currentContainer == null) {
                         return value;
                     } else {
@@ -200,17 +190,15 @@ public class JSONParser {
 
                         }
                     }
-                    break;
-                case HEURISTIC:
-                    while (Utility.isWhitespace(current) && i++ < end) {
+                }
+                case HEURISTIC -> {
+                    while (JSONUtility.isWhitespace(current) && i++ < end) {
                         current = JSONData.charAt(i);
                     }
-
                     if (current != ':' && expectingColon) {
                         stateStack.push(new State(propertyName, currentContainer, Token.OBJECT));
                         throw new JSONParseException(stateStack, "was not followed by a colon");
                     }
-
                     if (current == ':') {
                         if (expectingColon) {
                             expectingColon = false;
@@ -232,21 +220,20 @@ public class JSONParser {
                         currentType = Token.ARRAY;
                         currentContainer = new ArrayList<>();
                         i++;
-                    } else if (Utility.isLetter(current)) {
+                    } else if (JSONUtility.isLetter(current)) {
                         currentType = Token.CONSTANT;
                         fieldStart = i;
-                    } else if (Utility.isNumberStarter(current)) {
+                    } else if (JSONUtility.isNumberStarter(current)) {
                         currentType = Token.NUMBER;
                         fieldStart = i;
                     } else {
                         throw new JSONParseException(stateStack, String.format("unexpected character \"%s\" instead of object value", current));
                     }
-                    break;
-                case OBJECT:
-                    while (Utility.isWhitespace(current) && i++ < end) {
+                }
+                case OBJECT -> {
+                    while (JSONUtility.isWhitespace(current) && i++ < end) {
                         current = JSONData.charAt(i);
                     }
-
                     if (current == ',') {
                         if (expectingComma) {
                             expectingComma = false;
@@ -281,20 +268,18 @@ public class JSONParser {
                         } else {
                             return currentContainer;
                         }
-                    } else if (!Utility.isWhitespace(current)) {
+                    } else if (!JSONUtility.isWhitespace(current)) {
                         throw new JSONParseException(stateStack, String.format("Unexpected character '%s' where a property name was expected.", current));
                     }
-                    break;
-                case ARRAY:
-                    while (Utility.isWhitespace(current) && i++ < end) {
+                }
+                case ARRAY -> {
+                    while (JSONUtility.isWhitespace(current) && i++ < end) {
                         current = JSONData.charAt(i);
                     }
-
                     if (current != ',' && current != ']' && current != '}' && expectingComma) {
                         stateStack.push(new State(null, currentContainer, Token.ARRAY));
                         throw new JSONParseException(stateStack, "was not preceded by a comma");
                     }
-
                     if (current == ',') {
                         if (expectingComma) {
                             expectingComma = false;
@@ -334,10 +319,10 @@ public class JSONParser {
                         } else {
                             return currentContainer;
                         }
-                    } else if (Utility.isLetter(current)) {
+                    } else if (JSONUtility.isLetter(current)) {
                         currentType = Token.CONSTANT;
                         fieldStart = i;
-                    } else if (Utility.isNumberStarter(current)) {
+                    } else if (JSONUtility.isNumberStarter(current)) {
                         // Is a number
                         currentType = Token.NUMBER;
                         fieldStart = i;
@@ -345,7 +330,7 @@ public class JSONParser {
                         stateStack.push(new State(propertyName, currentContainer, Token.ARRAY));
                         throw new JSONParseException(stateStack, String.format("Unexpected character \"%s\" instead of array value", current));
                     }
-                    break;
+                }
             }
         }
 
@@ -358,51 +343,26 @@ public class JSONParser {
             int i = indexOfSpecial(JSONData, fieldStart);
             char c = JSONData.charAt(i);
             if (c == '"') {
-                builder.append(JSONData.substring(fieldStart + 1, i));
+                builder.append(JSONData, fieldStart + 1, i);
                 ExtractedString val = new ExtractedString();
                 val.sourceEnd = i;
                 val.str = builder.toString();
                 return val;
             } else if (c == '\\') {
-                builder.append(JSONData.substring(fieldStart + 1, i));
+                builder.append(JSONData, fieldStart + 1, i);
 
                 c = JSONData.charAt(i + 1);
                 switch (c) {
-                    case '"': {
-                        builder.append('\"');
-                        break;
-                    }
-                    case '\\': {
-                        builder.append('\\');
-                        break;
-                    }
-                    case '/': {
-                        builder.append('/');
-                        break;
-                    }
-                    case 'b': {
-                        builder.append('\b');
-                        break;
-                    }
-                    case 'f': {
-                        builder.append('\f');
-                        break;
-                    }
-                    case 'n': {
-                        builder.append('\n');
-                        break;
-                    }
-                    case 'r': {
-                        builder.append('\r');
-                        break;
-                    }
-                    case 't': {
-                        builder.append('\t');
-                        break;
-                    }
-                    case 'u': {
-                        builder.append(Character.toChars(
-                                Integer.parseInt(JSONData.substring(i + 2, i + 6), 16)));
+                    case '"' -> builder.append('\"');
+                    case '\\' -> builder.append('\\');
+                    case '/' -> builder.append('/');
+                    case 'b' -> builder.append('\b');
+                    case 'f' -> builder.append('\f');
+                    case 'n' -> builder.append('\n');
+                    case 'r' -> builder.append('\r');
+                    case 't' -> builder.append('\t');
+                    case 'u' -> {
+                        builder.append(Character.toChars(Integer.parseInt(JSONData.substring(i + 2, i + 6), 16)));
                         fieldStart = i + 5;
                         continue;
                     }
