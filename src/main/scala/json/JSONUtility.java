@@ -1,6 +1,6 @@
 package org.akomeshi.json;
 
-public class Utility {
+public class JSONUtility {
     public static boolean isWhitespace(char character) {
         return character == ' ' || character == '\n' || character == '\t';
     }
