@@ -25,28 +25,6 @@ import java.util.concurrent.CompletionStage
 import java.util
 
 class Gateway {
-  trait InfoEmission {
-    def heartbeatEvent(heartbeat_interval: Int)
-  }
-
-  class Initiator {
-    private val listeners: java.util.ArrayList[InfoEmission] = new java.util.ArrayList[InfoEmission]()
-    def addListener(infoEmission: InfoEmission): Unit = listeners.add(infoEmission)
-    def emitHeartbeat(heartbeat_interval: Int): Unit = {
-      listeners.get(0).heartbeatEvent(heartbeat_interval)
-    }
-  }
-
-  class Responder extends InfoEmission {
-    override def heartbeatEvent(heartbeat_interval: Int): Unit = {
-      println(heartbeat_interval)
-    }
-  }
-
-  val initiator = new Initiator
-  val responder = new Responder
-  initiator.addListener(responder)
-
   var connectionState: Int = 0
 
   var heartBeatInterval: Int = _
@@ -100,15 +78,14 @@ class Gateway {
 
   EventObjects.mapEmitter.on("WS_MESSAGE", (channel, data) => {
     println(data)
-    if (data.getOrElse("d", "d").asInstanceOf[util.HashMap[Any, Any]].containsKey("heartbeat_interval")) {
-      heartBeatInterval = Integer.parseInt(data.getOrElse("d", "d").asInstanceOf[util.HashMap[Any, Any]].get("heartbeat_interval").toString)
-      initiator.emitHeartbeat(heartBeatInterval)
-      //Heartbeat.sendHeartbeat(heartBeatInterval, this.connection)
-    }
+//    if (data.getOrElse("d", "d").asInstanceOf[util.HashMap[Any, Any]].containsKey("heartbeat_interval")) {
+//      heartBeatInterval = Integer.parseInt(data.getOrElse("d", "d").asInstanceOf[util.HashMap[Any, Any]].get("heartbeat_interval").toString)
+//    }
   })
 
-  lazy val connection = new AkoWebSocket(Constants.gatewayURL, this.webSocketListener)
+  val connection = new AkoWebSocket(Constants.gatewayURL, this.webSocketListener)
 
+  Heartbeat.sendHeartbeat(41250, this.connection)
 }
 
 object Gateway extends App {
