@@ -17,5 +17,5 @@ object PayloadModels {
     )
   )
 
-  val heartbeatPayload: Map[String, Int] = Map("op" -> 10)
+  val heartbeatPayload: Map[String, Any] = Map("op" -> 1, "d" -> "null")
 }
