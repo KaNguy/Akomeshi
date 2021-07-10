@@ -75,19 +75,6 @@ class Gateway {
       super.onError(webSocket, error)
     }
   }
-
-  EventObjects.mapEmitter.on("WS_MESSAGE", (channel, data) => {
-    println(data)
-//    if (data.getOrElse("d", "d").asInstanceOf[util.HashMap[Any, Any]].containsKey("heartbeat_interval")) {
-//      heartBeatInterval = Integer.parseInt(data.getOrElse("d", "d").asInstanceOf[util.HashMap[Any, Any]].get("heartbeat_interval").toString)
-//    }
-  })
-
   val connection = new AkoWebSocket(Constants.gatewayURL, this.webSocketListener)
-
   Heartbeat.sendHeartbeat(41250, this.connection)
-}
-
-object Gateway extends App {
-  new Gateway()
 }
