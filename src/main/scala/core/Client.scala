@@ -13,6 +13,7 @@ class Client {
   val universalGatewayClass: Gateway = new Gateway()
 
   def login(token: String): Unit = {
+    // TODO: Test and polish this
     this.universalGatewayClass.connection.send(JSONString.encode(PayloadModels.identifyPayload(token)), last = true, timeout = 100)
   }
 }
