@@ -76,5 +76,4 @@ class Gateway {
     }
   }
   val connection = new AkoWebSocket(Constants.gatewayURL, this.webSocketListener)
-  Heartbeat.sendHeartbeat(41250, this.connection)
 }
