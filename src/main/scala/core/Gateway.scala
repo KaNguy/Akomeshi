@@ -7,11 +7,10 @@ package core
  */
 
 // Library
-import json.{JSON, JSONString}
+import json.JSON
 import utility.{Constants, Zlib}
 import websocket.{AkoWebSocket, WebSocketListener}
-
-import org.akomeshi.event.EventObjects
+import event.EventObjects
 
 // NIO
 import java.nio.ByteBuffer
@@ -22,7 +21,6 @@ import java.net.http.WebSocket
 
 // Utilities
 import java.util.concurrent.CompletionStage
-import java.util
 
 class Gateway {
   var connectionState: Int = 0
