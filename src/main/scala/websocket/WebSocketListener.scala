@@ -1,6 +1,11 @@
 package org.akomeshi
 package websocket
 
+/**
+ * Created by KaNguy - 6/28/2021
+ * File websocket/WebSocketListener.scala
+ */
+
 // Networking & web
 import java.net.http.WebSocket
 import java.net.http.WebSocket.Listener
@@ -10,11 +15,6 @@ import java.nio.ByteBuffer
 
 // Utilities
 import java.util.concurrent.CompletionStage
-
-/**
- * Created by KaNguy - 6/28/2021
- * File websocket/WebSocketListener.scala
- */
 
 case class WebSocketListener() extends Listener {
   override def onOpen(webSocket: WebSocket): Unit = {
