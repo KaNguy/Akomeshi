@@ -25,8 +25,6 @@ import java.util.concurrent.CompletionStage
 class Gateway {
   var connectionState: Int = 0
 
-  var heartBeatInterval: Int = _
-
   lazy val webSocketListener: WebSocketListener = new WebSocketListener {
     override def onBinary(webSocket: WebSocket, data: ByteBuffer, last: Boolean): CompletionStage[_] = {
 
