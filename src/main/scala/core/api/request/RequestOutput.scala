@@ -2,8 +2,8 @@ package org.akomeshi
 package core.api.request
 
 /**
- * Created by KaNguy - 6/30/2021
- * File core/api/request/Response.scala
+ * Created by KaNguy - 07/15/2021
+ * File core/api/request/RequestOutput.scala
  */
 
 // Input / Output
