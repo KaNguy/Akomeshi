@@ -16,7 +16,9 @@ import java.util.concurrent.{ScheduledExecutorService, TimeUnit, Executors}
 import json.JSONString
 
 object Heartbeat {
-  def sendHeartbeat(heartbeat_interval: Int, connection: AkoWebSocket, executor: ScheduledExecutorService = Executors.newScheduledThreadPool(1)): Unit = {
+  val executor: ScheduledExecutorService = Executors.newScheduledThreadPool(1)
+
+  def sendHeartbeat(heartbeat_interval: Int, connection: AkoWebSocket, executor: ScheduledExecutorService = this.executor): Unit = {
     executor.scheduleAtFixedRate(() => {
       connection.send(JSONString.encode(PayloadModels.heartbeatPayload), last = true)
     }, 0, heartbeat_interval, TimeUnit.MILLISECONDS)
