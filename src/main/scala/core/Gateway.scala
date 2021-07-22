@@ -11,6 +11,7 @@ import json.JSON
 import utility.{Constants, Zlib}
 import websocket.{AkoWebSocket, WebSocketListener}
 import event.EventObjects
+import miscellaneous.Trace
 
 // NIO
 import java.nio.ByteBuffer
@@ -62,13 +63,13 @@ class Gateway {
     }
 
     override def onClose(webSocket: WebSocket, statusCode: Int, reason: String): CompletionStage[_] = {
-      println("Connection closed: " + statusCode + (if (reason.nonEmpty) ", " else "") + reason)
+      Trace.logger.debug("Connection closed: " + statusCode + (if (reason.nonEmpty) ", " else "") + reason)
       connectionState = 0
       super.onClose(webSocket, statusCode, reason)
     }
 
     override def onError(webSocket: WebSocket, error: Throwable): Unit = {
-      println("Error: " + error)
+      Trace.logger.debug("Error: " + error)
       super.onError(webSocket, error)
     }
   }
