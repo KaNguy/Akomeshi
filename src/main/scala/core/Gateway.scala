@@ -62,7 +62,7 @@ class Gateway {
     }
 
     override def onClose(webSocket: WebSocket, statusCode: Int, reason: String): CompletionStage[_] = {
-      println("Connection closed: " + statusCode + ", " + reason)
+      println("Connection closed: " + statusCode + (if (reason.nonEmpty) ", " else "") + reason)
       connectionState = 0
       super.onClose(webSocket, statusCode, reason)
     }
