@@ -21,8 +21,8 @@ class Client {
     Heartbeat.sendHeartbeat(41250, this.universalGatewayClass.connection)
   }
 
-  def logout(): Unit = {
-    this.universalGatewayClass.connection.close(WebSocket.NORMAL_CLOSURE, "Normal closure", timeout = 300)
+  def logout(timeout: Int = 300): Unit = {
+    this.universalGatewayClass.connection.close(WebSocket.NORMAL_CLOSURE, "Normal closure", timeout = timeout)
     if (!Heartbeat.executor.isTerminated) Heartbeat.executor.shutdown()
   }
 }
