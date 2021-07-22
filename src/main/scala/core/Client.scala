@@ -23,6 +23,7 @@ class Client {
 
   def logout(): Unit = {
     this.universalGatewayClass.connection.close(WebSocket.NORMAL_CLOSURE, "Normal closure", timeout = 0)
+    Thread.sleep(300)
     if (!Heartbeat.executor.isTerminated) Heartbeat.executor.shutdown()
   }
 }
