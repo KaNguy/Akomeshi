@@ -7,5 +7,6 @@ package core.miscellaneous
  */
 
 object Trace {
+  // TODO: Make a way to allow debug logging through the Client class
   val logger: Logger = Logger(log = true)
 }
