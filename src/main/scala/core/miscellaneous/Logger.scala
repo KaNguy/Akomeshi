@@ -3,7 +3,7 @@ package core.miscellaneous
 
 /**
  * Created by KaNguy - 07/21/2021
- * File miscellaneous/Logger.scala
+ * File core/miscellaneous/Logger.scala
  */
 
 case class Logger(log: Boolean = false) {
