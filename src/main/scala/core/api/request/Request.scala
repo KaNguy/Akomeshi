@@ -3,7 +3,7 @@ package core.api.request
 
 /**
  * Created by KaNguy - 07/22/2021
- * File core/Request.scala
+ * File core/api/request/Request.scala
  */
 
 // Networking & Web
