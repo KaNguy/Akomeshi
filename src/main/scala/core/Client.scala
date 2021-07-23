@@ -12,10 +12,10 @@ import json.JSONString
 // WebSocket
 import java.net.http.WebSocket
 
-class Client {
+class Client(val token: String) {
   val universalGatewayClass: Gateway = new Gateway()
 
-  def login(token: String): Unit = {
+  def login(token: String = this.token): Unit = {
     // TODO: Work on this a little more
     this.universalGatewayClass.connection.send(JSONString.encode(PayloadModels.identifyPayload(token)), last = true)
     Heartbeat.sendHeartbeat(41250, this.universalGatewayClass.connection)
