@@ -11,13 +11,14 @@ import java.net.URI
 import java.net.http.{HttpClient, HttpRequest, HttpResponse}
 
 object Request {
-  def request(url: String, method: String = RequestConstants.GET, headers: Iterable[(String, String)], data: String = null): String = {
+  def request(url: String, method: String = RequestConstants.GET, headers: Iterable[(String, String)] = Iterable.empty[(String, String)], data: String = null): String = {
+    val uMethod: String = method.toUpperCase
     val client: HttpClient = HttpClient.newHttpClient()
 
     val request: HttpRequest.Builder = HttpRequest.newBuilder(URI.create(url))
       .method(
-        if (RequestConstants.requestMethods.contains(method.toUpperCase)) method.toUpperCase else RequestConstants.GET,
-        if (method.toUpperCase.equals(RequestConstants.GET)) HttpRequest.BodyPublishers.noBody() else HttpRequest.BodyPublishers.ofString(if (data == null) "" else data)
+        if (RequestConstants.requestMethods.contains(uMethod)) uMethod else RequestConstants.GET,
+        if (uMethod.equals(RequestConstants.GET)) HttpRequest.BodyPublishers.noBody() else HttpRequest.BodyPublishers.ofString(if (data == null) "" else data)
       )
       .version(HttpClient.Version.HTTP_2)
 
