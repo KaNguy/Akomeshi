@@ -8,11 +8,14 @@ package core
 
 // Akomeshi
 import json.JSONString
+import structures.Message
 
 // WebSocket
 import java.net.http.WebSocket
 
 class Client(val token: String) {
+  // TODO: Make this dynamic
+  Message()
   val universalGatewayClass: Gateway = new Gateway()
 
   def login(token: String = this.token): Unit = {
