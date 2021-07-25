@@ -27,6 +27,24 @@ case object Constants {
   val zlibSuffix: Int = 0x0000FFFF
 
   /**
+   * WebSocket Event Opcodes
+   */
+  val GatewayOpcodes: Map[String, Int] = Map(
+    "DISPATCH" -> 0,
+    "HEARTBEAT" -> 1,
+    "IDENTIFY" -> 2,
+    "STATUS_UPDATE" -> 3,
+    "VOICE_STATE_UPDATE" -> 4,
+    "VOICE_GUILD_PING" -> 5,
+    "RESUME" -> 6,
+    "RECONNECT" -> 7,
+    "REQUEST_GUILD_MEMBERS" -> 8,
+    "INVALID_SESSION" -> 9,
+    "HELLO" -> 10,
+    "HEARTBEAT_ACK" -> 11
+  )
+
+  /**
    * WebSocket events from the Discord Gateway
    *
    * Note: Get any event from the Seq
