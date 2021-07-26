@@ -43,6 +43,11 @@ public class JSONParser {
     }
 
     @SuppressWarnings("unchecked")
+    public static HashMap<String, Object> parseAsHashMap(String JSONData) {
+        return (HashMap<String, Object>) parse(JSONData);
+    }
+
+    @SuppressWarnings("unchecked")
     public static Object parse(String JSONData) {
         Stack<State> stateStack = new Stack<>();
         Token currentType;
