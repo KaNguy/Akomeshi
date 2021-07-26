@@ -17,9 +17,9 @@ case class Message(message: Map[Any, Any] = Map.empty[Any, Any]) {
     message("content").toString
   }
 
-  EventObjects.mapEmitter.on("WS_MESSAGE", (_, data) => {
-    if (data.getOrElse("t", "t") != null && data.getOrElse("t", "t").toString.equals("MESSAGE_CREATE")) {
-      EventObjects.hashMapEmitter.emit("D_MESSAGE", data.getOrElse("d", "d").asInstanceOf[util.HashMap[Any, Any]])
+  EventObjects.hashMapEmitter.on("WS_MESSAGE", (_, data) => {
+    if (data.get("t") != null && data.get("t").toString.equals("MESSAGE_CREATE")) {
+      EventObjects.hashMapEmitter.emit("D_MESSAGE", data.get("d").asInstanceOf[util.HashMap[Any, Any]])
     }
   })
 }

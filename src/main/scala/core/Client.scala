@@ -15,7 +15,7 @@ import java.net.http.WebSocket
 
 class Client(val token: String) {
   // TODO: Make this dynamic
-  //Message()
+  Message()
   EventManager()
   val universalGatewayClass: Gateway = new Gateway()
 
