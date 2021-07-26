@@ -59,7 +59,7 @@ class Gateway {
       val stringBuilder: StringBuilder = new StringBuilder()
       stringBuilder.append(data)
 
-      EventObjects.mapEmitter.emit("WS_MESSAGE", JSON.parseAsMap(stringBuilder.toString()))
+      EventObjects.hashMapEmitter.emit("WS_MESSAGE", JSON.parseAsHashMap(stringBuilder.toString()))
       super.onText(webSocket, data, last)
     }
 
