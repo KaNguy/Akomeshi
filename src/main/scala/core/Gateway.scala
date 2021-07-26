@@ -22,6 +22,7 @@ import java.net.http.WebSocket
 
 // Utilities
 import java.util.concurrent.CompletionStage
+import java.util
 
 class Gateway {
   var connectionState: Int = 0
@@ -36,14 +37,14 @@ class Gateway {
 
       val decodedMessage: String = new String(decompressedData, StandardCharsets.UTF_8)
 
-      var JSONData: Map[Any, Any] = Map.empty[Any, Any]
+      var JSONData: util.HashMap[Any, Any] = new util.HashMap[Any, Any]()
       try {
-        JSONData = JSON.parseAsMap(decodedMessage)
+        JSONData = JSON.parseAsHashMap(decodedMessage)
       } catch {
         case _: Throwable => ()
       }
 
-      if (JSONData.nonEmpty) EventObjects.mapEmitter.emit("WS_MESSAGE", JSONData)
+      if (!JSONData.isEmpty) EventObjects.hashMapEmitter.emit("WS_MESSAGE", JSONData)
 
       super.onBinary(webSocket, data, last)
     }
