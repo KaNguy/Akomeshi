@@ -13,9 +13,7 @@ import event.EventObjects
 import java.util
 
 case class Message(message: Map[Any, Any] = Map.empty[Any, Any]) {
-  def content: String = {
-    message("content").toString
-  }
+  def content: String = message("content").toString
 
   EventObjects.hashMapEmitter.on("WS_MESSAGE", (_, data) => {
     if (data.get("t") != null && data.get("t").toString.equals("MESSAGE_CREATE")) {
