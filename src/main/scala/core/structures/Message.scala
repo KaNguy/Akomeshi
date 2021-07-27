@@ -12,8 +12,8 @@ import event.EventObjects
 // Utility
 import java.util
 
-case class Message(message: Map[Any, Any] = Map.empty[Any, Any]) {
-  def content: String = message("content").toString
+case class Message(message: util.HashMap[Any, Any] = util.HashMap[Any, Any]) {
+  def content: String = message.get("content").toString
 
   EventObjects.hashMapEmitter.on("WS_MESSAGE", (_, data) => {
     if (data.get("t") != null && data.get("t").toString.equals("MESSAGE_CREATE")) {
