@@ -1,3 +1,6 @@
+# Temporary / Tests
+src/test/scala/
+
 # Builds
 .bsp
 
