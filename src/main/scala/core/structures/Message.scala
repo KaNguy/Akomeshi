@@ -14,6 +14,7 @@ import java.util
 
 case class Message(message: util.HashMap[Any, Any] = new util.HashMap[Any, Any]()) {
   // TODO: Move this to a general utilities file
+  // TODO: Breaking feature
   private def cast[X, Y](x: Any): Y = x.asInstanceOf[X].asInstanceOf[Y]
 
   def content: String = message.get("content").toString
