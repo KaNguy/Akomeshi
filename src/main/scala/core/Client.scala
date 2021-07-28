@@ -8,10 +8,7 @@ package core
 
 // Akomeshi
 import json.JSONString
-
-import structures.{EventManager, Message}
-import core.EventDispatcher
-import org.akomeshi.event.EventObjects
+import event.EventObjects
 
 // WebSocket
 import java.net.http.WebSocket
