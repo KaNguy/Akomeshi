@@ -9,7 +9,6 @@ package core.structures
 // Akomeshi
 import event.EventObjects
 import utility.Constants
-import core.structures.Message
 
 // Utilities
 import java.util
