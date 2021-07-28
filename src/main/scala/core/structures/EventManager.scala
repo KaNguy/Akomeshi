@@ -14,16 +14,16 @@ import core.structures.Message
 // Utilities
 import java.util
 
-case class EventManager(/*eventData: Iterable[(Any, Any)]*/) {
-  EventObjects.hashMapEmitter.on("WS_MESSAGE", (_, data) => {
+case class EventManager(event: util.HashMap[Any, Any]) {
+  def apply(event: util.HashMap[Any, Any] = this.event): Unit = {
     if (
-      data.get("t") != null &&
-      data.get("t").isInstanceOf[String] &&
-      data.get("op") != null &&
-      data.get("op") == Constants.GatewayOpcodes("DISPATCH")
+      event.get("t") != null &&
+        event.get("t").isInstanceOf[String] &&
+        event.get("op") != null &&
+        event.get("op") == Constants.GatewayOpcodes("DISPATCH")
     ) {
-      if (data.get("t").equals(Constants.WebSocketEvents.map(_ => "MESSAGE_CREATE").head))
-        EventObjects.messageEvent.emit("MESSAGE", Message(data.get("d").asInstanceOf[util.HashMap[Any, Any]]))
+      if (event.get("t").equals(Constants.WebSocketEvents.map(_ => "MESSAGE_CREATE").head))
+        EventObjects.messageEvent.emit("MESSAGE_CREATE", Message(event.get("d").asInstanceOf[util.HashMap[Any, Any]]))
     }
-  })
+  }
 }
