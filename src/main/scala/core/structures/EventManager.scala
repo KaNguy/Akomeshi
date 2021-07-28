@@ -23,7 +23,7 @@ case class EventManager(/*eventData: Iterable[(Any, Any)]*/) {
       data.get("op") == Constants.GatewayOpcodes("DISPATCH")
     ) {
       if (data.get("t").equals(Constants.WebSocketEvents.map(_ => "MESSAGE_CREATE").head))
-        EventObjects.messageEvent.emit("D_MESSAGE", Message(data.get("d").asInstanceOf[util.HashMap[Any, Any]]))
+        EventObjects.messageEvent.emit("MESSAGE", Message(data.get("d").asInstanceOf[util.HashMap[Any, Any]]))
     }
   })
 }
