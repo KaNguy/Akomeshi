@@ -9,19 +9,21 @@ package core.structures
 // Akomeshi
 import event.EventObjects
 import utility.Constants
+import core.structures.Message
 
 // Utilities
 import java.util
 
 case class EventManager(/*eventData: Iterable[(Any, Any)]*/) {
-  EventObjects.mapEmitter.on("WS_MESSAGE", (_, data) => {
+  EventObjects.hashMapEmitter.on("WS_MESSAGE", (_, data) => {
     if (
-      data("t") != null &&
-      data("t").isInstanceOf[String] &&
-      data("op") != null &&
-      data("op") == Constants.GatewayOpcodes("DISPATCH")
+      data.get("t") != null &&
+      data.get("t").isInstanceOf[String] &&
+      data.get("op") != null &&
+      data.get("op") == Constants.GatewayOpcodes("DISPATCH")
     ) {
-        EventObjects.hashMapEmitter.emit("D_MESSAGE", data.getOrElse("d", "d").asInstanceOf[util.HashMap[Any, Any]])
+      if (data.get("t").equals(Constants.WebSocketEvents.map(_ => "MESSAGE_CREATE").head))
+        EventObjects.messageEvent.emit("D_MESSAGE", Message(data.get("d").asInstanceOf[util.HashMap[Any, Any]]))
     }
   })
 }
