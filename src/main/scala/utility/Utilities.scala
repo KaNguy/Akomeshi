@@ -7,6 +7,6 @@ package utility
  */
 
 case object Utilities {
-  def strToBool(x: String): Boolean = x.toBoolean
-  def strToInt(x: String): Int = x.toInt
+  def strToBool(x: Any): Boolean = x.toString.toBoolean
+  def strToInt(x: Any): Int = x.toString.toInt
 }
