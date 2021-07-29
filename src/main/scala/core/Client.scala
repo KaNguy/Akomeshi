@@ -7,16 +7,18 @@ package core
  */
 
 // Akomeshi
-import core.managers.{EventDispatcher, Heartbeat}
+import core.managers.{EventDispatcher, Heartbeat, TokenManager}
 import core.structures.PayloadModels
 import event.EventObjects
 import json.JSONString
+import managers.TokenManager
 
 // WebSocket
 import java.net.http.WebSocket
 
 class Client(val token: String) {
   EventDispatcher(EventObjects.hashMapEmitter)
+  TokenManager(token).push()
 
   val universalGatewayClass: Gateway = new Gateway()
 
