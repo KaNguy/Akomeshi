@@ -1,14 +1,14 @@
 package org.akomeshi
-package core
+package core.managers
 
 /**
  * Created by KaNguy - 07/28/2021
- * File core/EventDispatcher.scala
+ * File core/managers/EventDispatcher.scala
  */
 
 // Akomeshi
+import core.structures.EventManager
 import event.Emitter
-import structures.EventManager
 
 // Utilities
 import java.util
