@@ -9,6 +9,7 @@ package core.structures
 // Akomeshi
 import event.EventObjects
 import utility.{Utilities => Util}
+import core.managers.TokenManager
 
 // Utility
 import java.util
@@ -24,4 +25,5 @@ case class Message(message: util.HashMap[Any, Any] = new util.HashMap[Any, Any](
   def referencedMessage: Int = Util.strToInt(message.get("referenced_message"))
   def id: Int = Util.strToInt(message.get("id"))
   def timestamp: String = message.get("timestamp").toString
+  def channel: Channel = Channel(message.get("channel_id").toString)
 }
