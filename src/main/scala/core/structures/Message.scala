@@ -21,4 +21,7 @@ case class Message(message: util.HashMap[Any, Any] = new util.HashMap[Any, Any](
   def messageType: Int = Util.strToInt(message.get("type"))
   def nonce: Int = Util.strToInt(message.get("nonce"))
   def isTTS: Boolean = Util.strToBool(message.get("tts"))
+  def referencedMessage: Int = Util.strToInt(message.get("referenced_message"))
+  def id: Int = Util.strToInt(message.get("id"))
+  def timestamp: String = message.get("timestamp").toString
 }
