@@ -1,6 +1,12 @@
 package org.akomeshi
 package core.structures
 
+/**
+ * Created by KaNguy - 07/01/2021
+ * File core/PayloadModels.scala
+ */
+
+// Akomeshi
 import utility.Constants
 
 object PayloadModels {
