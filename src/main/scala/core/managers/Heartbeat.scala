@@ -1,10 +1,15 @@
 package org.akomeshi
 package core.managers
 
+/**
+ * Created by KaNguy - 07/08/2021
+ * File core/managers/Heartbeat.scala
+ */
+
+// Akomeshi
 import json.JSONString
 import websocket.AkoWebSocket
-
-import org.akomeshi.core.structures.PayloadModels
+import core.structures.PayloadModels
 
 import java.util.concurrent.{Executors, ScheduledExecutorService, TimeUnit}
 
