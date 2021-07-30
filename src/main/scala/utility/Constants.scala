@@ -10,7 +10,7 @@ case object Constants {
   val packageName: String = "Akomeshi"
   val packageVersion: String = "0.0.1"
 
-  private val APIVersion: Int = 9
+  val APIVersion: Int = 9
   private val portNumber: Int = 443
 
   val gatewayURL: String = s"wss://gateway.discord.gg:${portNumber.toString}?v=${APIVersion.toString}&encoding=json&compress=zlib-stream"
@@ -18,6 +18,7 @@ case object Constants {
   val cdnURL: String = "https://cdn.discordapp.com"
   val inviteURL: String = "https://discord.gg"
   val templateURL: String = "https://discord.new"
+  val formatAPIURL: Int => String = version => s"${this.apiURL}/v$version"
 
   val userAgent: String = s"DiscordBot ($packageName, $packageVersion)"
 
