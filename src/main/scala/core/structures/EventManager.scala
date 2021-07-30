@@ -14,6 +14,10 @@ import utility.Constants
 import java.util
 
 case class EventManager(event: util.HashMap[Any, Any]) {
+  /**
+   * Dispatches events
+   * @param event The event emitted from the WS_MESSAGE channel
+   */
   def apply(event: util.HashMap[Any, Any] = this.event): Unit = {
     if (
       event.get("t") != null &&
