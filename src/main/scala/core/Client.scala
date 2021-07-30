@@ -30,7 +30,7 @@ class Client(val token: String) {
    */
   def login(token: String = this.token): Unit = {
     this.universalGatewayClass.connection.send(JSONString.encode(PayloadModels.identifyPayload(token)), last = true)
-    if (TokenManager.storage.get("token") == null) TokenManager.push("token", token)
+    if (TokenManager.getToken == null) TokenManager.push("token", token)
     Heartbeat.sendHeartbeat(41250, this.universalGatewayClass.connection)
   }
 
