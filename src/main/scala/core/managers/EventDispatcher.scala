@@ -14,6 +14,9 @@ import event.Emitter
 import java.util
 
 case class EventDispatcher(listener: Emitter[util.HashMap[Any, Any]]) {
+  /**
+   * Passes events into the EventManager case class
+   */
   listener.on("WS_MESSAGE", (_, event) => {
     EventManager(event).apply()
   })
