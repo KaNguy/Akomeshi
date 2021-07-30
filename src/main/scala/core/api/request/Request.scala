@@ -11,6 +11,14 @@ import java.net.URI
 import java.net.http.{HttpClient, HttpRequest, HttpResponse}
 
 object Request {
+  /**
+   * General request function for making requests
+   * @param url Provide a valid URL
+   * @param method Provide a valid method
+   * @param headers Provide valid headers
+   * @param data Provide valid data if a writable request is occurring
+   * @return Request output as a String
+   */
   def request(url: String, method: String = RequestConstants.GET, headers: Iterable[(String, String)] = Iterable.empty[(String, String)], data: String = null): String = {
     val uMethod: String = method.toUpperCase
     val client: HttpClient = HttpClient.newHttpClient()
