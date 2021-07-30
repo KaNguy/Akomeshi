@@ -19,7 +19,7 @@ case class Channel(id: String) {
       Constants.formatAPIURL + s"/channels/${this.id}/messages",
       RequestConstants.POST,
       Map(
-        "Authorization" -> s"Bot ${TokenManager.storage.get("token")}",
+        "Authorization" -> s"Bot ${TokenManager.getToken}",
         "Content-Type" -> "application/json",
         "User-Agent" -> Constants.userAgent,
         "Accept" -> "*/*"
