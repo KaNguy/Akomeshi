@@ -9,8 +9,8 @@ package core.managers
 // Utilities
 import java.util
 
-case class TokenManager(token: String) {
+object TokenManager {
   val storage: util.HashMap[String, String] = new util.HashMap[String, String]()
-  def push(key: String, token: String = this.token): Unit = this.storage.put(key, token)
+  def push(key: String, token: String): Unit = this.storage.put(key, token)
 }
 
