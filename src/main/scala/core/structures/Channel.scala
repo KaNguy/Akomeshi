@@ -15,7 +15,7 @@ import json.JSONString
 case class Channel(id: String) {
   def send(content: String, tts: Boolean = false): Unit = {
     Request.request(
-      Constants.formatAPIURL(Constants.APIVersion) + s"/channels/${this.id}/messages",
+      Constants.formatAPIURL + s"/channels/${this.id}/messages",
       RequestConstants.POST,
       Map(
         "Authorization" -> s"Bot ${TokenManager.storage.get("token")}",
