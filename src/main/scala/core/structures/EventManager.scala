@@ -21,12 +21,13 @@ case class EventManager(event: util.HashMap[Any, Any]) {
   def apply(event: util.HashMap[Any, Any] = this.event): Unit = {
     if (
       event.get("t") != null &&
-        event.get("t").isInstanceOf[String] &&
-        event.get("op") != null &&
-        event.get("op") == Constants.GatewayOpcodes("DISPATCH")
+      event.get("t").isInstanceOf[String] &&
+      event.get("op") != null &&
+      event.get("op") == Constants.GatewayOpcodes("DISPATCH")
     ) {
-      if (event.get("t").equals(Constants.WebSocketEvents.map(_ => "MESSAGE_CREATE").head))
+      if (event.get("t").equals(Constants.WebSocketEvents.map(_ => "MESSAGE_CREATE").head)) {
         EventObjects.messageEvent.emit("MESSAGE_CREATE", Message(event.get("d").asInstanceOf[util.HashMap[Any, Any]]))
+      }
     }
   }
 }
