@@ -7,9 +7,7 @@ package core.structures
  */
 
 // Akomeshi
-import event.EventObjects
 import utility.{Utilities => Util}
-import core.managers.TokenManager
 
 // Utility
 import java.util
