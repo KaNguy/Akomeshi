@@ -18,7 +18,7 @@ case object Constants {
   val cdnURL: String = "https://cdn.discordapp.com"
   val inviteURL: String = "https://discord.gg"
   val templateURL: String = "https://discord.new"
-  val formatAPIURL: Int => String = version => s"${this.apiURL}/v$version"
+  val formatAPIURL: String = s"${this.apiURL}/v${this.APIVersion}"
 
   val userAgent: String = s"DiscordBot ($packageName, $packageVersion)"
 
