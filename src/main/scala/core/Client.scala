@@ -17,7 +17,7 @@ import java.net.http.WebSocket
 
 class Client(val token: String) {
   EventDispatcher(EventObjects.hashMapEmitter)
-  TokenManager(token).push("token")
+  TokenManager.push("token", this.token)
 
   val universalGatewayClass: Gateway = new Gateway()
 
