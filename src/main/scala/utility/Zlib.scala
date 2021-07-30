@@ -23,6 +23,11 @@ object Zlib {
   var bufferCache: ByteBuffer = _
   var decompressionBuffer: SoftReference[ByteArrayOutputStream] = _
 
+  /**
+   * Performs a check whether the data has been flushed
+   * @param bytes Byte data
+   * @return Boolean
+   */
   def isFlushed(bytes: Array[Byte]): Boolean = {
     if (bytes.length < 4) return false
     val offset: Int = bytes.length - 4
@@ -35,6 +40,10 @@ object Zlib {
     zlibSuffix == Constants.zlibSuffix
   }
 
+  /**
+   * Fills the buffer cache with the data
+   * @param bytes Byte data
+   */
   def bufferDelegation(bytes: Array[Byte]): Unit = {
     if (bufferCache == null) bufferCache = ByteBuffer.allocate(bytes.length * 2)
 
@@ -46,12 +55,23 @@ object Zlib {
     bufferCache.put(bytes)
   }
 
+  /**
+   * Reallocates the byte buffer
+   * @param data Byte data
+   * @param length Byte data length, use the buffer's capacity added with the length, multiply it by all by two
+   * @return ByteBuffer
+   */
   def reallocateBuffer(data: ByteBuffer, length: Int): ByteBuffer = {
     val buffer: ByteBuffer = ByteBuffer.allocate(length)
     buffer.put(data)
     buffer
   }
 
+  /**
+   * Performs ZLIB decompression and decompresses the buffer data.
+   * @param bytes Byte data
+   * @return Byte array
+   */
   def decompress(bytes: Array[Byte]): Array[Byte] = {
     if (!this.isFlushed(bytes)) return null
 
@@ -72,10 +92,18 @@ object Zlib {
     }
   }
 
+  /**
+   * Create a new decompression buffer
+   * @return SoftReference[ByteArrayOutputStream]
+   */
   private def newDecompressionBuffer: SoftReference[ByteArrayOutputStream] = {
     new SoftReference(new ByteArrayOutputStream(Math.min(1024, maxBufferSize)))
   }
 
+  /**
+   * Gets a decompression buffer and sets one up
+   * @return A byte array output stream
+   */
   private def getDecompressionBuffer: ByteArrayOutputStream = {
     if (decompressionBuffer == null) decompressionBuffer = this.newDecompressionBuffer
 
