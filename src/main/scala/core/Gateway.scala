@@ -6,7 +6,7 @@ package core
  * File core/Gateway.scala
  */
 
-// Library
+// Akomeshi
 import json.JSON
 import utility.{Constants, Zlib}
 import websocket.{AkoWebSocket, WebSocketListener}
