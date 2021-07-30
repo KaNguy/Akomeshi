@@ -7,6 +7,9 @@ package utility
  */
 
 case object Constants {
+  /**
+   * General constants for the library
+   */
   val packageName: String = "Akomeshi"
   val packageVersion: String = "0.0.1"
 
@@ -107,7 +110,7 @@ case object Constants {
   )
 
   /**
-   * API Errors and their codes
+   * API Errors with the codes
    */
   val APIErrors: Map[String, Int] = Map(
     "UNKNOWN_ACCOUNT" -> 10001,
