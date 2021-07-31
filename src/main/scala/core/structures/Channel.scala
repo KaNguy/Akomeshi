@@ -14,6 +14,7 @@ import json.JSONString
 
 case class Channel(id: String) {
   // TODO: Requests from the request object have output, change the type of this method
+  // TODO: Move this to a GuildChannel class instead
   def send(content: String, tts: Boolean = false): Unit = {
     Request.request(
       Constants.formatAPIURL + s"/channels/${this.id}/messages",
