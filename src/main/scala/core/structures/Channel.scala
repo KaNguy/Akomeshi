@@ -33,4 +33,6 @@ case class Channel(id: String) {
       )
     )
   }
+
+  def mention: String = s"<#${this.id}>"
 }
