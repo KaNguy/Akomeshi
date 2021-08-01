@@ -9,6 +9,7 @@ package core.structures
 // Akomeshi
 import event.EventObjects
 import utility.Constants
+import core.managers.Cache
 
 // Utilities
 import java.util
@@ -26,9 +27,15 @@ case class EventManager(event: util.HashMap[Any, Any]) {
       event.get("op") == Constants.GatewayOpcodes("DISPATCH") &&
       event.get("d") != null
     ) {
+      if (event.get("t").equals(Constants.WebSocketEvents.map(_ => "READY").head)) {
+        Cache.push(Cache.readyCache, "READY", toHashMap(event.get("d")))
+      }
+
       if (event.get("t").equals(Constants.WebSocketEvents.map(_ => "MESSAGE_CREATE").head)) {
         EventObjects.messageEvent.emit("MESSAGE_CREATE", Message(event.get("d").asInstanceOf[util.HashMap[Any, Any]]))
       }
     }
   }
+
+  private def toHashMap(x: Any): util.HashMap[Any, Any] = x.asInstanceOf[util.HashMap[Any, Any]]
 }
