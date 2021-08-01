@@ -6,6 +6,9 @@ package utility
  * File utility/Utilities.scala
  */
 
+// Utilities
+import java.util
+
 case object Utilities {
   /**
    * Converts unknown data that is presumed to be a string into a boolean
@@ -20,4 +23,7 @@ case object Utilities {
    * @return Int
    */
   def strToInt(x: Any): Int = x.toString.toInt
+
+  // TODO: Document this
+  def toHashMap(x: Any): util.HashMap[Any, Any] = x.asInstanceOf[util.HashMap[Any, Any]]
 }
