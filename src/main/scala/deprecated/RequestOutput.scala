@@ -1,24 +1,14 @@
 package org.akomeshi
-package core.api.request
+package deprecated
 
-/**
- * Created by KaNguy - 07/15/2021
- * File core/api/request/RequestOutput.scala
- */
-
-// Input / Output
 import java.io.{InputStream, InputStreamReader, Reader}
-
-// Networking
 import java.net.HttpURLConnection
-
-// Compression / Decompression
-import java.util.zip.{GZIPInputStream, DeflaterInputStream}
+import java.util.zip.{DeflaterInputStream, GZIPInputStream}
 
 object RequestOutput {
   /** Reads output of a connection established via the HttpURLConnection class
    *
-   * @param connection HttpURLConnection
+   * @param connection  HttpURLConnection
    * @param inputStream InputStream
    * @return String of the output
    */
