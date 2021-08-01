@@ -11,7 +11,8 @@ import utility.Constants
 
 object PayloadModels {
   val identifyPayload: String => Map[Any, Any] = token => Map("op" -> 2, "d" ->
-    Map("token" -> s"Bot $token", "intents" -> 513 /* Default intents, will change this later */ , "properties" ->
+    // TODO: Implement intents modifiability
+    Map("token" -> s"Bot $token", "intents" -> 513 /* Default intents, will change this later */, "properties" ->
       Map("$os" -> Constants.$os, "$browser" -> Constants.$browser, "$device" -> Constants.$device
       )
     )
