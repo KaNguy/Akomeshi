@@ -8,7 +8,7 @@ package core
 
 // Akomeshi
 import core.managers.{EventDispatcher, Heartbeat, TokenManager}
-import core.structures.PayloadModels
+import core.structures.{PayloadModels, User}
 import event.EventObjects
 import json.JSONString
 
@@ -42,4 +42,8 @@ class Client(val token: String) {
     this.universalGatewayClass.connection.close(WebSocket.NORMAL_CLOSURE, "Normal closure", timeout = timeout)
     if (!Heartbeat.executor.isTerminated) Heartbeat.executor.shutdown()
   }
+
+//  def user: User = {
+//
+//  }
 }
