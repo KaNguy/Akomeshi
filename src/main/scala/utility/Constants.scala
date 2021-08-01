@@ -33,7 +33,7 @@ case object Constants {
   /**
    * WebSocket Event Opcodes
    *
-   * Documented at: https://discord.com/developers/docs/topics/opcodes-and-status-codes
+   * Original documentation: https://discord.com/developers/docs/topics/opcodes-and-status-codes
    */
   val GatewayOpcodes: Map[String, Int] = Map(
     "DISPATCH" -> 0,
@@ -52,6 +52,8 @@ case object Constants {
 
   /**
    * WebSocket events from the Discord Gateway
+   *
+   * Original documentation: https://discord.com/developers/docs/topics/gateway#commands-and-events-gateway-events
    *
    * Note: Get any event from the Seq
    * {{{
