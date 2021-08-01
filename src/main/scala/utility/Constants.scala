@@ -7,6 +7,7 @@ package utility
  */
 
 case object Constants {
+  // TODO: Move constants to core
   /**
    * General constants for the library
    */
