@@ -3,7 +3,7 @@ package core.managers
 
 /**
  * Created by KaNguy - 07/29/2021
- * File core/structures/TokenManager.scala
+ * File core/managers/TokenManager.scala
  */
 
 // Utilities
