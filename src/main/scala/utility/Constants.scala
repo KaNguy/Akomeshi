@@ -241,4 +241,24 @@ case object Constants {
     "STICKER_FRAME_RATE_IS_TOO_SMALL_OR_TOO_LARGE" -> 170006,
     "STICKER_ANIMATION_DURATION_EXCEEDS_MAXIMUM_OF_5_SECONDS" -> 170007
   )
+
+  /**
+   * User Flags
+   * Original documentation: https://discord.com/developers/docs/resources/user#user-object-user-flags
+   */
+  val userFlags: Map[String, Int] = Map(
+    "DISCORD_EMPLOYEE" -> (1 << 0),
+    "PARTNERED_SERVER_OWNER" -> (1 << 1),
+    "HYPESQUAD_EVENTS" -> (1 << 2),
+    "BUGHUNTER_LEVEL_1" -> (1 << 3),
+    "HOUSE_BRAVERY" -> (1 << 6),
+    "HOUSE_BRILLIANCE" -> (1 << 7),
+    "HOUSE_BALANCE" -> (1 << 8),
+    "EARLY_SUPPORTER" -> (1 << 9),
+    "TEAM_USER" -> (1 << 10),
+    "BUGHUNTER_LEVEL_2" -> (1 << 14),
+    "VERIFIED_BOT" -> (1 << 16),
+    "EARLY_VERIFIED_BOT_DEVELOPER" -> (1 << 17),
+    "DISCORD_CERTIFIED_MODERATOR" -> (1 << 18)
+  )
 }
