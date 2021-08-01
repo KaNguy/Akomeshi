@@ -244,6 +244,7 @@ case object Constants {
 
   /**
    * User Flags
+   *
    * Original documentation: https://discord.com/developers/docs/resources/user#user-object-user-flags
    */
   val userFlags: Map[String, Int] = Map(
@@ -260,5 +261,28 @@ case object Constants {
     "VERIFIED_BOT" -> (1 << 16),
     "EARLY_VERIFIED_BOT_DEVELOPER" -> (1 << 17),
     "DISCORD_CERTIFIED_MODERATOR" -> (1 << 18)
+  )
+
+  /**
+   * Gateway intents
+   *
+   * Original documentation: https://discord.com/developers/docs/topics/gateway#list-of-intents
+   */
+  val intents: Map[String, Int] = Map(
+    "GUILDS" -> (1 << 0),
+    "GUILD_MEMBERS" -> (1 << 1),
+    "GUILD_BANS" -> (1 << 2),
+    "GUILD_EMOJIS_AND_STICKERS" -> (1 << 3),
+    "GUILD_INTEGRATIONS" -> (1 << 4),
+    "GUILD_WEBHOOKS" -> (1 << 5),
+    "GUILD_INVITES" -> (1 << 6),
+    "GUILD_VOICE_STATES" -> (1 << 7),
+    "GUILD_PRESENCES" -> (1 << 8),
+    "GUILD_MESSAGES" -> (1 << 9),
+    "GUILD_MESSAGE_REACTIONS" -> (1 << 10),
+    "GUILD_MESSAGE_TYPING" -> (1 << 11),
+    "DIRECT_MESSAGES" -> (1 << 12),
+    "DIRECT_MESSAGE_REACTIONS" -> (1 << 13),
+    "DIRECT_MESSAGE_TYPING" -> (1 << 14)
   )
 }
