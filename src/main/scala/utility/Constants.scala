@@ -32,8 +32,7 @@ case object Constants {
 
   /**
    * WebSocket Event Opcodes
-   *
-   * Original documentation: https://discord.com/developers/docs/topics/opcodes-and-status-codes
+   * @see [[https://discord.com/developers/docs/topics/opcodes-and-status-codes]]
    */
   val GatewayOpcodes: Map[String, Int] = Map(
     "DISPATCH" -> 0,
@@ -52,14 +51,9 @@ case object Constants {
 
   /**
    * WebSocket events from the Discord Gateway
-   *
-   * Original documentation: https://discord.com/developers/docs/topics/gateway#commands-and-events-gateway-events
-   *
-   * Note: Get any event from the Seq
-   * {{{
-   *   WebSocketEvents.map(x => "READY").head
-   * }}}
-   * */
+   * @see [[https://discord.com/developers/docs/topics/gateway#commands-and-events-gateway-events]]
+   * @example {{{ WebSocketEvents.map(x => "READY").head }}}
+   */
   val WebSocketEvents: Seq[String] = Seq(
     "READY",
     "RESUMED",
@@ -115,6 +109,7 @@ case object Constants {
 
   /**
    * API Errors with the codes
+   * @see [[https://discord.com/developers/docs/topics/opcodes-and-status-codes#json]]
    */
   val APIErrors: Map[String, Int] = Map(
     "UNKNOWN_ACCOUNT" -> 10001,
@@ -248,8 +243,7 @@ case object Constants {
 
   /**
    * User Flags
-   *
-   * Original documentation: https://discord.com/developers/docs/resources/user#user-object-user-flags
+   * @see [[https://discord.com/developers/docs/resources/user#user-object-user-flags]]
    */
   val userFlags: Map[String, Int] = Map(
     "DISCORD_EMPLOYEE" -> (1 << 0),
@@ -269,8 +263,7 @@ case object Constants {
 
   /**
    * Gateway intents
-   *
-   * Original documentation: https://discord.com/developers/docs/topics/gateway#list-of-intents
+   * @see [[https://discord.com/developers/docs/topics/gateway#list-of-intents]]
    */
   val intents: Map[String, Int] = Map(
     "GUILDS" -> (1 << 0),
