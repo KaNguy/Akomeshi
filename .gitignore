@@ -1,5 +1,6 @@
 # Temporary / Tests
 src/test/scala/
+src/main/scala/deprecated
 
 # Builds
 .bsp
