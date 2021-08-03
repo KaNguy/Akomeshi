@@ -8,29 +8,17 @@ package core.structures
 
 // Akomeshi
 import core.managers.TokenManager
-import core.api.request.{Request, RequestConstants}
+import core.api.request.{Request, RequestFrame}
 import utility.Constants
 import json.JSONString
 
 case class Channel(id: String) {
   // TODO: Requests from the request object have output, change the type of this method
   // TODO: Move this to a GuildChannel class instead
-  def send(content: String, tts: Boolean = false): Unit = {
-    Request.request(
-      Constants.formatAPIURL + s"/channels/${this.id}/messages",
-      RequestConstants.POST,
-      Map(
-        "Authorization" -> s"Bot ${TokenManager.getToken}",
-        "Content-Type" -> "application/json",
-        "User-Agent" -> Constants.userAgent,
-        "Accept" -> "*/*"
-      ),
-      JSONString.encode(
-        Map(
-          "content" -> content,
-          "tts" -> tts
-        )
-      )
+  def send(content: String, tts: Boolean = false): String = {
+    RequestFrame.post(
+      url = Constants.formatAPIURL + s"/channels/${this.id}/messages",
+      data = Map("content" -> content, "tts" -> tts)
     )
   }
 
