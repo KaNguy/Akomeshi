@@ -13,6 +13,7 @@ import utility.Utilities
 // Utilities
 import java.util
 
+// TODO: Find a way if the client can fetch itself with a lot of info instead of the READY cache
 case class User() {
   var emptyReadyCache: Boolean = true
   if (Cache.readyCache.get("READY") != null) {
