@@ -11,8 +11,6 @@ import core.managers.TokenManager
 import utility.Constants
 import json.JSONString
 
-// TODO: Implement this
-// TODO: RequestFrame for predetermined requests such as authorized POST or GET
 object RequestFrame {
   /**
    * Makes a POST request on the client's behalf with the needed authorization headers
@@ -31,6 +29,24 @@ object RequestFrame {
         "Accept" -> "*/*"
       ),
       JSONString.encode(data),
+    )
+  }
+
+  /**
+   * Makes a GET request with the client's needed authorization headers
+   * @param url URL
+   * @return Output as a String
+   */
+  def get(url: String): String = {
+    Request.request(
+      url,
+      RequestConstants.GET,
+      Map(
+        "Authorization" -> s"Bot ${TokenManager.getToken}",
+        "Content-Type" -> "application/json",
+        "User-Agent" -> Constants.userAgent,
+        "Accept" -> "*/*"
+      )
     )
   }
 }
