@@ -6,7 +6,7 @@ package core.miscellaneous
  * File core/miscellaneous/Logger.scala
  */
 
-case class Logger(log: Boolean = false) {
+case class Logger(var log: Boolean = false) {
   private def check(callback: () => Unit): Unit = {
     if (this.log) callback()
   }
@@ -18,4 +18,7 @@ case class Logger(log: Boolean = false) {
   def show(x: Any): Unit = {
     this.check(() => println(x))
   }
+
+  def on(): Unit = this.log = true
+  def off(): Unit = this.log = false
 }
