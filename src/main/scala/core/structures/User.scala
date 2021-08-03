@@ -13,7 +13,6 @@ import utility.Utilities
 // Utilities
 import java.util
 
-// TODO: Implement a user class for getting the client's own user info
 case class User() {
   var emptyReadyCache: Boolean = true
   if (Cache.readyCache.get("READY") != null) {
@@ -30,4 +29,6 @@ case class User() {
     def username: String = user.get("username").toString
     def discriminator: String = user.get("discriminator").toString
   }
+
+  // TODO: Add ability to get a user
 }
