@@ -11,6 +11,10 @@ import core.managers.TokenManager
 import utility.Constants
 import json.JSONString
 
+/**
+ * A request frame for simplifying the making of the requests.
+ * Advisory to not use this outside of the API.
+ */
 object RequestFrame {
   /**
    * Makes a POST request on the client's behalf with the needed authorization headers
