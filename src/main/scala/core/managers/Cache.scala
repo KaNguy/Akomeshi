@@ -12,9 +12,14 @@ import utility.Constants
 // Utilities
 import java.util
 
-// TODO: Implement other caches but complete the ready cache
 object Cache {
   val readyCache: util.HashMap[Any, Any] = new util.HashMap[Any, Any]()
-  // TODO Document this
+
+  /**
+   * Indirectly pushes to a HashMap
+   * @param hashMap HashMap value or variable
+   * @param key Presumed key
+   * @param value Presumed value
+   */
   def push(hashMap: util.HashMap[Any, Any], key: String, value: util.HashMap[Any, Any]): Unit = hashMap.put(key, value)
 }
