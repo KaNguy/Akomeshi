@@ -12,6 +12,10 @@ import utility.Constants
 // Utilities
 import java.util
 
+/**
+ * Cache object that holds the HashMap caches for the client.
+ * It is advised to not push to the HashMap variables in this object from the client since that may cause unforeseen consequences.
+ */
 object Cache {
   val readyCache: util.HashMap[Any, Any] = new util.HashMap[Any, Any]()
 
