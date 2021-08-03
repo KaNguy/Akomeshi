@@ -24,6 +24,10 @@ case object Utilities {
    */
   def strToInt(x: Any): Int = x.toString.toInt
 
-  // TODO: Document this
+  /**
+   * Converts an object or weak reference HashMap directly into a HashMap
+   * @param x Preferably the assumed HashMap
+   * @return HashMap[Any, Any]
+   */
   def toHashMap(x: Any): util.HashMap[Any, Any] = x.asInstanceOf[util.HashMap[Any, Any]]
 }
