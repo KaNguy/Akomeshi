@@ -7,22 +7,19 @@ package core.structures
  */
 
 // Akomeshi
-import core.managers.Cache
-import utility.Utilities
+import utility.{Utilities, Constants}
+import core.api.request.RequestFrame
+import json.JSON
 
 // Utilities
 import java.util
 
-// TODO: Find a way if the client can fetch itself with a lot of info instead of the READY cache
 case class User() {
-  var emptyReadyCache: Boolean = true
-  if (Cache.readyCache.get("READY") != null) {
-    this.emptyReadyCache = false
-  }
 
-  def self: Self = Self(Utilities.toHashMap(Cache.readyCache.get("READY").asInstanceOf[util.HashMap[Any, Any]].get("user")))
+  val selfMap: util.HashMap[Any, Any] = JSON.parseAsHashMap(RequestFrame.get(s"${Constants.apiURL}/v${Constants.APIVersion}/users/@me"))
 
-  //TODO: This doesn't need a cache, make a request instead to /users/@me
+  def self: Self = Self(selfMap)
+
   case class Self(user: util.HashMap[Any, Any]) {
     def bot: Boolean = Utilities.strToBool(user.get("bot"))
     def verified: Boolean = Utilities.strToBool(user.get("verified"))
