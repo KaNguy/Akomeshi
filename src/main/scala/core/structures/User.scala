@@ -22,6 +22,7 @@ case class User() {
 
   def self: Self = Self(Utilities.toHashMap(Cache.readyCache.get("READY").asInstanceOf[util.HashMap[Any, Any]].get("user")))
 
+  //TODO: This doesn't need a cache, make a request instead to /users/@me
   case class Self(user: util.HashMap[Any, Any]) {
     def bot: Boolean = Utilities.strToBool(user.get("bot"))
     def verified: Boolean = Utilities.strToBool(user.get("verified"))
