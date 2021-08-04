@@ -16,6 +16,13 @@ import json.JSONString
  * Advisory to not use this outside of the API.
  */
 object RequestFrame {
+  private val clientHeaders: Map[String, String] = Map(
+    "Authorization" -> s"Bot ${TokenManager.getToken}",
+    "Content-Type" -> "application/json",
+    "User-Agent" -> Constants.userAgent,
+    "Accept" -> "*/*"
+  )
+
   /**
    * Makes a POST request on the client's behalf with the needed authorization headers
    * @param url URL
@@ -24,15 +31,10 @@ object RequestFrame {
    */
   def post(url: String, data: Map[Any, Any]): String = {
     Request.request(
-      url,
-      RequestConstants.POST,
-      Map(
-        "Authorization" -> s"Bot ${TokenManager.getToken}",
-        "Content-Type" -> "application/json",
-        "User-Agent" -> Constants.userAgent,
-        "Accept" -> "*/*"
-      ),
-      JSONString.encode(data),
+      url = url,
+      method = RequestConstants.POST,
+      headers = clientHeaders,
+      data = JSONString.encode(data),
     )
   }
 
@@ -43,14 +45,9 @@ object RequestFrame {
    */
   def get(url: String): String = {
     Request.request(
-      url,
-      RequestConstants.GET,
-      Map(
-        "Authorization" -> s"Bot ${TokenManager.getToken}",
-        "Content-Type" -> "application/json",
-        "User-Agent" -> Constants.userAgent,
-        "Accept" -> "*/*"
-      )
+      url = url,
+      method = RequestConstants.GET,
+      headers = clientHeaders
     )
   }
 }
