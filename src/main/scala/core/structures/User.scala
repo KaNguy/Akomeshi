@@ -17,7 +17,6 @@ import java.util
 case class User() {
 
   val selfMap: util.HashMap[Any, Any] = JSON.parseAsHashMap(RequestFrame.get(s"${Constants.apiURL}/v${Constants.APIVersion}/users/@me"))
-  val userMap: util.HashMap[Any, Any] = JSON.parseAsHashMap(RequestFrame.get(s"${Constants.apiURL}/v${Constants.APIVersion}/users/"))
 
   def self: Self = Self(selfMap)
 
@@ -34,6 +33,11 @@ case class User() {
     def accentColor: String = user.get("accent_color").toString
     def locale: String = user.get("locale").toString
     def bio: String = user.get("bio").toString
+  }
+
+  def get(id: String): GetUser = {
+    val userMap: util.HashMap[Any, Any] = JSON.parseAsHashMap(RequestFrame.get(s"${Constants.apiURL}/v${Constants.APIVersion}/users/$id"))
+    GetUser(userMap)
   }
 
   case class GetUser(user: util.HashMap[Any, Any]) {
