@@ -14,6 +14,9 @@ import json.JSON
 // Utilities
 import java.util
 
+// Collections
+import scala.collection.mutable.ListBuffer
+
 case class User() {
 
   val selfMap: util.HashMap[Any, Any] = JSON.parseAsHashMap(RequestFrame.get(s"${Constants.apiURL}/v${Constants.APIVersion}/users/@me"))
@@ -21,10 +24,10 @@ case class User() {
   def self: Self = Self(selfMap)
 
   case class Self(user: util.HashMap[Any, Any]) {
-    // TODO: Add public flags parsing
     def bot: Boolean = Utilities.strToBool(user.get("bot"))
     def verified: Boolean = Utilities.strToBool(user.get("verified"))
     def id: String = user.get("id").toString
+    def userFlags: List[String] = getFlags(user.get("public_flags").toString.toInt)
     def avatarHash: String = user.get("avatar").toString
     def username: String = user.get("username").toString
     def discriminator: String = user.get("discriminator").toString
@@ -41,7 +44,6 @@ case class User() {
   }
 
   case class GetUser(user: util.HashMap[Any, Any]) {
-    // TODO: Add public flags parsing
     def id: String = user.get("id").toString
     def username: String = user.get("username").toString
     def discriminator: String = user.get("discriminator").toString
@@ -49,5 +51,17 @@ case class User() {
     def accentColor: String = user.get("accent_color").toString
     def bannerHash: String = user.get("banner").toString
     def avatarHash: String = user.get("avatar").toString
+    def userFlags: List[String] = getFlags(user.get("public_flags").toString.toInt)
+  }
+
+  def getFlags(flags: Int): List[String] = {
+    val userFlags: ListBuffer[String] = ListBuffer[String]()
+    val publicFlags: Int = flags
+    Constants.userFlags.foreach(i => {
+      if ((publicFlags & i._2) == i._2) {
+        userFlags += i._1
+      }
+    })
+    userFlags.toList
   }
 }
