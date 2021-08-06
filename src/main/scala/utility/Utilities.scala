@@ -37,6 +37,6 @@ case object Utilities {
   def snowFlakeToDate(snowflake: Long): String = {
     if (!snowflake.isValidLong) return snowflake.toString
     if (snowflake < 4194304L) return snowflake.toString
-    new Date(snowflake + discordEpoch).toString
+    new Date((snowflake / 4194304L) + discordEpoch).toString
   }
 }
