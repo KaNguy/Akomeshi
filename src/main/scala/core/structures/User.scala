@@ -36,6 +36,7 @@ case class User() {
     def accentColor: String = user.get("accent_color").toString
     def locale: String = user.get("locale").toString
     def bio: String = user.get("bio").toString
+    def createdTimestamp: String = Utilities.snowFlakeToDate(this.id.toLong)
   }
 
   def get(id: String): GetUser = {
@@ -52,6 +53,7 @@ case class User() {
     def bannerHash: String = user.get("banner").toString
     def avatarHash: String = user.get("avatar").toString
     def userFlags: List[String] = getFlags(user.get("public_flags").toString.toInt)
+    def createdTimestamp: String = Utilities.snowFlakeToDate(this.id.toLong)
   }
 
   def getFlags(flags: Int): List[String] = {
