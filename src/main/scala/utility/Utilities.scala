@@ -35,14 +35,27 @@ case object Utilities {
    */
   def toHashMap(x: Any): util.HashMap[Any, Any] = x.asInstanceOf[util.HashMap[Any, Any]]
 
+  // Discord Epoch
   private val discordEpoch: Long = 1420070400000L
 
+  /**
+   * Converts a Discord snowflake into a human-readable date
+   * @see [[https://discord.com/developers/docs/reference#snowflakes]]
+   * @param snowflake Long
+   * @return Date in the form of a String
+   */
   def snowFlakeToDate(snowflake: Long): String = {
     if (!snowflake.isValidLong) return snowflake.toString
     if (snowflake < 4194304L) return snowflake.toString
     new Date((snowflake / 4194304L) + discordEpoch).toString
   }
 
+  /**
+   * Returns a list of user flags from an int
+   * @see [[https://discord.com/developers/docs/resources/user#user-object-user-flags]]
+   * @param flags Integer of the user flags
+   * @return A list of user flags
+   */
   def getUserFlags(flags: Int): List[String] = {
     val userFlags: ListBuffer[String] = ListBuffer[String]()
     Constants.userFlags.foreach(i => {
