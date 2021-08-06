@@ -7,10 +7,8 @@ package core.structures
  */
 
 // Akomeshi
-import core.managers.TokenManager
-import core.api.request.{Request, RequestFrame}
+import core.api.request.RequestFrame
 import utility.Constants
-import json.JSONString
 
 case class Channel(id: String) {
   // TODO: Requests from the request object have output, change the type of this method
