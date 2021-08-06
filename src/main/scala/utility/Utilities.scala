@@ -10,6 +10,9 @@ package utility
 import java.util
 import java.util.Date
 
+// Collections
+import scala.collection.mutable.ListBuffer
+
 case object Utilities {
   /**
    * Converts unknown data that is presumed to be a string into a boolean
@@ -38,5 +41,13 @@ case object Utilities {
     if (!snowflake.isValidLong) return snowflake.toString
     if (snowflake < 4194304L) return snowflake.toString
     new Date((snowflake / 4194304L) + discordEpoch).toString
+  }
+
+  def getFlags(flags: Int): List[String] = {
+    val userFlags: ListBuffer[String] = ListBuffer[String]()
+    Constants.userFlags.foreach(i => {
+      if ((flags & i._2) == i._2) userFlags += i._1
+    })
+    userFlags.toList
   }
 }
