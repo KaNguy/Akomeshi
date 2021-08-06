@@ -31,7 +31,7 @@ case class User() {
     def accentColor: String = user.get("accent_color").toString
     def bannerHash: String = user.get("banner").toString
     def avatarHash: String = user.get("avatar").toString
-    def userFlags: List[String] = getFlags(user.get("public_flags").toString.toInt)
+    def userFlags: List[String] = Utilities.getUserFlags(user.get("public_flags").toString.toInt)
     def createdTimestamp: String = Utilities.snowFlakeToDate(this.id.toLong)
     def bot: Boolean = Utilities.strToBool(user.get("bot"))
     def verified: Boolean = Utilities.strToBool(user.get("verified"))
@@ -52,18 +52,7 @@ case class User() {
     def accentColor: String = user.get("accent_color").toString
     def bannerHash: String = user.get("banner").toString
     def avatarHash: String = user.get("avatar").toString
-    def userFlags: List[String] = getFlags(user.get("public_flags").toString.toInt)
+    def userFlags: List[String] = Utilities.getUserFlags(user.get("public_flags").toString.toInt)
     def createdTimestamp: String = Utilities.snowFlakeToDate(this.id.toLong)
-  }
-
-  def getFlags(flags: Int): List[String] = {
-    val userFlags: ListBuffer[String] = ListBuffer[String]()
-    val publicFlags: Int = flags
-    Constants.userFlags.foreach(i => {
-      if ((publicFlags & i._2) == i._2) {
-        userFlags += i._1
-      }
-    })
-    userFlags.toList
   }
 }
