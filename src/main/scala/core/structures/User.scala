@@ -24,27 +24,27 @@ case class User() {
   def self: Self = Self(selfMap)
 
   case class Self(user: util.HashMap[Any, Any]) {
-    def bot: Boolean = Utilities.strToBool(user.get("bot"))
-    def verified: Boolean = Utilities.strToBool(user.get("verified"))
     def id: String = user.get("id").toString
-    def userFlags: List[String] = getFlags(user.get("public_flags").toString.toInt)
-    def avatarHash: String = user.get("avatar").toString
     def username: String = user.get("username").toString
     def discriminator: String = user.get("discriminator").toString
-    def bannerHash: String = user.get("banner").toString
     def bannerColor: String = user.get("banner_color").toString
     def accentColor: String = user.get("accent_color").toString
+    def bannerHash: String = user.get("banner").toString
+    def avatarHash: String = user.get("avatar").toString
+    def userFlags: List[String] = getFlags(user.get("public_flags").toString.toInt)
+    def createdTimestamp: String = Utilities.snowFlakeToDate(this.id.toLong)
+    def bot: Boolean = Utilities.strToBool(user.get("bot"))
+    def verified: Boolean = Utilities.strToBool(user.get("verified"))
     def locale: String = user.get("locale").toString
     def bio: String = user.get("bio").toString
-    def createdTimestamp: String = Utilities.snowFlakeToDate(this.id.toLong)
   }
 
-  def get(id: String): GetUser = {
+  def get(id: String): UserProperties = {
     val userMap: util.HashMap[Any, Any] = JSON.parseAsHashMap(RequestFrame.get(s"${Constants.apiURL}/v${Constants.APIVersion}/users/$id"))
-    GetUser(userMap)
+    UserProperties(userMap)
   }
 
-  case class GetUser(user: util.HashMap[Any, Any]) {
+  case class UserProperties(user: util.HashMap[Any, Any]) {
     def id: String = user.get("id").toString
     def username: String = user.get("username").toString
     def discriminator: String = user.get("discriminator").toString
