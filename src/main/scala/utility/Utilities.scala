@@ -43,7 +43,7 @@ case object Utilities {
     new Date((snowflake / 4194304L) + discordEpoch).toString
   }
 
-  def getFlags(flags: Int): List[String] = {
+  def getUserFlags(flags: Int): List[String] = {
     val userFlags: ListBuffer[String] = ListBuffer[String]()
     Constants.userFlags.foreach(i => {
       if ((flags & i._2) == i._2) userFlags += i._1
