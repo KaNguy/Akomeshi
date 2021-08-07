@@ -1,5 +1,11 @@
 package org.akomeshi.json;
 
+/*
+ * Created by KaNguy - 07/04/2021
+ * File json/JSONParser.java
+ */
+
+// Utilities
 import java.util.*;
 
 public class JSONParser {
