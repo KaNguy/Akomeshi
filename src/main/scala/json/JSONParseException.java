@@ -1,5 +1,11 @@
 package org.akomeshi.json;
 
+/*
+ * Created by KaNguy - 07/04/2021
+ * File json/JSONParseException.java
+ */
+
+// Utilities
 import java.util.List;
 import java.util.Stack;
 
