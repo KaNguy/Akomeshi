@@ -1,5 +1,10 @@
 package org.akomeshi.json;
 
+/*
+ * Created by KaNguy - 07/04/2021
+ * File json/JSONParser.java
+ */
+
 public class JSONUtility {
     public static boolean isWhitespace(char character) {
         return character == ' ' || character == '\n' || character == '\t';
