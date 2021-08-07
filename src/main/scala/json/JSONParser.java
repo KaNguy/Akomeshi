@@ -15,6 +15,12 @@ public class JSONParser {
         }
     }
 
+    /**
+     * Gets index of double quotes
+     * @param str String
+     * @param start Starting point
+     * @return Integer of the special index
+     */
     private static int indexOfSpecial(String str, int start) {
         do {
             start++;
@@ -37,16 +43,31 @@ public class JSONParser {
         String str;
     }
 
+    /**
+     * Calls the parsing method casts the Object into a Map
+     * @param JSONData JSON data as a String
+     * @return Map
+     */
     @SuppressWarnings("unchecked")
     public static Map<String, Object> parseAsMap(String JSONData) {
         return (Map<String, Object>) parse(JSONData);
     }
 
+    /**
+     * Calls the parsing method and casts the Object into a HashMap
+     * @param JSONData JSON data as a String
+     * @return HashMap
+     */
     @SuppressWarnings("unchecked")
     public static HashMap<String, Object> parseAsHashMap(String JSONData) {
         return (HashMap<String, Object>) parse(JSONData);
     }
 
+    /**
+     * Parses JSON data into an object
+     * @param JSONData JSON data as a String
+     * @return Object, can be casted into a collection
+     */
     @SuppressWarnings("unchecked")
     public static Object parse(String JSONData) {
         Stack<State> stateStack = new Stack<>();
@@ -328,7 +349,7 @@ public class JSONParser {
                         currentType = Token.CONSTANT;
                         fieldStart = i;
                     } else if (JSONUtility.isNumberStarter(current)) {
-                        // Is a number
+                        // Sets type to number
                         currentType = Token.NUMBER;
                         fieldStart = i;
                     } else {
@@ -342,6 +363,12 @@ public class JSONParser {
         throw new JSONParseException("Root element was not executed correctly (Missing a ']' or '}')");
     }
 
+    /**
+     * Extracts a String if there is a KEY or STRING type
+     * @param JSONData The JSON data
+     * @param fieldStart The field start
+     * @return ExtractedString type with the source ending and string
+     */
     private static ExtractedString extractString(String JSONData, int fieldStart) {
         StringBuilder builder = new StringBuilder();
         while (true) {
