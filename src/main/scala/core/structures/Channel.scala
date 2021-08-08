@@ -9,15 +9,19 @@ package core.structures
 // Akomeshi
 import core.api.request.RequestFrame
 import utility.Constants
+import json.JSON
+
+// Utilities
+import java.util
 
 case class Channel(id: String) {
-  // TODO: Requests from the request object have output, change the type of this method
   // TODO: Move this to a GuildChannel class instead
-  def send(content: String, tts: Boolean = false): String = {
-    RequestFrame.post(
+  def send(content: String, tts: Boolean = false): util.HashMap[Any, Any] = {
+    val request = RequestFrame.post(
       url = Constants.formatAPIURL + s"/channels/${this.id}/messages",
       data = Map("content" -> content, "tts" -> tts)
     )
+    JSON.parseAsHashMap(request)
   }
 
   def mention: String = s"<#${this.id}>"
