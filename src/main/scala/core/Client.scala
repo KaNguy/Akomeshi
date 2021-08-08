@@ -43,7 +43,5 @@ class Client(val token: String) {
     if (!Heartbeat.executor.isTerminated) Heartbeat.executor.shutdown()
   }
 
-  def user: User = {
-    User()
-  }
+  def user: User = User()
 }
