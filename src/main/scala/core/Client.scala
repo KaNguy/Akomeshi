@@ -8,7 +8,7 @@ package core
 
 // Akomeshi
 import core.managers.{EventDispatcher, Heartbeat, TokenManager}
-import core.structures.{PayloadModels, User}
+import core.structures.{PayloadModels, User, Interactions}
 import event.EventObjects
 import json.JSONString
 
@@ -44,4 +44,6 @@ class Client(val token: String) {
   }
 
   def user: User = User()
+
+  def interactions: Interactions = Interactions()
 }
