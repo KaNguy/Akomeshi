@@ -6,9 +6,6 @@ package core.managers
  * File core/managers/Cache.scala
  */
 
-// Akomeshi
-import utility.Constants
-
 // Utilities
 import java.util
 
