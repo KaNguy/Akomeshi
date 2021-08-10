@@ -30,4 +30,8 @@ case class Interactions() {
     )
     JSON.parseAsHashMap(s"{\"commands\":$request}")
   }
+
+  def deleteGlobalCommand(commandID: String): String = {
+    RequestFrame.delete(s"${Constants.formatAPIURL}/applications/$applicationID/commands/$commandID")
+  }
 }
