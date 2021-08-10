@@ -20,7 +20,7 @@ case class Interactions() {
   private val readyCacheContents = Cache.readyCache.get(Constants.WebSocketEvents.map(_ => "READY").head)
   val applicationID: String = if (readyCacheContents != null) {
     toHashMap(toHashMap(readyCacheContents).get("application")).get("id").toString
-  } else ""
+  } else JSON.parseAsHashMap(RequestFrame.get(s"${Constants.apiURL}/v${Constants.APIVersion}/users/@me")).get("id").toString
 
   // TODO: This currently gets the application's commands and is raw but should do something different
   // TODO: Implement interactions and slash commands since message content will be a privileged intent
