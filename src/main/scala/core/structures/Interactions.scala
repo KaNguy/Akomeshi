@@ -17,7 +17,10 @@ import core.managers.Cache
 import java.util
 
 case class Interactions() {
-  val applicationID: String = toHashMap(toHashMap(Cache.readyCache.get(Constants.WebSocketEvents.map(_ => "READY").head)).get("application")).get("id").toString
+  private val readyCacheContents = Cache.readyCache.get(Constants.WebSocketEvents.map(_ => "READY").head)
+  val applicationID: String = if (readyCacheContents != null) {
+    toHashMap(toHashMap(readyCacheContents).get("application")).get("id").toString
+  } else ""
 
   // TODO: This currently gets the application's commands and is raw but should do something different
   // TODO: Implement interactions and slash commands since message content will be a privileged intent
