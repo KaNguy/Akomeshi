@@ -50,4 +50,13 @@ object RequestFrame {
       headers = clientHeaders
     )
   }
+
+  // TODO: Document this
+  def delete(url: String): String = {
+    Request.request(
+      url = url,
+      method = RequestConstants.DELETE,
+      headers = clientHeaders
+    )
+  }
 }
