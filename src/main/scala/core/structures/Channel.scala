@@ -15,7 +15,6 @@ import json.JSON
 import java.util
 
 case class Channel(id: String) {
-  // TODO: Move this to a GuildChannel class instead
   def send(content: String, tts: Boolean = false): util.HashMap[Any, Any] = {
     val request = RequestFrame.post(
       url = Constants.formatAPIURL + s"/channels/${this.id}/messages",
