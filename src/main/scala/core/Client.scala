@@ -9,7 +9,7 @@ package core
 // Akomeshi
 import core.managers.{EventDispatcher, Heartbeat, TokenManager}
 import core.structures.{PayloadModels, User, Interactions}
-import utility.Constants
+import utility.Utilities
 import event.EventObjects
 import json.JSONString
 
@@ -30,7 +30,7 @@ class Client(val token: String, val intents: Array[String] = Array("GUILDS", "GU
    * @param token Bot token, if not provided, the token parameter of the class will be used
    */
   def login(token: String = this.token, intents: Array[String] = this.intents): Unit = {
-    val gatewayIntents: Int = this.parseIntents(intents)
+    val gatewayIntents: Int = Utilities.parseIntents(intents)
     this.universalGatewayClass.connection.send(JSONString.encode(PayloadModels.identifyPayload(token, gatewayIntents)), last = true)
     if (TokenManager.getToken == null) TokenManager.push("token", token)
     Heartbeat.sendHeartbeat(41250, this.universalGatewayClass.connection)
@@ -43,14 +43,6 @@ class Client(val token: String, val intents: Array[String] = Array("GUILDS", "GU
   def logout(timeout: Int = 300): Unit = {
     this.universalGatewayClass.connection.close(WebSocket.NORMAL_CLOSURE, "Normal closure", timeout = timeout)
     if (!Heartbeat.executor.isTerminated) Heartbeat.executor.shutdown()
-  }
-
-  private def parseIntents(intents: Array[String]): Int = {
-    var intentsInt: Int = 0
-    for (i <- intents) {
-      intentsInt = intentsInt | Constants.intents(i.toUpperCase)
-    }
-    intentsInt
   }
 
   def user: User = User()
