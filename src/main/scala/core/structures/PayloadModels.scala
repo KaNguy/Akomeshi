@@ -10,9 +10,8 @@ package core.structures
 import utility.Constants
 
 object PayloadModels {
-  val identifyPayload: String => Map[Any, Any] = token => Map("op" -> 2, "d" ->
-    // TODO: Implement intents modifiability
-    Map("token" -> s"Bot $token", "intents" -> 513 /* Default intents, will change this later */, "properties" ->
+  val identifyPayload: (String, Int) => Map[Any, Any] = (token, intents) => Map("op" -> 2, "d" ->
+    Map("token" -> s"Bot $token", "intents" -> intents, "properties" ->
       Map("$os" -> Constants.$os, "$browser" -> Constants.$browser, "$device" -> Constants.$device
       )
     )
