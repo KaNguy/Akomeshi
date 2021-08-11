@@ -18,4 +18,8 @@ object PayloadModels {
   )
 
   val heartbeatPayload: Map[String, Any] = Map("op" -> 1, "d" -> "null")
+
+  val resumePayload: (String, String) => Map[Any, Any] = (token, sessionID) => Map("op" -> 6, "d" ->
+    Map("token" -> s"Bot $token", "session_id" -> sessionID, "seq" -> 7777)
+  )
 }
