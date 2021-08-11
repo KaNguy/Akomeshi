@@ -63,4 +63,16 @@ case object Utilities {
     })
     userFlags.toList
   }
+
+  /**
+   * Parses intents from an iterable collection into an integer
+   * @see [[https://discord.com/developers/docs/topics/gateway#gateway-intents]]
+   * @param intents List of intents in a single-value collection
+   * @return Intents integer
+   */
+  def parseIntents(intents: Iterable[String]): Int = {
+    var intentsInt: Int = 0
+    for (i <- intents) intentsInt = intentsInt | Constants.intents(i.toUpperCase)
+    intentsInt
+  }
 }
