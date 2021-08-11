@@ -16,7 +16,7 @@ import json.JSONString
 // WebSocket
 import java.net.http.WebSocket
 
-class Client(val token: String) {
+class Client(val token: String, val intents: Array[String] = Array("GUILDS", "GUILD_MESSAGES")) {
   // Starts dispatching events from the HashMap emitter
   EventDispatcher(EventObjects.hashMapEmitter)
 
@@ -29,7 +29,7 @@ class Client(val token: String) {
    * Opens the WebSocket connection, sends the identify payload, and starts sending heartbeats
    * @param token Bot token, if not provided, the token parameter of the class will be used
    */
-  def login(token: String = this.token, intents: Array[String] = Array("GUILDS", "GUILD_MESSAGES")): Unit = {
+  def login(token: String = this.token, intents: Array[String] = this.intents): Unit = {
     val gatewayIntents: Int = this.parseIntents(intents)
     this.universalGatewayClass.connection.send(JSONString.encode(PayloadModels.identifyPayload(token, gatewayIntents)), last = true)
     if (TokenManager.getToken == null) TokenManager.push("token", token)
