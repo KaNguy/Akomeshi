@@ -47,6 +47,8 @@ class Gateway {
 
       val decompressedData = Zlib.decompress(dataArray)
 
+      if (decompressedData == null) super.onBinary(webSocket, data, last)
+
       val decodedMessage: String = new String(decompressedData, StandardCharsets.UTF_8)
 
       var JSONData: util.HashMap[Any, Any] = new util.HashMap[Any, Any]()
