@@ -9,6 +9,9 @@ package json
 // Collections
 import scala.collection.mutable.ListBuffer
 
+// Utilities
+import java.util.{HashMap => JHashMap}
+
 case object JSONString {
   def encode(collections: Any): String = {
     val JSON = new ListBuffer[String]()
@@ -19,6 +22,7 @@ case object JSONString {
           v match {
             case map: Map[_, _] => JSON += s""""$key": ${encode(map)}""";
             case list: List[_] => JSON += s""""$key": ${encode(list)}""";
+            case jHashMap: JHashMap[_, _] => JSON += s""""$key": ${encode(jHashMap)}""";
             case int: Int => JSON += s""""$key": $int""";
             case boolean: Boolean => JSON += s""""$key": $boolean""";
             case string: String => JSON += s""""$key": "${string.replaceAll("\"", "\\\\\"")}""""
@@ -39,7 +43,20 @@ case object JSONString {
           }
         }
 
-        return "[" + list.mkString(",") + "]"
+        return "[" + list.mkString(",") + "]";
+
+      case jHashMap: JHashMap[_, _] =>
+        jHashMap.forEach((key, value) => {
+          value match {
+            case map: Map[_, _] => JSON += s""""$key": ${encode(map)}""";
+            case list: List[_] => JSON += s""""$key": ${encode(list)}""";
+            case jHashMap: JHashMap[_, _] => JSON += s""""$key": ${encode(jHashMap)}""";
+            case int: Int => JSON += s""""$key": $int""";
+            case boolean: Boolean => JSON += s""""$key": $boolean""";
+            case string: String => JSON += s""""$key": "${string.replaceAll("\"", "\\\\\"")}""""
+            case _ => JSON += s"""$key: null""";
+          }
+        });
 
       case _ => ();
     }
