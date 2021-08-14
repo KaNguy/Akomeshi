@@ -13,6 +13,11 @@ import scala.collection.mutable.ListBuffer
 import java.util.{HashMap => JHashMap}
 
 case object JSONString {
+  /**
+   * Serializes collections that have Object and primitive types into JSON data
+   * @param collections Preferably map-based collections
+   * @return Serialized JSON String
+   */
   def encode(collections: Any): String = {
     val JSON = new ListBuffer[String]()
     collections match {
