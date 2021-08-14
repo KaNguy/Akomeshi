@@ -45,7 +45,15 @@ class Client(val token: String, val intents: Iterable[String] = Array("GUILDS", 
     if (!Heartbeat.executor.isTerminated) Heartbeat.executor.shutdown()
   }
 
+  /**
+   * User object of the Client class
+   * @return User object
+   */
   def user: User = User()
 
+  /**
+   * Interactions object of the Client class
+   * @return Interactions object
+   */
   def interactions: Interactions = Interactions()
 }
