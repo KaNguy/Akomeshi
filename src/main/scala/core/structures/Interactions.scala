@@ -31,6 +31,12 @@ case class Interactions() {
     JSON.parseAsHashMap(s"{\"commands\":$request}")
   }
 
+  /**
+   * Deletes a global slash command
+   * @see [[https://discord.com/developers/docs/interactions/application-commands#delete-global-application-command]]
+   * @param commandID Provide the command ID
+   * @return Returns 204, no content
+   */
   def deleteGlobalCommand(commandID: String): String = {
     RequestFrame.delete(s"${Constants.formatAPIURL}/applications/$applicationID/commands/$commandID")
   }
