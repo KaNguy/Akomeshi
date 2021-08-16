@@ -21,6 +21,9 @@ To provide a quick, mostly-synchronous, and simpler approach to making and runni
 ## Author Notes
 Documentation is not completed yet. This will be added at a later date.
 
+## Project Structure
+(PLANNED PROJECT STRUCTURE HERE)
+
 ## Contributing
 Read about contributing to this repository [here](CONTRIBUTING.md).
 
