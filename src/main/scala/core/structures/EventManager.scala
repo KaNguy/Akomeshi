@@ -9,6 +9,7 @@ package core.structures
 // Akomeshi
 import event.EventObjects
 import utility.Constants
+import utility.Utilities.toHashMap
 import core.managers.Cache
 
 // Utilities
@@ -36,6 +37,4 @@ case class EventManager(event: util.HashMap[Any, Any]) {
       }
     }
   }
-
-  private def toHashMap(x: Any): util.HashMap[Any, Any] = x.asInstanceOf[util.HashMap[Any, Any]]
 }
