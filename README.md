@@ -10,16 +10,16 @@
   </p>
 </div>
 
-A library for wrapping Discord's API.
+A Scala library that wraps and helps interact with Discord's API.
 
 ## Overview
 A Scala library made to interact with Discord's API for bots. The library is strictly designed for bots—any other forms of interaction that may violate Discord's developer policy are not supported nor allowed.
 
 ## Usage
-To provide a quick, mostly-synchronous, and simpler approach to making and running bots on Discord.
+To provide a quick, mostly-synchronous, and simpler approach to making and running bots on Discord. To further expand on the permissiveness of interacting with Discord's API to create useful software for users.
 
 ## Author Notes
-Documentation is not out yet. Will update this later.
+Documentation is not completed yet. This will be added at a later date.
 
 ## Contributing
 Read about contributing to this repository [here](CONTRIBUTING.md).
