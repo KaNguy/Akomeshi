@@ -100,6 +100,12 @@ class AkoWebSocket(var url: String = null, var listener: Listener = WebSocketLis
     }
   }
 
+  /**
+   * Pongs the WebSocket
+   * @param message Message in the form of a ByteBuffer.
+   * @param timeout Latch timeout
+   * @return CompletableFuture that does not need to be used.
+   */
   def pong(message: ByteBuffer, timeout: Int = 1000): CompletableFuture[AkoWebSocket] = {
     try {
       this.webSocket.sendPong(message)
