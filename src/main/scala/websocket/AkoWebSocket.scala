@@ -117,6 +117,13 @@ class AkoWebSocket(var url: String = null, var listener: Listener = WebSocketLis
     }
   }
 
+  /**
+   * Sends binary / compressed data.
+   * @param data Data in the form of a ByteBuffer.
+   * @param last Determine whether the data is complete.
+   * @param timeout Latch timeout.
+   * @return CompletableFuture that does not need to be used.
+   */
   def sendBinary(data: ByteBuffer, last: Boolean, timeout: Int = 1000): CompletableFuture[AkoWebSocket] = {
     try {
       this.webSocket.sendBinary(data, last)
