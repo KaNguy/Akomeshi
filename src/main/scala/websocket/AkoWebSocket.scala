@@ -68,6 +68,12 @@ class AkoWebSocket(var url: String = null, var listener: Listener = WebSocketLis
     }
   }
 
+  /**
+   * Closes the WebSocket connection.
+   * @param statusCode Status code for the closure.
+   * @param reason Reason for the closure.
+   * @param timeout Latch timeout.
+   */
   def close(statusCode: Int = WebSocket.NORMAL_CLOSURE, reason: String, timeout: Int = 1000): Unit = {
     try {
       this.webSocket.sendClose(statusCode, reason)
