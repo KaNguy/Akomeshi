@@ -53,6 +53,12 @@ class AkoWebSocket(var url: String = null, var listener: Listener = WebSocketLis
     latch.await(timeout, TimeUnit.MILLISECONDS)
   }
 
+  /**
+   * Sends data to the WebSocket connection as regular text
+   * @param data CharSequence which can be a String.
+   * @param last Determine whether the data is complete.
+   * @param timeout Latch timeout.
+   */
   def send(data: CharSequence, last: Boolean, timeout: Int = 1000): Unit = {
     try {
       this.webSocket.sendText(data, last)
