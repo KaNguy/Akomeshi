@@ -31,6 +31,16 @@ class AkoWebSocket(var url: String = null, var listener: Listener = WebSocketLis
 
   val subprotocol: String = webSocket.getSubprotocol
 
+  /**
+   * General interaction with the WebSocket connection; experimental.
+   * @param action Type of action (SEND, CLOSE, PING, PONG, BINARY).
+   * @param data Data used for SEND and BINARY actions only.
+   * @param message Message data used for PING and PONG actions only.
+   * @param statusCode Status code used for CLOSE only.
+   * @param reason Reason for closure, limited to CLOSE only.
+   * @param last Determining whether the data is complete for SEND and BINARY actions only.
+   * @param timeout Latch timeout, defaults to 1000 milliseconds.
+   */
   def interact(action: String = null, data: CharSequence = null, message: ByteBuffer = null, statusCode: Int = WebSocket.NORMAL_CLOSURE, reason: String = "", last: Boolean = false, timeout: Int = 1000): Unit = {
     action.toUpperCase match {
       case "SEND" => this.webSocket.sendText(data, last)
