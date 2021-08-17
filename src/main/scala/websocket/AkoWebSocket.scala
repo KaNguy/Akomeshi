@@ -135,6 +135,11 @@ class AkoWebSocket(var url: String = null, var listener: Listener = WebSocketLis
     }
   }
 
+  /**
+   * Checks if a provided URL has the WebSocket protocol.
+   * @param url Provide an URL.
+   * @return Boolean
+   */
   private def hasWebSocketProtocol(url: String): Boolean = {
     val webSocketURL: String = url.toLowerCase.trim.replaceAll(" ", "")
     if (webSocketURL.substring(0, 2).equals("ws") || webSocketURL.substring(0, 3).equals("wss")) true
