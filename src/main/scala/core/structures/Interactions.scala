@@ -40,4 +40,14 @@ case class Interactions() {
   def deleteGlobalCommand(commandID: String): String = {
     RequestFrame.delete(s"${Constants.formatAPIURL}/applications/$applicationID/commands/$commandID")
   }
+
+  /**
+   * Deletes a guild slash command
+   * @param guildID Provide the guild ID
+   * @param commandID Provide the command ID
+   * @return Returns 204, no content
+   */
+  def deleteGuildCommand(guildID: String, commandID: String): String = {
+    RequestFrame.delete(s"${Constants.formatAPIURL}/applications/$applicationID/guilds/$guildID/commands/$commandID")
+  }
 }
