@@ -43,6 +43,7 @@ case class Interactions() {
 
   /**
    * Deletes a guild slash command
+   * @see [[https://discord.com/developers/docs/interactions/application-commands#delete-guild-application-command]]
    * @param guildID Provide the guild ID
    * @param commandID Provide the command ID
    * @return Returns 204, no content
