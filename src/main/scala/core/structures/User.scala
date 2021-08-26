@@ -34,11 +34,16 @@ case class User() {
     def verified: Boolean = Utilities.strToBool(user.get("verified"))
     def locale: String = user.get("locale").toString
     def bio: String = user.get("bio").toString
+    def avatarURL(size: Int = 1024): String = createAvatarURL(this.id, this.avatarHash, size)
   }
 
   def get(id: String): UserProperties = {
     val userMap: util.HashMap[Any, Any] = JSON.parseAsHashMap(RequestFrame.get(s"${Constants.apiURL}/v${Constants.APIVersion}/users/$id"))
     UserProperties(userMap)
+  }
+
+  private def createAvatarURL(id: String, avatarHash: String, size: Int = 1024): String = {
+    s"${Constants.cdnURL}/avatars/$id/${if (avatarHash.substring(0, 2).equals("a_")) avatarHash + ".gif" else avatarHash + ".png"}${if (size == -1) "" else s"?size=$size"}"
   }
 
   case class UserProperties(user: util.HashMap[Any, Any]) {
@@ -51,5 +56,6 @@ case class User() {
     def avatarHash: String = user.get("avatar").toString
     def userFlags: List[String] = Utilities.getUserFlags(user.get("public_flags").toString.toInt)
     def createdTimestamp: String = Utilities.snowFlakeToDate(this.id.toLong)
+    def avatarURL(size: Int = 1024): String = createAvatarURL(this.id, this.avatarHash, size)
   }
 }
