@@ -18,6 +18,10 @@ case class User() {
 
   val selfMap: util.HashMap[Any, Any] = JSON.parseAsHashMap(RequestFrame.get(s"${Constants.apiURL}/v${Constants.APIVersion}/users/@me"))
 
+  /**
+   * The main `self` property of the User case class.
+   * @return Self type, with the user properties.
+   */
   def self: Self = Self(selfMap)
 
   /**
