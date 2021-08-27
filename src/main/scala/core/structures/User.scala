@@ -42,6 +42,14 @@ case class User() {
     UserProperties(userMap)
   }
 
+  /**
+   * Creates an avatar URL from the avatar hash of a user.
+   * @see [[https://discord.com/developers/docs/reference#image-formatting-cdn-endpoints]]
+   * @param id User ID
+   * @param avatarHash User's avatar hash
+   * @param size Image size
+   * @return String with the user's avatar.
+   */
   private def createAvatarURL(id: String, avatarHash: String, size: Int = 1024): String = {
     s"${Constants.cdnURL}/avatars/$id/${if (avatarHash.substring(0, 2).equals("a_")) avatarHash + ".gif" else avatarHash + ".png"}${if (size == -1) "" else s"?size=$size"}"
   }
