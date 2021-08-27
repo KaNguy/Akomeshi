@@ -41,6 +41,12 @@ case class User() {
     def avatarURL(size: Int = 1024): String = createAvatarURL(this.id, this.avatarHash, size)
   }
 
+  /**
+   * Gets a user from the `/users/{user.id}` endpoint.
+   * @see [[https://discord.com/developers/docs/resources/user#get-user]]
+   * @param id User ID
+   * @return UserProperties type with the user properties.
+   */
   def get(id: String): UserProperties = {
     val userMap: util.HashMap[Any, Any] = JSON.parseAsHashMap(RequestFrame.get(s"${Constants.apiURL}/v${Constants.APIVersion}/users/$id"))
     UserProperties(userMap)
