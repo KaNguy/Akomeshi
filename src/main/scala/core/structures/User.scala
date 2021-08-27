@@ -20,6 +20,10 @@ case class User() {
 
   def self: Self = Self(selfMap)
 
+  /**
+   * Properties of the logged in client's self.
+   * @param user User HashMap of the client
+   */
   case class Self(user: util.HashMap[Any, Any]) {
     def id: String = user.get("id").toString
     def username: String = user.get("username").toString
