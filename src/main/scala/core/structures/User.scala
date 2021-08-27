@@ -54,6 +54,10 @@ case class User() {
     s"${Constants.cdnURL}/avatars/$id/${if (avatarHash.substring(0, 2).equals("a_")) avatarHash + ".gif" else avatarHash + ".png"}${if (size == -1) "" else s"?size=$size"}"
   }
 
+  /**
+   * Properties for any user.
+   * @param user User HashMap
+   */
   case class UserProperties(user: util.HashMap[Any, Any]) {
     def id: String = user.get("id").toString
     def username: String = user.get("username").toString
