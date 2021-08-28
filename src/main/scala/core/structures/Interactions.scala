@@ -51,4 +51,13 @@ case class Interactions() {
   def deleteGuildCommand(guildID: String, commandID: String): String = {
     RequestFrame.delete(s"${Constants.formatAPIURL}/applications/$applicationID/guilds/$guildID/commands/$commandID")
   }
+
+  /**
+   * @see [[https://canary.discord.com/developers/docs/interactions/slash-commands#registering-a-command]]
+   * @see [[https://canary.discord.com/developers/docs/interactions/slash-commands#create-global-application-command]]
+   * @return
+   */
+  def registerGlobalCommand(): String = {
+    ""
+  }
 }
