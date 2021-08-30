@@ -52,7 +52,7 @@ object RequestFrame {
   }
 
   /**
-   * Makes a DELETE rquest with the client's needed authorization headers
+   * Makes a DELETE request with the client's needed authorization headers
    * @param url - URL
    * @return Output as a String
    */
