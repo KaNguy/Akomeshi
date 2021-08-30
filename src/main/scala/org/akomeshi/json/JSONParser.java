@@ -14,6 +14,7 @@ public class JSONParser {
         final Object container;
         final Token type;
 
+        @SuppressWarnings("unused")
         State(String propertyName, Object container, Token type) {
             this.propertyName = propertyName;
             this.container = container;
@@ -44,6 +45,7 @@ public class JSONParser {
         CONSTANT
     }
 
+    @SuppressWarnings("unused")
     private static class ExtractedString {
         int sourceEnd;
         String str;
