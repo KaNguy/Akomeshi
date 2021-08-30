@@ -57,7 +57,10 @@ case class Interactions() {
    * @see [[https://canary.discord.com/developers/docs/interactions/slash-commands#create-global-application-command]]
    * @return
    */
-  def registerGlobalCommand(): String = {
-    ""
+  def registerGlobalCommand(commandData: Map[Any, Any]): String = {
+    // TODO: Require name and description
+    // TODO: Add options
+    // TODO: Add a slash command builder for building payloads
+    RequestFrame.post(s"${Constants.formatAPIURL}/applications/$applicationID/commands", commandData)
   }
 }
