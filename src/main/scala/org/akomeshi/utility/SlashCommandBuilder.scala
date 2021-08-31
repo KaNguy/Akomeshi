@@ -17,6 +17,8 @@ object SlashCommandBuilder {
   val MESSAGE: CommandType = 3
 
   def createSlashCommand(name: String, commandType: Int): Map[String, Any] = {
-    Map("" -> "")
+    if (name.isBlank) Map()
+    if (commandType != CHAT_INPUT && commandType != USER && commandType != MESSAGE) Map()
+
   }
 }
