@@ -6,6 +6,8 @@ package utility
  * File org.akomeshi.utility/SlashCommandBuilder.scala
  */
 
+import java.util
+
 object SlashCommandBuilder {
   /**
    * Application command types.
@@ -27,5 +29,9 @@ object SlashCommandBuilder {
     if (name.isBlank) Map()
     if (commandType != CHAT_INPUT && commandType != USER && commandType != MESSAGE) Map()
     // TODO: Add command building, taking two parameters isn't working.
+  }
+
+  private class Commands {
+    val command: util.HashMap[String, Any] = new util.HashMap()
   }
 }
