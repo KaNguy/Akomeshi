@@ -46,5 +46,7 @@ object SlashCommandBuilder {
       command.put("description", description)
       Commands.this
     }
+
+    def getCommand: util.HashMap[String, Any] = command
   }
 }
