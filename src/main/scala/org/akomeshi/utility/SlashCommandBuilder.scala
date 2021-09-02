@@ -16,7 +16,7 @@ object SlashCommandBuilder {
    */
   type CommandType = Int
   val CHAT_INPUT: CommandType = 1
-  val USER: CommandType = 1
+  val USER: CommandType = 2
   val MESSAGE: CommandType = 3
 
   /**
