@@ -11,6 +11,7 @@ import java.util
 object SlashCommandBuilder {
   /**
    * Application command types.
+   *
    * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types]]
    */
   type CommandType = Int
@@ -20,8 +21,9 @@ object SlashCommandBuilder {
 
   /**
    * Creates a slash command.
+   *
    * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object]]
-   * @param name Name of the slash command.
+   * @param name        Name of the slash command.
    * @param commandType Command type.
    * @return
    */
@@ -29,13 +31,14 @@ object SlashCommandBuilder {
     if (name.isBlank) Map()
     if (commandType != CHAT_INPUT && commandType != USER && commandType != MESSAGE) Map()
     // TODO: Add command building, taking two parameters isn't working.
+    Map()
   }
 
   /**
    * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object]]
    */
-  private class Commands {
-    val command: util.HashMap[String, Any] = new util.HashMap()
+  class Commands {
+    private val command: util.HashMap[String, Any] = new util.HashMap()
 
     def label(name: String, description: String, commandType: CommandType): Commands = {
       command.put("name", name)
