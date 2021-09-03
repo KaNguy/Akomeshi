@@ -27,11 +27,8 @@ object SlashCommandBuilder {
    * @param commandType Command type.
    * @return
    */
-  def createSlashCommand(name: String, commandType: Int): Map[String, Any] = {
-    if (name.isBlank) Map()
-    if (commandType != CHAT_INPUT && commandType != USER && commandType != MESSAGE) Map()
-    // TODO: Add command building, taking two parameters isn't working.
-    Map()
+  def createSlashCommand(name: String, commandType: Int): Commands = {
+    new Commands()
   }
 
   /**
