@@ -34,8 +34,7 @@ object SlashCommandBuilder {
   /**
    * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object]]
    */
-  class Commands {
-    private val command: util.HashMap[String, Any] = new util.HashMap()
+  class Commands(private val command: util.HashMap[String, Any] = new util.HashMap()) {
 
     def label(name: String, description: String, commandType: CommandType): Commands = {
       command.put("name", name)
