@@ -27,9 +27,7 @@ object SlashCommandBuilder {
    * @param commandType Command type.
    * @return
    */
-  def createSlashCommand(name: String, commandType: Int): Commands = {
-    new Commands()
-  }
+  def createSlashCommand(name: String, commandType: Int): Commands = new Commands()
 
   /**
    * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object]]
