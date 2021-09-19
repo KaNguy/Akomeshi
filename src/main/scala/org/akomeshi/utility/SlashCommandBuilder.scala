@@ -41,6 +41,11 @@ object SlashCommandBuilder {
       Commands.this
     }
 
+    // TODO: Work on this.
+    def addOption(name: String, description: String, commandType: CommandType, required: Boolean, choices: Array[util.HashMap[String, String]]): Commands = {
+      Commands.this
+    }
+
     def getCommand: util.HashMap[String, Any] = command
   }
 }
