@@ -46,6 +46,10 @@ object SlashCommandBuilder {
       Commands.this
     }
 
+    def choiceBuilder(name: String, value: String): util.HashMap[String, String] = {
+      util.Map.of("name", name, "value", value).asInstanceOf[util.HashMap[String, String]]
+    }
+
     def getCommand: util.HashMap[String, Any] = command
   }
 }
