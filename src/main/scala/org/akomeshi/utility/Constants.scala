@@ -32,7 +32,6 @@ case object Constants {
 
   /**
    * WebSocket Event Opcodes
-   *
    * @see [[https://discord.com/developers/docs/topics/opcodes-and-status-codes]]
    */
   val GatewayOpcodes: Map[String, Int] = Map(
