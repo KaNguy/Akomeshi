@@ -11,7 +11,6 @@ import java.util
 object SlashCommandBuilder {
   /**
    * Application command types.
-   *
    * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types]]
    */
   type CommandType = Int
