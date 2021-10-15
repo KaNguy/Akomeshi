@@ -62,6 +62,10 @@ class Emitter[T] {
     uuid
   }
 
+  /**
+   * Remove an entry based on the UUID.
+   * @param uuid UUID
+   */
   def off(uuid: String): Unit = {
     callbacks.entrySet.forEach(entry => {
         entry.getValue.removeIf(pair => pair.getT.equals(uuid))
