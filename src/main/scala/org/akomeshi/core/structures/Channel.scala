@@ -35,4 +35,11 @@ case class Channel(id: String) {
    * @return String.
    */
   def mention: String = s"<#${this.id}>"
+
+  def delete: util.HashMap[Any, Any] = {
+    val request = RequestFrame.delete(
+      url = Constants.formatAPIURL + s"/channels/${this.id}"
+    )
+    JSON.parseAsHashMap(request)
+  }
 }
