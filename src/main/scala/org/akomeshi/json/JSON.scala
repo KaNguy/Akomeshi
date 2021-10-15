@@ -13,7 +13,24 @@ import java.util
 import scala.jdk.CollectionConverters._
 
 object JSON {
+  /**
+   * Parses JSON as an Object.
+   * @param json JSON String.
+   * @return Object.
+   */
   def parse(json: String): Object = JSONParser.parse(json)
+
+  /**
+   * Parses JSON as a Scala Map.
+   * @param json JSON String.
+   * @return Scala Map.
+   */
   def parseAsMap(json: String): Map[Any, Any] = JSONParser.parseAsMap(json).asScala.toMap
+
+  /**
+   * Parses JSON as a Java HashMap
+   * @param json JSON String.
+   * @return Java HashMap
+   */
   def parseAsHashMap(json: String): util.HashMap[Any, Any] = JSONParser.parseAsHashMap(json).asInstanceOf[util.HashMap[Any, Any]]
 }
