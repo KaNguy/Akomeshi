@@ -36,7 +36,6 @@ object SlashCommandBuilder {
 
   /**
    * Creates a slash command.
-   *
    * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object]]
    * @param name        Name of the slash command.
    * @param commandType Command type.
