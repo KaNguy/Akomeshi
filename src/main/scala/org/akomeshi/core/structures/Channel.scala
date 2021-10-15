@@ -15,6 +15,13 @@ import org.akomeshi.utility.Constants
 import java.util
 
 case class Channel(id: String) {
+  /**
+   * Sends a message based on the channel's implicit ID.
+   * @see [[https://discord.com/developers/docs/resources/channel#create-message]]
+   * @param content Message content.
+   * @param tts TTS or not TTS, defaults to false.
+   * @return Request output.
+   */
   def send(content: String, tts: Boolean = false): util.HashMap[Any, Any] = {
     val request = RequestFrame.post(
       url = Constants.formatAPIURL + s"/channels/${this.id}/messages",
