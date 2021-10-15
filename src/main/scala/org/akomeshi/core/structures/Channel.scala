@@ -36,6 +36,11 @@ case class Channel(id: String) {
    */
   def mention: String = s"<#${this.id}>"
 
+  /**
+   * Deletes a channel, no input needed.
+   * @see [[https://discord.com/developers/docs/resources/channel#deleteclose-channel]]
+   * @return Request output.
+   */
   def delete: util.HashMap[Any, Any] = {
     val request = RequestFrame.delete(
       url = Constants.formatAPIURL + s"/channels/${this.id}"
