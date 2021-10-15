@@ -41,8 +41,13 @@ object SlashCommandBuilder {
       Commands.this
     }
 
-    // TODO: Work on this.
-    def addOption(name: String, description: String, commandType: CommandType, required: Boolean, choices: Array[util.HashMap[String, String]]): Commands = {
+    def addOption(name: String, description: String, commandType: CommandType, required: Boolean, choices: Array[util.HashMap[String, String]] = Array.empty[util.HashMap[String, String]]): Commands = {
+      val option: util.HashMap[String, Any] = new util.HashMap[String, Any]()
+      option.put("name", name)
+      option.put("description", description)
+      option.put("type", commandType)
+      option.put("required", required.toString)
+      if (choices.nonEmpty) option.put("choices", choices)
       Commands.this
     }
 
