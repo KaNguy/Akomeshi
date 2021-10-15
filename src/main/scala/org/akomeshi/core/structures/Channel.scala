@@ -30,5 +30,9 @@ case class Channel(id: String) {
     JSON.parseAsHashMap(request)
   }
 
+  /**
+   * Creates a channel mention.
+   * @return String.
+   */
   def mention: String = s"<#${this.id}>"
 }
