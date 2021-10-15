@@ -243,7 +243,6 @@ case object Constants {
 
   /**
    * User Flags
-   *
    * @see [[https://discord.com/developers/docs/resources/user#user-object-user-flags]]
    */
   val userFlags: Map[String, Int] = Map(
@@ -264,7 +263,6 @@ case object Constants {
 
   /**
    * Gateway intents
-   *
    * @see [[https://discord.com/developers/docs/topics/gateway#list-of-intents]]
    */
   val intents: Map[String, Int] = Map(
