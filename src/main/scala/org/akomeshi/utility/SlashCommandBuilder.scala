@@ -20,6 +20,22 @@ object SlashCommandBuilder {
   val MESSAGE: CommandType = 3
 
   /**
+   * Application option structure
+   * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-type]]
+   */
+  type CommandOptionType = Int
+  val SUB_COMMAND: CommandOptionType = 1
+  val SUB_COMMAND_GROUP: CommandOptionType = 2
+  val STRING: CommandOptionType = 3
+  val INTEGER: CommandOptionType = 4
+  val BOOLEAN: CommandOptionType = 5
+  val A_USER: CommandOptionType = 6
+  val CHANNEL: CommandOptionType = 7
+  val ROLE: CommandOptionType = 8
+  val MENTIONABLE: CommandOptionType = 9
+  val NUMBER: CommandOptionType = 10
+
+  /**
    * Creates a slash command.
    *
    * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object]]
