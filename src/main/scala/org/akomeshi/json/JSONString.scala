@@ -21,6 +21,7 @@ case object JSONString {
   def encode(collections: Any): String = {
     val JSON = new ListBuffer[String]()
     collections match {
+      // Scala Map
       case map: Map[_, _] =>
         for ((k, v) <- map) {
           val key = k.asInstanceOf[String].replaceAll("\"", "\\\\\"")
@@ -35,6 +36,7 @@ case object JSONString {
           }
         };
 
+      // List
       case theList: List[_] =>
         val list = new ListBuffer[String]()
         for (listing <- theList) {
@@ -50,6 +52,7 @@ case object JSONString {
 
         return "[" + list.mkString(",") + "]";
 
+      // Java HashMap
       case jHashMap: JHashMap[_, _] =>
         jHashMap.forEach((key, value) => {
           value match {
