@@ -44,6 +44,12 @@ class Emitter[T] {
     }
   }
 
+  /**
+   * Listens to an event and receives emitted data.
+   * @param channel Channel.
+   * @param callback Callback to receive data.
+   * @return UUID as a String.
+   */
   def on(channel: String, callback: Callback[T]): String = {
     val uuid = UUID.randomUUID.toString
     var callbackPairList = callbacks.get(channel)
