@@ -14,6 +14,11 @@ class Emitter[T] {
 
   private val callbacks: util.HashMap[String, util.LinkedList[Pair[String, Callback[T]]]] = new util.HashMap()
 
+  /**
+   * Emits an event with the specified channel.
+   * @param channel Channel.
+   * @param data Data to be emitted.
+   */
   def emit(channel: String, data: T): Unit = {
     if (channel.equals("*")) {
       callbacks.entrySet().forEach(entry => {
