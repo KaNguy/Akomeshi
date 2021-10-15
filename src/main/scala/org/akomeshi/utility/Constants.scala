@@ -51,7 +51,6 @@ case object Constants {
 
   /**
    * WebSocket events from the Discord Gateway
-   *
    * @see [[https://discord.com/developers/docs/topics/gateway#commands-and-events-gateway-events]]
    * @example {{{ WebSocketEvents.map(x => "READY").head }}}
    */
@@ -110,7 +109,6 @@ case object Constants {
 
   /**
    * API Errors with the codes
-   *
    * @see [[https://discord.com/developers/docs/topics/opcodes-and-status-codes#json]]
    */
   val APIErrors: Map[String, Int] = Map(
