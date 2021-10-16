@@ -47,7 +47,16 @@ object SlashCommandBuilder {
    * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object]]
    */
   class Commands(private val command: util.HashMap[String, Any] = new util.HashMap()) {
+    private val options: Array[util.HashMap[Any, Any]] = Array.empty[util.HashMap[Any, Any]]
 
+    /**
+     * Adds a basic label to an application command being built.
+     * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object]]
+     * @param name Name of the command.
+     * @param description Description of the command.
+     * @param commandType Type of command.
+     * @return Command.
+     */
     def label(name: String, description: String, commandType: CommandType): Commands = {
       command.put("name", name)
       command.put("type", commandType)
@@ -62,11 +71,17 @@ object SlashCommandBuilder {
       option.put("type", commandType)
       option.put("required", required.toString)
       if (choices.nonEmpty) option.put("choices", choices)
+      this.options :+ option
       Commands.this
     }
 
     def choiceBuilder(name: String, value: String): util.HashMap[String, String] = {
       util.Map.of("name", name, "value", value).asInstanceOf[util.HashMap[String, String]]
+    }
+
+    def build: util.HashMap[String, Any] = {
+      // TODO: Put command together with this method.
+      new util.HashMap[String, Any]()
     }
 
     def getCommand: util.HashMap[String, Any] = command
