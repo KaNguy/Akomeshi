@@ -71,6 +71,11 @@ object SlashCommandBuilder {
       util.Map.of("name", name, "value", value).asInstanceOf[util.HashMap[String, String]]
     }
 
+    def build: util.HashMap[String, Any] = {
+      // TODO: Put command together with this method.
+      new util.HashMap[String, Any]()
+    }
+
     def getCommand: util.HashMap[String, Any] = command
   }
 }
