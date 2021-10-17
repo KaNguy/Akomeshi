@@ -35,6 +35,7 @@ class Gateway {
   lazy val webSocketListener: WebSocketListener = new WebSocketListener {
     /**
      * Listener for binary data, for handling compressed data in this library
+     * @see [[https://discord.com/developers/docs/topics/gateway#encoding-and-compression]]
      * @param webSocket The WebSocket object
      * @param data Byte data from the org.akomeshi.event
      * @param last Verifies if the WebSocket message has more content or not (or if it is a separate message)
