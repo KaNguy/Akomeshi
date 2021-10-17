@@ -41,6 +41,7 @@ class Client(val token: String, val intents: Iterable[String] = Array("GUILDS", 
 
   /**
    * Closes the WebSocket connection with a normal closure and shuts down other tasks
+   * @see [[https://discord.com/developers/docs/topics/gateway#disconnections]]
    * @param timeout Timeout, should at least be above 0 in some cases
    */
   def logout(timeout: Int = 300): Unit = {
