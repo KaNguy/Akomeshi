@@ -91,6 +91,15 @@ object SlashCommandBuilder {
       choice
     }
 
+    def buildChoices(choices: util.HashMap[String, Any]*): Array[util.HashMap[String, Any]] = {
+      val optionChoices: Array[util.HashMap[String, Any]] = Array.empty[util.HashMap[String, Any]]
+      if (choices.length > 25)
+        choices.grouped(25).foreach(c => optionChoices :+ c)
+      else for (choice <- choices)
+        optionChoices :+ choice
+      optionChoices
+    }
+
     def build: util.HashMap[String, Any] = {
       // TODO: Put command together with this method.
       new util.HashMap[String, Any]()
