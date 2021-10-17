@@ -79,7 +79,7 @@ object SlashCommandBuilder {
    * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object]]
    */
   class Commands(private val command: util.HashMap[String, Any] = new util.HashMap()) {
-    private val options: Array[util.HashMap[Any, Any]] = Array.empty[util.HashMap[Any, Any]]
+    private var options: Array[util.HashMap[String, Any]] = Array.empty[util.HashMap[String, Any]]
 
     /**
      * Adds a basic label to an application command being built.
@@ -103,7 +103,7 @@ object SlashCommandBuilder {
       option.put("type", commandType)
       option.put("required", required.toString)
       if (choices.nonEmpty) option.put("choices", choices)
-      this.options :+ option
+      this.options = this.options :+ option
       Commands.this
     }
 
