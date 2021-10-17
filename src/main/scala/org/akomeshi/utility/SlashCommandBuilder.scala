@@ -9,6 +9,38 @@ package utility
 import java.util
 
 object SlashCommandBuilder {
+  def main(args: Array[String]): Unit = {
+    val command = new Commands()
+    println(command.buildChoices(
+      command.createChoice("1", 1),
+      command.createChoice("2", 2),
+      command.createChoice("3", 3),
+      command.createChoice("4", 4),
+      command.createChoice("5", 5),
+      command.createChoice("6", 6),
+      command.createChoice("7", 7),
+      command.createChoice("8", 8),
+      command.createChoice("9", 9),
+      command.createChoice("10", 10),
+      command.createChoice("11", 11),
+      command.createChoice("12", 12),
+      command.createChoice("13", 13),
+      command.createChoice("14", 14),
+      command.createChoice("15", 15),
+      command.createChoice("16", 16),
+      command.createChoice("17", 17),
+      command.createChoice("18", 18),
+      command.createChoice("19", 19),
+      command.createChoice("20", 20),
+      command.createChoice("21", 21),
+      command.createChoice("22", 22),
+      command.createChoice("23", 23),
+      command.createChoice("24", 24),
+      command.createChoice("25", 25),
+      command.createChoice("26", 26)
+    ).mkString("(", ", ", ")"))
+  }
+
   /**
    * Application command types.
    * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types]]
@@ -92,11 +124,12 @@ object SlashCommandBuilder {
     }
 
     def buildChoices(choices: util.HashMap[String, Any]*): Array[util.HashMap[String, Any]] = {
-      val optionChoices: Array[util.HashMap[String, Any]] = Array.empty[util.HashMap[String, Any]]
-      if (choices.length > 25)
-        choices.grouped(25).foreach(c => optionChoices :+ c)
-      else for (choice <- choices)
-        optionChoices :+ choice
+      var optionChoices: Array[util.HashMap[String, Any]] = Array.empty[util.HashMap[String, Any]]
+      if (choices.length > 25) {
+        for ((c, i) <- choices.zipWithIndex)
+          if (i < 25) optionChoices = optionChoices :+ c
+      } else for (choice <- choices)
+        optionChoices = optionChoices :+ choice
       optionChoices
     }
 
