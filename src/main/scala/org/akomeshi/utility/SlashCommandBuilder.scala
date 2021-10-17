@@ -75,8 +75,20 @@ object SlashCommandBuilder {
       Commands.this
     }
 
-    def createChoice(name: String, value: String): util.HashMap[String, String] = {
-      util.Map.of("name", name, "value", value).asInstanceOf[util.HashMap[String, String]]
+    def createChoice[T](name: String, value: T): util.HashMap[String, Any] = {
+      val choice: util.HashMap[String, Any] = new util.HashMap[String, Any]()
+      choice.put("name", name)
+      choice.put("value",
+        if (value.isInstanceOf[String]) {
+          if (value.toString.length < 100)
+            value
+          else
+            value.toString.substring(0, 100)
+        } else {
+          value
+        }
+      )
+      choice
     }
 
     def build: util.HashMap[String, Any] = {
