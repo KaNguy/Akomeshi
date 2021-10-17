@@ -47,7 +47,7 @@ object SlashCommandBuilder {
    * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object]]
    */
   class Commands(private val command: util.HashMap[String, Any] = new util.HashMap()) {
-    private val options: Array[util.HashMap[Any, Any]] = Array.empty[util.HashMap[Any, Any]]
+    private var options: Array[util.HashMap[String, Any]] = Array.empty[util.HashMap[String, Any]]
 
     /**
      * Adds a basic label to an application command being built.
@@ -71,12 +71,34 @@ object SlashCommandBuilder {
       option.put("type", commandType)
       option.put("required", required.toString)
       if (choices.nonEmpty) option.put("choices", choices)
-      this.options :+ option
+      this.options = this.options :+ option
       Commands.this
     }
 
-    def choiceBuilder(name: String, value: String): util.HashMap[String, String] = {
-      util.Map.of("name", name, "value", value).asInstanceOf[util.HashMap[String, String]]
+    def createChoice[T](name: String, value: T): util.HashMap[String, Any] = {
+      val choice: util.HashMap[String, Any] = new util.HashMap[String, Any]()
+      choice.put("name", name)
+      choice.put("value",
+        if (value.isInstanceOf[String]) {
+          if (value.toString.length < 100)
+            value
+          else
+            value.toString.substring(0, 100)
+        } else {
+          value
+        }
+      )
+      choice
+    }
+
+    def buildChoices(choices: util.HashMap[String, Any]*): Array[util.HashMap[String, Any]] = {
+      var optionChoices: Array[util.HashMap[String, Any]] = Array.empty[util.HashMap[String, Any]]
+      if (choices.length > 25) {
+        for ((c, i) <- choices.zipWithIndex)
+          if (i < 25) optionChoices = optionChoices :+ c
+      } else for (choice <- choices)
+        optionChoices = optionChoices :+ choice
+      optionChoices
     }
 
     def build: util.HashMap[String, Any] = {
