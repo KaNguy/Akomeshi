@@ -31,6 +31,9 @@ class Client(val token: String, val intents: Iterable[String] = Array("GUILDS", 
    */
   def login(token: String = this.token, intents: Iterable[String] = this.intents): Unit = {
     val gatewayIntents: Int = Utilities.parseIntents(intents)
+    /**
+     * @see [[https://discord.com/developers/docs/topics/gateway#connecting-to-the-gateway]]
+     */
     this.universalGatewayClass.connection.send(JSONString.encode(PayloadModels.identifyPayload(token, gatewayIntents)), last = true)
     if (TokenManager.getToken == null) TokenManager.push("token", token)
     Heartbeat.sendHeartbeat(41250, this.universalGatewayClass.connection)
