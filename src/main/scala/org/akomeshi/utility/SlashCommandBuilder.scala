@@ -80,12 +80,25 @@ object SlashCommandBuilder {
       Commands.this
     }
 
-    def addOption(name: String, description: String, commandType: CommandType, required: Boolean, choices: Array[util.HashMap[String, String]] = Array.empty[util.HashMap[String, String]]): Commands = {
+    /**
+     * Adds an option to the an options Array in the class and will be used if it is not empty to build the command.
+     * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-structure]]
+     * @param name Name of the option.
+     * @param description Description of the option.
+     * @param commandType Type of (application) command.
+     * @param required Optional parameter to assert whether the option is optional or required.
+     * @param choices Optional parameter for adding choices.
+     * @return Commands.
+     */
+    def addOption(name: String, description: String, commandType: CommandType, required: Boolean = null, choices: Array[util.HashMap[String, String]] = Array.empty[util.HashMap[String, String]]): Commands = {
       val option: util.HashMap[String, Any] = new util.HashMap[String, Any]()
       option.put("name", name)
       option.put("description", description)
       option.put("type", commandType)
-      option.put("required", required.toString)
+      required match {
+        case _: Boolean => command.put("required", required)
+        case _ => ()
+      }
       if (choices.nonEmpty) option.put("choices", choices)
       this.options = this.options :+ option
       Commands.this
