@@ -64,6 +64,15 @@ object SlashCommandBuilder {
       Commands.this
     }
 
+    def addOptionals(guildID: String = null, defaultPermissions: Boolean = null): Commands = {
+      if (!"".equals(guildID)) command.put("guild_id", guildID)
+      defaultPermissions match {
+        case v: Boolean => command.put("default_permissions", v)
+        case _ => return Commands.this
+      }
+      Commands.this
+    }
+
     def addOption(name: String, description: String, commandType: CommandType, required: Boolean, choices: Array[util.HashMap[String, String]] = Array.empty[util.HashMap[String, String]]): Commands = {
       val option: util.HashMap[String, Any] = new util.HashMap[String, Any]()
       option.put("name", name)
