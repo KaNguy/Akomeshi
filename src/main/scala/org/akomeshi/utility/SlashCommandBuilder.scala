@@ -64,12 +64,41 @@ object SlashCommandBuilder {
       Commands.this
     }
 
-    def addOption(name: String, description: String, commandType: CommandType, required: Boolean, choices: Array[util.HashMap[String, String]] = Array.empty[util.HashMap[String, String]]): Commands = {
+    /**
+     * Adds other optional fields, can be called if needed.
+     * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-structure]]
+     * @param guildID Guild ID if the command is not global.
+     * @param defaultPermissions Default permissions, the API sets it to true if it isn't used.
+     * @return Command.
+     */
+    def addOptionals(guildID: String = null, defaultPermissions: Boolean = null): Commands = {
+      if (!"".equals(guildID)) command.put("guild_id", guildID)
+      defaultPermissions match {
+        case v: Boolean => command.put("default_permissions", v)
+        case _ => return Commands.this
+      }
+      Commands.this
+    }
+
+    /**
+     * Adds an option to the an options Array in the class and will be used if it is not empty to build the command.
+     * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-structure]]
+     * @param name Name of the option.
+     * @param description Description of the option.
+     * @param commandType Type of (application) command.
+     * @param required Optional parameter to assert whether the option is optional or required.
+     * @param choices Optional parameter for adding choices.
+     * @return Commands.
+     */
+    def addOption(name: String, description: String, commandType: CommandType, required: Boolean = null, choices: Array[util.HashMap[String, String]] = Array.empty[util.HashMap[String, String]]): Commands = {
       val option: util.HashMap[String, Any] = new util.HashMap[String, Any]()
       option.put("name", name)
       option.put("description", description)
       option.put("type", commandType)
-      option.put("required", required.toString)
+      required match {
+        case _: Boolean => command.put("required", required)
+        case _ => ()
+      }
       if (choices.nonEmpty) option.put("choices", choices)
       this.options = this.options :+ option
       Commands.this
@@ -93,11 +122,9 @@ object SlashCommandBuilder {
 
     def buildChoices(choices: util.HashMap[String, Any]*): Array[util.HashMap[String, Any]] = {
       var optionChoices: Array[util.HashMap[String, Any]] = Array.empty[util.HashMap[String, Any]]
-      if (choices.length > 25) {
-        for ((c, i) <- choices.zipWithIndex)
-          if (i < 25) optionChoices = optionChoices :+ c
-      } else for (choice <- choices)
-        optionChoices = optionChoices :+ choice
+      for ((c, i) <- choices.zipWithIndex)
+        if (i < 25)
+          optionChoices = optionChoices :+ c
       optionChoices
     }
 
