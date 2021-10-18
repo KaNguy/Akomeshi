@@ -66,6 +66,7 @@ object SlashCommandBuilder {
 
     /**
      * Adds other optional fields, can be called if needed.
+     * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-structure]]
      * @param guildID Guild ID if the command is not global.
      * @param defaultPermissions Default permissions, the API sets it to true if it isn't used.
      * @return Command.
