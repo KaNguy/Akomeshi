@@ -93,11 +93,9 @@ object SlashCommandBuilder {
 
     def buildChoices(choices: util.HashMap[String, Any]*): Array[util.HashMap[String, Any]] = {
       var optionChoices: Array[util.HashMap[String, Any]] = Array.empty[util.HashMap[String, Any]]
-      if (choices.length > 25) {
-        for ((c, i) <- choices.zipWithIndex)
-          if (i < 25) optionChoices = optionChoices :+ c
-      } else for (choice <- choices)
-        optionChoices = optionChoices :+ choice
+      for ((c, i) <- choices.zipWithIndex)
+        if (i < 25)
+          optionChoices = optionChoices :+ c
       optionChoices
     }
 
