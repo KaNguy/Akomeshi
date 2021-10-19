@@ -130,6 +130,7 @@ object SlashCommandBuilder {
 
     /**
      * Assorts the choices into an Array.
+     * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-structure]]
      * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-choice-structure]]
      * @param choices HashMap of choices.
      * @return Array of choices.
