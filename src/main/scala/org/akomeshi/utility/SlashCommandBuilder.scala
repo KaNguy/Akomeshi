@@ -120,6 +120,12 @@ object SlashCommandBuilder {
       choice
     }
 
+    /**
+     * Assorts the choices into an Array.
+     * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-choice-structure]]
+     * @param choices HashMap of choices.
+     * @return Array of choices.
+     */
     def buildChoices(choices: util.HashMap[String, Any]*): Array[util.HashMap[String, Any]] = {
       var optionChoices: Array[util.HashMap[String, Any]] = Array.empty[util.HashMap[String, Any]]
       for ((c, i) <- choices.zipWithIndex)
