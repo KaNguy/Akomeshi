@@ -65,18 +65,18 @@ object SlashCommandBuilder {
     }
 
     /**
-     * Adds other optional fields, can be called if needed.
+     * Adds other optional fields, can be called if needed (adds ALL optionals).
      * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-structure]]
      * @param guildID Guild ID if the command is not global.
      * @param defaultPermissions Default permissions, the API sets it to true if it isn't used.
+     * @param strict If strict is true, other boolean parameters will be added to the command, otherwise it is ignored unless an individual parameter is true.
      * @return Command.
      */
-    def addOptionals(guildID: String = String.valueOf(Character.MIN_VALUE), defaultPermissions: Boolean = false): Commands = {
+    def addOptionals(guildID: String = String.valueOf(Character.MIN_VALUE), defaultPermissions: Boolean = false, strict: Boolean = false): Commands = {
       if (!"".equals(guildID)) command.put("guild_id", guildID)
-      defaultPermissions match {
-        case v: Boolean => command.put("default_permissions", v)
-        case _ => return Commands.this
-      }
+      if (strict && !defaultPermissions)
+        command.put("default_permissions", defaultPermissions)
+      else command.put("default_permissions", defaultPermissions)
       Commands.this
     }
 
