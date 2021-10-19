@@ -61,10 +61,27 @@ case object JSONString {
             case jHashMap: JHashMap[_, _] => JSON += s""""$key": ${encode(jHashMap)}""";
             case int: Int => JSON += s""""$key": $int""";
             case boolean: Boolean => JSON += s""""$key": $boolean""";
-            case string: String => JSON += s""""$key": "${string.replaceAll("\"", "\\\\\"")}""""
+            case string: String => JSON += s""""$key": "${string.replaceAll("\"", "\\\\\"")}"""";
+            case array: Array[_] => JSON += s""""$key": ${encode(array)}""";
             case _ => JSON += s"""$key: null""";
           }
         });
+
+      // Array
+      case array: Array[_] =>
+        var finalArray: Array[Any] = Array.empty[Any]
+        array.foreach {
+          case map: Map[_, _] => finalArray = finalArray :+ encode(map);
+          case caseList: List[_] => finalArray = finalArray :+ encode(caseList);
+          case int: Int => finalArray = finalArray :+ int.toString;
+          case boolean: Boolean => finalArray = finalArray :+ boolean.toString;
+          case string: String => finalArray = finalArray :+ s""""${string.replaceAll("\"", "\\\\\"")}"""";
+          case array: Array[_] => finalArray = finalArray :+ encode(array);
+          case jHashMap: JHashMap[_, _] => finalArray = finalArray :+ encode(jHashMap);
+          case _ => finalArray = finalArray :+ "null";
+        }
+
+      return finalArray.mkString("[", ",", "]");
 
       case _ => ();
     }
