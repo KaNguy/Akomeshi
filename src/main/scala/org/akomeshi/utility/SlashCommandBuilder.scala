@@ -143,11 +143,19 @@ object SlashCommandBuilder {
       optionChoices
     }
 
+    /**
+     * Finalizes an application command.
+     * @return Command HashMap.
+     */
     def build: util.HashMap[String, Any] = {
       command.put("options", this.options)
       command
     }
 
+    /**
+     * Gets the built command or the command regardless if it was built or not.
+     * @return Command HashMap.
+     */
     def getCommand: util.HashMap[String, Any] = command
   }
 }
