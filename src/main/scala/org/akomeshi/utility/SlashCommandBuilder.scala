@@ -88,18 +88,28 @@ object SlashCommandBuilder {
      * @param commandType Type of (application) command.
      * @param required Optional parameter to assert whether the option is optional or required.
      * @param choices Optional parameter for adding choices.
+     * @param channelTypes Array or Iterable List of channel types that the option is restricted to.
+     * @param strict If true, it will add all optional parameters to the command option.
      * @return Commands.
      */
-    def addOption(name: String, description: String, commandType: CommandType, required: Boolean = false, choices: Array[util.HashMap[String, Any]] = Array.empty[util.HashMap[String, Any]]): Commands = {
+    def addOption(name: String,
+                  description: String,
+                  commandType: CommandType,
+                  required: Boolean = false,
+                  choices: Array[util.HashMap[String, Any]] = Array.empty[util.HashMap[String, Any]],
+                  channelTypes: Iterable[Int] = Iterable.empty[Int],
+                  strict: Boolean = false): Commands = {
       val option: util.HashMap[String, Any] = new util.HashMap[String, Any]()
       option.put("name", name)
       option.put("description", description)
       option.put("type", commandType)
-      required match {
-        case _: Boolean => command.put("required", required)
-        case _ => ()
-      }
+
+      if (strict && !required)
+        option.put("required", required)
+      else if (required) option.put("required", required)
+
       if (choices.nonEmpty) option.put("choices", choices)
+      if (channelTypes.nonEmpty) option.put("channel_types", channelTypes)
       this.options = this.options :+ option
       Commands.this
     }
