@@ -71,7 +71,7 @@ object SlashCommandBuilder {
      * @param defaultPermissions Default permissions, the API sets it to true if it isn't used.
      * @return Command.
      */
-    def addOptionals(guildID: String = null, defaultPermissions: Boolean = null): Commands = {
+    def addOptionals(guildID: String = String.valueOf(Character.MIN_VALUE), defaultPermissions: Boolean = false): Commands = {
       if (!"".equals(guildID)) command.put("guild_id", guildID)
       defaultPermissions match {
         case v: Boolean => command.put("default_permissions", v)
@@ -90,7 +90,7 @@ object SlashCommandBuilder {
      * @param choices Optional parameter for adding choices.
      * @return Commands.
      */
-    def addOption(name: String, description: String, commandType: CommandType, required: Boolean = null, choices: Array[util.HashMap[String, Any]] = Array.empty[util.HashMap[String, Any]]): Commands = {
+    def addOption(name: String, description: String, commandType: CommandType, required: Boolean = false, choices: Array[util.HashMap[String, Any]] = Array.empty[util.HashMap[String, Any]]): Commands = {
       val option: util.HashMap[String, Any] = new util.HashMap[String, Any]()
       option.put("name", name)
       option.put("description", description)
@@ -129,8 +129,8 @@ object SlashCommandBuilder {
     }
 
     def build: util.HashMap[String, Any] = {
-      // TODO: Put command together with this method.
-      new util.HashMap[String, Any]()
+      command.put("options", this.options)
+      command
     }
 
     def getCommand: util.HashMap[String, Any] = command
