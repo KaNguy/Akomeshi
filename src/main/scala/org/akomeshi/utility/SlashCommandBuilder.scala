@@ -104,6 +104,14 @@ object SlashCommandBuilder {
       Commands.this
     }
 
+    /**
+     * Creates a choice for an option as a HashMap
+     * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-choice-structure]]
+     * @param name Name of the choice.
+     * @param value Value of the choice.
+     * @tparam T String, Integer, or Double.
+     * @return HashMap of the choice.
+     */
     def createChoice[T](name: String, value: T): util.HashMap[String, Any] = {
       val choice: util.HashMap[String, Any] = new util.HashMap[String, Any]()
       choice.put("name", name)
