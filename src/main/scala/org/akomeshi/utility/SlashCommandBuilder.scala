@@ -90,7 +90,7 @@ object SlashCommandBuilder {
      * @param choices Optional parameter for adding choices.
      * @return Commands.
      */
-    def addOption(name: String, description: String, commandType: CommandType, required: Boolean = null, choices: Array[util.HashMap[String, String]] = Array.empty[util.HashMap[String, String]]): Commands = {
+    def addOption(name: String, description: String, commandType: CommandType, required: Boolean = null, choices: Array[util.HashMap[String, Any]] = Array.empty[util.HashMap[String, Any]]): Commands = {
       val option: util.HashMap[String, Any] = new util.HashMap[String, Any]()
       option.put("name", name)
       option.put("description", description)
