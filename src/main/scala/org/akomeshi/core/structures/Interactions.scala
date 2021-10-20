@@ -16,6 +16,9 @@ import org.akomeshi.utility.Utilities.toHashMap
 // Utilities
 import java.util
 
+// Converters
+import scala.jdk.CollectionConverters
+
 case class Interactions() {
   private val readyCacheContents = Cache.readyCache.get(Constants.WebSocketEvents.map(_ => "READY").head)
   val applicationID: String = if (readyCacheContents != null) {
@@ -57,10 +60,7 @@ case class Interactions() {
    * @see [[https://canary.discord.com/developers/docs/interactions/slash-commands#create-global-application-command]]
    * @return
    */
-  def registerGlobalCommand(commandData: Map[Any, Any]): String = {
-    // TODO: Require name and description
-    // TODO: Add options
-    // TODO: Add a slash command builder for building payloads
+  def registerGlobalCommand(commandData: util.HashMap[Any, Any]): String = {
     RequestFrame.post(s"${Constants.formatAPIURL}/applications/$applicationID/commands", commandData)
   }
 }
