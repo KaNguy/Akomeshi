@@ -60,7 +60,7 @@ case class Interactions() {
    * @see [[https://canary.discord.com/developers/docs/interactions/slash-commands#create-global-application-command]]
    * @return
    */
-  def registerGlobalCommand(commandData: util.HashMap[Any, Any]): String = {
+  def registerGlobalCommand(commandData: util.HashMap[String, Any]): String = {
     RequestFrame.post(s"${Constants.formatAPIURL}/applications/$applicationID/commands", commandData)
   }
 }
