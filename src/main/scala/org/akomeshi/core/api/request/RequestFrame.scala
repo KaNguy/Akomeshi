@@ -11,6 +11,9 @@ import core.managers.TokenManager
 import json.JSONString
 import org.akomeshi.utility.Constants
 
+// Java Utilities
+import java.util.Collections
+
 /**
  * A request frame for simplifying the making of the requests.
  * Advisory to not use this outside of the API.
@@ -24,12 +27,28 @@ object RequestFrame {
   )
 
   /**
-   * Makes a POST request on the client's behalf with the needed authorization headers
-   * @param url URL
-   * @param data Data as a Map
-   * @return Output as a String
+   * Makes a POST request on the client's behalf with the needed authorization headers.
+   * @param url URL.
+   * @param data Data as a Map.
+   * @return Output as a String.
    */
-  def post(url: String, data: Map[Any, Any]): String = {
+  def post(url: String, data: Iterable[(Any, Any)]): String = {
+    Request.request(
+      url = url,
+      method = RequestConstants.POST,
+      headers = clientHeaders,
+      data = JSONString.encode(data),
+    )
+  }
+
+  /**
+   * Makes a POST request on the client's behalf with the needed authorization headers.
+   * @param url URL.
+   * @param data Data as a Collection.
+   * @tparam C Collection type.
+   * @return Output as a String.
+   */
+  def post[C](url: String, data: C): String = {
     Request.request(
       url = url,
       method = RequestConstants.POST,
