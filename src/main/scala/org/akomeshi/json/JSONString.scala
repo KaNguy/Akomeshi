@@ -31,7 +31,7 @@ case object JSONString {
             case jHashMap: JHashMap[_, _] => JSON += s""""$key": ${encode(jHashMap)}""";
             case int: Int => JSON += s""""$key": $int""";
             case boolean: Boolean => JSON += s""""$key": $boolean""";
-            case string: String => JSON += s""""$key": "${string.replaceAll("\"", "\\\\\"")}""""
+            case string: String => JSON += s""""$key": "${string.replaceAll("\"", "\\\\\"")}"""";
             case _ => JSON += s"""$key: null""";
           }
         };
