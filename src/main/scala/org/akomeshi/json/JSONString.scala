@@ -43,6 +43,7 @@ case object JSONString {
           listing match {
             case map: Map[_, _] => list += encode(map);
             case caseList: List[_] => list += encode(caseList);
+            case jHashMap: JHashMap[_, _] => list += encode(jHashMap);
             case int: Int => list += int.toString;
             case boolean: Boolean => list += boolean.toString;
             case string: String => list += s""""${string.replaceAll("\"", "\\\\\"")}"""";
