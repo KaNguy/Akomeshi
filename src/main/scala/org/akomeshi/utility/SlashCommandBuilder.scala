@@ -41,12 +41,14 @@ object SlashCommandBuilder {
    * @param commandType Command type.
    * @return
    */
-  def createSlashCommand(name: String, commandType: Int): Commands = new Commands()
+  def createSlashCommand(name: String, description: String = String.valueOf(Character.MIN_VALUE), commandType: CommandType = CHAT_INPUT): Commands = {
+    new Commands(name, description, commandType)
+  }
 
   /**
    * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object]]
    */
-  class Commands(private val command: util.HashMap[String, Any] = new util.HashMap()) {
+  class Commands(var name: String, description: String = String.valueOf(Character.MIN_VALUE), commandType: CommandType = CHAT_INPUT, private val command: util.HashMap[String, Any] = new util.HashMap()) {
     private var options: Array[util.HashMap[String, Any]] = Array.empty[util.HashMap[String, Any]]
 
     /**
@@ -57,7 +59,7 @@ object SlashCommandBuilder {
      * @param commandType Type of command.
      * @return Command.
      */
-    def label(name: String, description: String, commandType: CommandType): Commands = {
+    def label(name: String = this.name, description: String = this.description, commandType: CommandType = this.commandType): Commands = {
       command.put("name", name)
       command.put("type", commandType)
       command.put("description", description)
