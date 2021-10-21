@@ -46,7 +46,12 @@ object SlashCommandBuilder {
   }
 
   /**
+   * Commands class of the SlashCommandBuilder
    * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object]]
+   * @param name Name of the command.
+   * @param description Description of the command.
+   * @param commandType Type of command.
+   * @param command The command itself, this field should not be modified since its keys and values may be overwritten.
    */
   class Commands(var name: String, description: String = String.valueOf(Character.MIN_VALUE), commandType: CommandType = CHAT_INPUT, private val command: util.HashMap[String, Any] = new util.HashMap()) {
     private var options: Array[util.HashMap[String, Any]] = Array.empty[util.HashMap[String, Any]]
