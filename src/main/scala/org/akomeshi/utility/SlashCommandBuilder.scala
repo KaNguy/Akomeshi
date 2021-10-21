@@ -35,6 +35,15 @@ object SlashCommandBuilder {
   val NUMBER: CommandOptionType = 10
 
   /**
+   * Application Command Permission types.
+   * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-permissions-object-application-command-permission-type]]
+   */
+  type ApplicationCommandPermissionType = Int
+  val PERMISSION_ROLE: ApplicationCommandPermissionType = 1
+  val PERMISSION_USER: ApplicationCommandPermissionType = 2
+
+
+  /**
    * Creates a slash command.
    * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object]]
    * @param name        Name of the slash command.
