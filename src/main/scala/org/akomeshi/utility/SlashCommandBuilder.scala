@@ -190,9 +190,7 @@ object SlashCommandBuilder {
 
     def build: Map[String, Any] = {
       var permissionsList: List[Map[String, Any]] = List.empty[Map[String, Any]]
-      permissionsList = permissionsList :+ Map("id" -> id)
-      permissionsList = permissionsList :+ Map("type" -> permissionType)
-      permissionsList = permissionsList :+ Map("permission" -> permission)
+      permissionsList = permissionsList :+ Map("id" -> id, "type" -> permissionType, "permission" -> permission)
       permissions = permissions + ("permissions" -> permissionsList)
       permissions
     }
