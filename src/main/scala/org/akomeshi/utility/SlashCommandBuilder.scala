@@ -186,6 +186,15 @@ object SlashCommandBuilder {
   }
 
   class ApplicationCommandPermissions(id: String, permissionType: Int, permission: Boolean) {
+    private var permissions: Map[String, Any] = Map.empty
 
+    def build: Map[String, Any] = {
+      var permissionsList: List[Map[String, Any]] = List.empty[Map[String, Any]]
+      permissionsList = permissionsList :+ Map("id" -> id)
+      permissionsList = permissionsList :+ Map("type" -> permissionType)
+      permissionsList = permissionsList :+ Map("permission" -> permission)
+      permissions = permissions + ("permissions" -> permissionsList)
+      permissions
+    }
   }
 }
