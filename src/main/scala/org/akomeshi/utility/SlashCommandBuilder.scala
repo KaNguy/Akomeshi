@@ -175,4 +175,8 @@ object SlashCommandBuilder {
      */
     def getCommand: util.HashMap[String, Any] = command
   }
+
+  class CommandPermissions(id: String, permissionType: Int, permission: Boolean) {
+
+  }
 }
