@@ -196,5 +196,7 @@ object SlashCommandBuilder {
       permissions = permissions + ("permissions" -> permissionsList)
       permissions
     }
+
+    def getPermissions: Map[String, Any] = permissions
   }
 }
