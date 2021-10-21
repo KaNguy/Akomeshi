@@ -158,7 +158,7 @@ object SlashCommandBuilder {
      * @return Command HashMap.
      */
     def build: util.HashMap[String, Any] = {
-      command.put("options", this.options)
+      if (!command.containsKey("options")) command.put("options", this.options)
       command
     }
 
