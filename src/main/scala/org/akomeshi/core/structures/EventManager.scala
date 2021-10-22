@@ -15,12 +15,12 @@ import org.akomeshi.utility.Utilities.toHashMap
 // Utilities
 import java.util
 
-case class EventManager(event: util.HashMap[Any, Any]) {
+case class EventManager(event: util.HashMap[String, Any]) {
   /**
    * Dispatches events
    * @param event The org.akomeshi.event emitted from the WS_MESSAGE channel
    */
-  def apply(event: util.HashMap[Any, Any] = this.event): Unit = {
+  def apply(event: util.HashMap[String, Any] = this.event): Unit = {
     if (
       event.get("t") != null &&
       event.get("t").isInstanceOf[String] &&
@@ -33,7 +33,7 @@ case class EventManager(event: util.HashMap[Any, Any]) {
       }
 
       if (event.get("t").equals(Constants.WebSocketEvents.map(_ => "MESSAGE_CREATE").head)) {
-        EventObjects.messageEvent.emit("MESSAGE_CREATE", Message(event.get("d").asInstanceOf[util.HashMap[Any, Any]]))
+        EventObjects.messageEvent.emit("MESSAGE_CREATE", Message(event.get("d").asInstanceOf[util.HashMap[String, Any]]))
       }
     }
   }
