@@ -17,7 +17,7 @@ import java.util
 
 case class User() {
 
-  private val selfMap: util.HashMap[Any, Any] = JSON.parseAsHashMap(RequestFrame.get(s"${Constants.apiURL}/v${Constants.APIVersion}/users/@me"))
+  private val selfMap: util.HashMap[String, Any] = JSON.parseAsHashMap(RequestFrame.get(s"${Constants.apiURL}/v${Constants.APIVersion}/users/@me"))
 
   /**
    * The main `self` property of the User case class.
@@ -29,7 +29,7 @@ case class User() {
    * Properties of the logged in client's self.
    * @param user User HashMap of the client
    */
-  case class Self(user: util.HashMap[Any, Any]) {
+  case class Self(user: util.HashMap[String, Any]) {
     def id: String = user.get("id").toString
     def username: String = user.get("username").toString
     def discriminator: String = user.get("discriminator").toString
@@ -53,7 +53,7 @@ case class User() {
    * @return UserProperties type with the user properties.
    */
   def get(id: String): UserProperties = {
-    val userMap: util.HashMap[Any, Any] = JSON.parseAsHashMap(RequestFrame.get(s"${Constants.apiURL}/v${Constants.APIVersion}/users/$id"))
+    val userMap: util.HashMap[String, Any] = JSON.parseAsHashMap(RequestFrame.get(s"${Constants.apiURL}/v${Constants.APIVersion}/users/$id"))
     UserProperties(userMap)
   }
 
@@ -73,7 +73,7 @@ case class User() {
    * Properties for any user.
    * @param user User HashMap
    */
-  case class UserProperties(user: util.HashMap[Any, Any]) {
+  case class UserProperties(user: util.HashMap[String, Any]) {
     def id: String = user.get("id").toString
     def username: String = user.get("username").toString
     def discriminator: String = user.get("discriminator").toString
