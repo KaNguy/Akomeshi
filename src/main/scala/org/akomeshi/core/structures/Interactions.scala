@@ -27,9 +27,16 @@ case class Interactions() {
 
   // TODO: This currently gets the application's commands and is raw but should do something different
   // TODO: Implement interactions and slash commands since message content will be a privileged intent
-  def getGlobalCommands: util.HashMap[Any, Any] = {
+  def getGlobalCommands: util.HashMap[String, Any] = {
     val request = RequestFrame.get(
       url = Constants.formatAPIURL + s"/applications/$applicationID/commands"
+    )
+    JSON.parseAsHashMap(s"{\"commands\":$request}")
+  }
+
+  def getGuildCommands(guildID: String): util.HashMap[String, Any] = {
+    val request = RequestFrame.get(
+      url = Constants.formatAPIURL + s"/applications/$applicationID/guilds/$guildID/commands"
     )
     JSON.parseAsHashMap(s"{\"commands\":$request}")
   }
