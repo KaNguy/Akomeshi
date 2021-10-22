@@ -14,7 +14,7 @@ import java.util
  * It is advised to not push to the HashMap variables in this object from the client since that may cause unforeseen consequences.
  */
 object Cache {
-  val readyCache: util.HashMap[Any, Any] = new util.HashMap[Any, Any]()
+  val readyCache: util.HashMap[String, Any] = new util.HashMap[String, Any]()
 
   /**
    * Indirectly pushes to a HashMap
@@ -22,5 +22,5 @@ object Cache {
    * @param key Presumed key
    * @param value Presumed value
    */
-  def push(hashMap: util.HashMap[Any, Any], key: String, value: util.HashMap[Any, Any]): Unit = hashMap.put(key, value)
+  def push(hashMap: util.HashMap[String, Any], key: String, value: util.HashMap[String, Any]): Unit = hashMap.put(key, value)
 }

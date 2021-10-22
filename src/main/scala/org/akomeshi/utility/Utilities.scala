@@ -34,9 +34,9 @@ case object Utilities {
    * Converts an object or weak reference HashMap directly into a HashMap
    *
    * @param x Preferably the assumed HashMap
-   * @return HashMap[Any, Any]
+   * @return HashMap[String, Any]
    */
-  def toHashMap(x: Any): util.HashMap[Any, Any] = x.asInstanceOf[util.HashMap[Any, Any]]
+  def toHashMap(x: Any): util.HashMap[String, Any] = x.asInstanceOf[util.HashMap[String, Any]]
 
   // Discord Epoch
   private val discordEpoch: Long = 1420070400000L
