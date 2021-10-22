@@ -12,7 +12,7 @@ import org.akomeshi.utility.{Utilities => Util}
 // Utility
 import java.util
 
-case class Message(message: util.HashMap[Any, Any] = new util.HashMap[Any, Any]()) {
+case class Message(message: util.HashMap[String, Any] = new util.HashMap[String, Any]()) {
   def content: String = message.get("content").toString
   def mentionsEveryone: Boolean = Util.strToBool(message.get("mention_everyone"))
   def pinned: Boolean = Util.strToBool(message.get("pinned"))
