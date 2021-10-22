@@ -3,7 +3,7 @@ package utility
 
 /**
  * Created by KaNguy - 08/09/2021
- * File org.akomeshi.utility/SlashCommandBuilder.scala
+ * File org.akomeshi.utility/CommandBuilder.scala
  */
 
 import java.util
