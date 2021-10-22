@@ -8,7 +8,7 @@ package utility
 
 import java.util
 
-object SlashCommandBuilder {
+object CommandBuilder {
   /**
    * Application command types.
    * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types]]
