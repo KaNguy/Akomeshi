@@ -13,7 +13,7 @@ import event.Emitter
 // Utilities
 import java.util
 
-case class EventDispatcher(listener: Emitter[util.HashMap[Any, Any]]) {
+case class EventDispatcher(listener: Emitter[util.HashMap[String, Any]]) {
   // Passes events into the EventManager case class
   listener.on("WS_MESSAGE", (_, event) => {
     EventManager(event).apply()
