@@ -52,7 +52,7 @@ class Gateway {
 
       val decodedMessage: String = new String(decompressedData, StandardCharsets.UTF_8)
 
-      var JSONData: util.HashMap[Any, Any] = new util.HashMap[Any, Any]()
+      var JSONData: util.HashMap[String, Any] = new util.HashMap[String, Any]()
       try {
         JSONData = JSON.parseAsHashMap(decodedMessage)
       } catch {
