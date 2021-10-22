@@ -22,7 +22,7 @@ case class Channel(id: String) {
    * @param tts TTS or not TTS, defaults to false.
    * @return Request output.
    */
-  def send(content: String, tts: Boolean = false): util.HashMap[Any, Any] = {
+  def send(content: String, tts: Boolean = false): util.HashMap[String, Any] = {
     val request = RequestFrame.post(
       url = Constants.formatAPIURL + s"/channels/${this.id}/messages",
       data = Map("content" -> content, "tts" -> tts)
@@ -41,7 +41,7 @@ case class Channel(id: String) {
    * @see [[https://discord.com/developers/docs/resources/channel#deleteclose-channel]]
    * @return Request output.
    */
-  def delete: util.HashMap[Any, Any] = {
+  def delete: util.HashMap[String, Any] = {
     val request = RequestFrame.delete(
       url = Constants.formatAPIURL + s"/channels/${this.id}"
     )
