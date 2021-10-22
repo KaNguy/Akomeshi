@@ -25,12 +25,12 @@ object JSON {
    * @param json JSON String.
    * @return Scala Map.
    */
-  def parseAsMap(json: String): Map[Any, Any] = JSONParser.parseAsMap(json).asScala.toMap
+  def parseAsMap(json: String): Map[String, Any] = JSONParser.parseAsMap(json).asScala.toMap
 
   /**
    * Parses JSON as a Java HashMap
    * @param json JSON String.
    * @return Java HashMap
    */
-  def parseAsHashMap(json: String): util.HashMap[Any, Any] = JSONParser.parseAsHashMap(json).asInstanceOf[util.HashMap[Any, Any]]
+  def parseAsHashMap(json: String): util.HashMap[String, Any] = JSONParser.parseAsHashMap(json).asInstanceOf[util.HashMap[String, Any]]
 }
