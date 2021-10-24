@@ -77,6 +77,13 @@ case class Interactions() {
     RequestFrame.post(s"${Constants.formatAPIURL}/applications/$applicationID/commands", commandData)
   }
 
+  /**
+   * Creates a guild command.
+   * @see [[https://discord.com/developers/docs/interactions/application-commands#create-guild-application-command]]
+   * @param guildID Guild ID.
+   * @param commandData Command data for the interaction.
+   * @return 201, created.
+   */
   def registerGuildCommand(guildID: String, commandData: util.HashMap[String, Any]): String = {
     RequestFrame.post(
       url = Constants.formatAPIURL + s"/applications/$applicationID/guilds/$guildID/commands",
