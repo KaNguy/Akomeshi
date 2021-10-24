@@ -76,4 +76,11 @@ case class Interactions() {
   def registerGlobalCommand(commandData: util.HashMap[String, Any]): String = {
     RequestFrame.post(s"${Constants.formatAPIURL}/applications/$applicationID/commands", commandData)
   }
+
+  def registerGuildCommand(guildID: String, commandData: util.HashMap[String, Any]): String = {
+    RequestFrame.post(
+      url = Constants.formatAPIURL + s"/applications/$applicationID/guilds/$guildID/commands",
+      data = commandData
+    )
+  }
 }
