@@ -34,7 +34,11 @@ case class Interactions() {
     JSON.parseAsHashMap(s"{\"commands\":$request}")
   }
 
-  // TODO: Document this.
+  /**
+   * Gets commands of a guild as an Array, stored in a key.
+   * @param guildID Guild ID.
+   * @return HashMap with the key, "commands," with the array of guild commands.
+   */
   def getGuildCommands(guildID: String): util.HashMap[String, Any] = {
     val request = RequestFrame.get(
       url = Constants.formatAPIURL + s"/applications/$applicationID/guilds/$guildID/commands"
