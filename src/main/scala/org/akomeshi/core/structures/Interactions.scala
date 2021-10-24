@@ -36,6 +36,7 @@ case class Interactions() {
 
   /**
    * Gets commands of a guild as an Array, stored in a key.
+   * @see [[https://discord.com/developers/docs/interactions/application-commands#get-guild-application-commands]]
    * @param guildID Guild ID.
    * @return HashMap with the key, "commands," with the array of guild commands.
    */
