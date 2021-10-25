@@ -185,6 +185,12 @@ object CommandBuilder {
     def getCommand: util.HashMap[String, Any] = command
   }
 
+  /**
+   * Class for building application command permissions.
+   * @param id ID or role of user.
+   * @param permissionType Role or user permission.
+   * @param permission True to allow, false to disallow.
+   */
   class ApplicationCommandPermissions(id: String, permissionType: Int, permission: Boolean) {
     private var permissions: Map[String, Any] = Map.empty
 
