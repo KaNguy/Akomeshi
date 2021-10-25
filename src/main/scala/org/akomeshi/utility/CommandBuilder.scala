@@ -194,6 +194,10 @@ object CommandBuilder {
   class ApplicationCommandPermissions(id: String, permissionType: Int, permission: Boolean) {
     private var permissions: Map[String, Any] = Map.empty
 
+    /**
+     * Builds the permissions structure.
+     * @return Serializable Map.
+     */
     def build: Map[String, Any] = {
       var permissionsList: List[Map[String, Any]] = List.empty[Map[String, Any]]
       permissionsList = permissionsList :+ Map("id" -> id, "type" -> permissionType, "permission" -> permission)
