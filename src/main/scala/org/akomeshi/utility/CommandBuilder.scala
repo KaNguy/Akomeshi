@@ -187,6 +187,7 @@ object CommandBuilder {
 
   /**
    * Class for building application command permissions.
+   * @see [[https://discord.com/developers/docs/interactions/application-commands#application-command-permissions-object-application-command-permissions-structure]]
    * @param id ID or role of user.
    * @param permissionType Role or user permission.
    * @param permission True to allow, false to disallow.
