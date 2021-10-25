@@ -205,6 +205,10 @@ object CommandBuilder {
       permissions
     }
 
+    /**
+     * Gets the permissions.
+     * @return Serializable Map.
+     */
     def getPermissions: Map[String, Any] = permissions
   }
 }
