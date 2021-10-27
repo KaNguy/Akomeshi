@@ -142,14 +142,10 @@ object CommandBuilder {
       val choice: util.HashMap[String, Any] = new util.HashMap[String, Any]()
       choice.put("name", name)
       choice.put("value",
-        if (value.isInstanceOf[String]) {
-          if (value.toString.length < 100)
-            value
-          else
-            value.toString.substring(0, 100)
-        } else {
+        if (value.isInstanceOf[String])
+          value.toString.take(100)
+        else
           value
-        }
       )
       choice
     }
