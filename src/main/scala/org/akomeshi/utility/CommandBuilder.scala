@@ -159,8 +159,7 @@ object CommandBuilder {
      */
     def buildChoices(choices: util.HashMap[String, Any]*): Array[util.HashMap[String, Any]] = {
       var optionChoices: Array[util.HashMap[String, Any]] = Array.empty[util.HashMap[String, Any]]
-      for ((c, i) <- choices.zipWithIndex)
-        if (i < 25)
+      for (c <- choices.take(25))
           optionChoices = optionChoices :+ c
       optionChoices
     }
