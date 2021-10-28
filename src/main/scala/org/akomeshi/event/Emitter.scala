@@ -11,7 +11,6 @@ import java.util
 import java.util.UUID
 
 class Emitter[T] {
-
   private val callbacks: util.HashMap[String, util.LinkedList[Pair[String, Callback[T]]]] = new util.HashMap()
 
   /**
