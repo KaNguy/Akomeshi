@@ -37,7 +37,7 @@ case class EventManager(event: util.HashMap[String, Any]) {
       }
 
       if (event.get("t").equals(Constants.WebSocketEvents.map(_ => "INTERACTION_CREATE").head)) {
-        EventObjects.hashMapEmitter.emit("INTERACTION_CREATE", toHashMap(event.get("d")))
+        EventObjects.interactionCreateEvent.emit("INTERACTION_CREATE", InteractionCreate(toHashMap(event.get("d"))))
       }
     }
   }
