@@ -7,7 +7,7 @@ package event
  */
 
 // Akomeshi
-import core.structures.Message
+import core.structures.{Message, InteractionCreate}
 
 // Utilities
 import java.util
@@ -17,4 +17,5 @@ object EventObjects {
   val mapEmitter: Emitter[Map[String, Any]] = new Emitter[Map[String, Any]]()
   val hashMapEmitter: Emitter[util.HashMap[String, Any]] = new Emitter[util.HashMap[String, Any]]()
   val messageEvent: Emitter[Message] = new Emitter[Message]()
+  val interactionCreateEvent: Emitter[InteractionCreate] = new Emitter[InteractionCreate]()
 }
