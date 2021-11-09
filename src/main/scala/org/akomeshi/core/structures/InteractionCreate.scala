@@ -13,7 +13,9 @@ import org.akomeshi.core.structures.Channel
 import java.util
 
 case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.HashMap[String, Any]()) {
-  private val data: util.HashMap[String, Any] = Util.toHashMap(interaction.get("data"))
+  type SAMap = util.HashMap[String, Any]
+  private val data: SAMap = Util.toHashMap(interaction.get("data"))
+  private val member: SAMap = Util.toHashMap(interaction.get("member"))
 
   def applicationID: String = interaction.get("application_id").toString
   def channelID: String = interaction.get("channel_id").toString
