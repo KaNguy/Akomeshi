@@ -18,4 +18,9 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
   def applicationID: String = interaction.get("application_id").toString
   def channelID: String = interaction.get("channel_id").toString
   def channel: Channel = Channel(channelID)
+  def guildID: String = interaction.get("guild_id").toString
+  def id: String = interaction.get("id").toString
+  def token: String = interaction.get("token").toString
+  def interactionType: Int = Util.strToInt(interaction.get("type"))
+  def version: Int = Util.strToInt(interaction.get("version"))
 }
