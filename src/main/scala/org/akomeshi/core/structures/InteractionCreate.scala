@@ -25,4 +25,6 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
   def token: String = interaction.get("token").toString
   def interactionType: Int = Util.strToInt(interaction.get("type"))
   def version: Int = Util.strToInt(interaction.get("version"))
+
+  // TODO: Handle data and member maps
 }
