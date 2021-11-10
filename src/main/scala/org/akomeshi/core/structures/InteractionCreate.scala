@@ -36,4 +36,13 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
     else "-1"
   }
   // TODO: Handle data and member maps
+  case class Member(m: SAMap = new SAMap) {
+    private case class InteractionUser(u: SAMap = new SAMap) {
+      def id: String = u.get("id").toString
+      def username: String = u.get("username").toString
+      def avatar: String = u.get("avatar").toString
+      def discriminator: String = u.get("discriminator").toString
+      def userFlags: List[String] = Util.getUserFlags(u.get("public_flags").toString.toInt)
+    }
+  }
 }
