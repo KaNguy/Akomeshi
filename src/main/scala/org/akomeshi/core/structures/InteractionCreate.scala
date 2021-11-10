@@ -26,7 +26,12 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
   def interactionType: Int = Util.strToInt(interaction.get("type"))
   def version: Int = Util.strToInt(c(interaction.get("version")))
 
-  private def c[T](x: Any): String = {
+  /**
+   * Checks for null properties, returns -1 by default if it is null.
+   * @param x Any parameter.
+   * @return Parameter as a String or -1 (as a String).
+   */
+  private def c(x: Any): String = {
     if (x != null) x.toString
     else "-1"
   }
