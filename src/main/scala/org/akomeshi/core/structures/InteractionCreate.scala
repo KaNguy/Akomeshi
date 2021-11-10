@@ -15,7 +15,7 @@ import java.util
 case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.HashMap[String, Any]()) {
   type SAMap = util.HashMap[String, Any]
   private val data: SAMap = Util.toHashMap(interaction.get("data"))
-  private val member: SAMap = Util.toHashMap(interaction.get("member"))
+  private val memberInteractionData: SAMap = Util.toHashMap(interaction.get("member"))
 
   def applicationID: String = interaction.get("application_id").toString
   def channelID: String = interaction.get("channel_id").toString
@@ -25,6 +25,7 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
   def token: String = interaction.get("token").toString
   def interactionType: Int = Util.strToInt(interaction.get("type"))
   def version: Int = Util.strToInt(c(interaction.get("version")))
+  def member: Member = Member(memberInteractionData)
 
   /**
    * Checks for null properties, returns -1 by default if it is null.
