@@ -38,7 +38,7 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
   }
   // TODO: Handle data and member maps
   case class Member(m: SAMap = new SAMap) {
-    private case class InteractionUser(u: SAMap = new SAMap) {
+    case class InteractionUser(u: SAMap = new SAMap) {
       def id: String = u.get("id").toString
       def username: String = u.get("username").toString
       def avatar: String = u.get("avatar").toString
@@ -46,5 +46,8 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
       def userFlags: List[String] = Util.getUserFlags(u.get("public_flags").toString.toInt)
     }
     def user: InteractionUser = InteractionUser(Util.toHashMap(m.get("user")))
+    def roles: util.ArrayList[String] = m.get("roles").asInstanceOf[util.ArrayList[String]]
+    def premiumSince: String = c(m.get("premium_since"))
+    //def permissions:
   }
 }
