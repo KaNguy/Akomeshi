@@ -81,4 +81,9 @@ case object Utilities {
     for (i <- intents) intentsInt = intentsInt | Constants.intents(i.toUpperCase)
     intentsInt
   }
+
+  // TODO: Parse permissions
+  def parsePermissions(permissions: Int) = {
+
+  }
 }
