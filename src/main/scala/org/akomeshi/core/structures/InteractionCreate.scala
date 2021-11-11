@@ -45,5 +45,6 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
       def discriminator: String = u.get("discriminator").toString
       def userFlags: List[String] = Util.getUserFlags(u.get("public_flags").toString.toInt)
     }
+    def user: InteractionUser = InteractionUser(Util.toHashMap(m.get("user")))
   }
 }
