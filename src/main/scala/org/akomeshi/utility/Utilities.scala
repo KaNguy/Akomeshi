@@ -82,6 +82,12 @@ case object Utilities {
     intentsInt
   }
 
+  /**
+   * Returns a list of permission flags from an int.
+   * @see [[https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags ]]
+   * @param permissions Integer of the permission flags.
+   * @return A list of permission flags.
+   */
   def parsePermissions(permissions: Int): List[String] = {
     var permissionsList: List[String] = List.empty[String]
     Constants.permissionFlags.foreach(i => {
