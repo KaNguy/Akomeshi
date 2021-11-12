@@ -24,10 +24,9 @@ object Zlib {
   var decompressionBuffer: SoftReference[ByteArrayOutputStream] = _
 
   /**
-   * Performs a check whether the data has been flushed
-   *
-   * @param bytes Byte data
-   * @return Boolean
+   * Performs a check whether the data has been flushed.
+   * @param bytes Byte data.
+   * @return Boolean.
    */
   def isFlushed(bytes: Array[Byte]): Boolean = {
     if (bytes.length < 4) return false
@@ -42,9 +41,8 @@ object Zlib {
   }
 
   /**
-   * Fills the buffer cache with the data
-   *
-   * @param bytes Byte data
+   * Fills the buffer cache with the data.
+   * @param bytes Byte data.
    */
   def bufferDelegation(bytes: Array[Byte]): Unit = {
     if (bufferCache == null) bufferCache = ByteBuffer.allocate(bytes.length * 2)
@@ -58,11 +56,10 @@ object Zlib {
   }
 
   /**
-   * Reallocates the byte buffer
-   *
-   * @param data   Byte data
-   * @param length Byte data length, use the buffer's capacity added with the length, multiply it by all by two
-   * @return ByteBuffer
+   * Reallocates the byte buffer.
+   * @param data   Byte data.
+   * @param length Byte data length, use the buffer's capacity added with the length, multiply it by all by two.
+   * @return ByteBuffer.
    */
   def reallocateBuffer(data: ByteBuffer, length: Int): ByteBuffer = {
     val buffer: ByteBuffer = ByteBuffer.allocate(length)
@@ -72,9 +69,8 @@ object Zlib {
 
   /**
    * Performs ZLIB decompression and decompresses the buffer data.
-   *
-   * @param bytes Byte data
-   * @return Byte array
+   * @param bytes Byte data.
+   * @return Byte array.
    */
   def decompress(bytes: Array[Byte]): Array[Byte] = {
     if (!this.isFlushed(bytes)) return null
@@ -97,8 +93,7 @@ object Zlib {
   }
 
   /**
-   * Create a new decompression buffer
-   *
+   * Create a new decompression buffer.
    * @return SoftReference[ByteArrayOutputStream]
    */
   private def newDecompressionBuffer: SoftReference[ByteArrayOutputStream] = {
@@ -106,9 +101,8 @@ object Zlib {
   }
 
   /**
-   * Gets a decompression buffer and sets one up
-   *
-   * @return A byte array output stream
+   * Gets a decompression buffer and sets one up.
+   * @return A byte array output stream.
    */
   private def getDecompressionBuffer: ByteArrayOutputStream = {
     if (decompressionBuffer == null) decompressionBuffer = this.newDecompressionBuffer
