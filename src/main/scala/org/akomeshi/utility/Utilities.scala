@@ -82,8 +82,11 @@ case object Utilities {
     intentsInt
   }
 
-  // TODO: Parse permissions
-  def parsePermissions(permissions: Int) = {
-
+  def parsePermissions(permissions: Int): List[String] = {
+    var permissionsList: List[String] = List.empty[String]
+    Constants.permissionFlags.foreach(i => {
+      if ((permissions & i._2) == i._2) permissionsList = permissionsList :+ i._1
+    })
+    permissionsList
   }
 }
