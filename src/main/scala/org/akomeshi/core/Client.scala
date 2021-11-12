@@ -26,23 +26,21 @@ class Client(val token: String, val intents: Iterable[String] = Array("GUILDS", 
   val universalGatewayClass: Gateway = new Gateway()
 
   /**
-   * Opens the WebSocket connection, sends the identify payload, and starts sending heartbeats
-   * @param token Bot token, if not provided, the token parameter of the class will be used
+   * Opens the WebSocket connection, sends the identify payload, and starts sending heartbeats.
+   * @see [[https://discord.com/developers/docs/topics/gateway#connecting-to-the-gateway]]
+   * @param token Bot token, if not provided, the token parameter of the class will be used.
    */
   def login(token: String = this.token, intents: Iterable[String] = this.intents): Unit = {
     val gatewayIntents: Int = Utilities.parseIntents(intents)
-    /**
-     * @see [[https://discord.com/developers/docs/topics/gateway#connecting-to-the-gateway]]
-     */
     this.universalGatewayClass.connection.send(JSONString.encode(PayloadModels.identifyPayload(token, gatewayIntents)), last = true)
     if (TokenManager.getToken == null) TokenManager.push("token", token)
     Heartbeat.sendHeartbeat(41250, this.universalGatewayClass.connection)
   }
 
   /**
-   * Closes the WebSocket connection with a normal closure and shuts down other tasks
+   * Closes the WebSocket connection with a normal closure and shuts down other tasks.
    * @see [[https://discord.com/developers/docs/topics/gateway#disconnections]]
-   * @param timeout Timeout, should at least be above 0 in some cases
+   * @param timeout Timeout, should at least be above 0 in some cases.
    */
   def logout(timeout: Int = 300): Unit = {
     this.universalGatewayClass.connection.close(WebSocket.NORMAL_CLOSURE, "Normal closure", timeout = timeout)
@@ -50,14 +48,14 @@ class Client(val token: String, val intents: Iterable[String] = Array("GUILDS", 
   }
 
   /**
-   * User object of the Client class
-   * @return User object
+   * User object of the Client class.
+   * @return User object.
    */
   def user: User = User()
 
   /**
-   * Interactions object of the Client class
-   * @return Interactions object
+   * Interactions object of the Client class.
+   * @return Interactions object.
    */
   def interactions: Interactions = Interactions()
 }
