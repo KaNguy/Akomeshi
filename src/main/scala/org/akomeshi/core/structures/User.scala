@@ -61,8 +61,8 @@ case class User() {
    * Creates an avatar URL from the avatar hash of a user.
    * @see [[https://discord.com/developers/docs/reference#image-formatting-cdn-endpoints]]
    * @param id User ID
-   * @param avatarHash User's avatar hash
-   * @param size Image size
+   * @param avatarHash User's avatar hash.
+   * @param size Image size.
    * @return String with the user's avatar.
    */
   private def createAvatarURL(id: String, avatarHash: String, size: Int = 1024): String = {
@@ -71,7 +71,7 @@ case class User() {
 
   /**
    * Properties for any user.
-   * @param user User HashMap
+   * @param user User HashMap.
    */
   case class UserProperties(user: util.HashMap[String, Any]) {
     def id: String = user.get("id").toString
