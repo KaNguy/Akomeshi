@@ -283,6 +283,10 @@ case object Constants {
     "DIRECT_MESSAGE_TYPING" -> (1 << 14)
   )
 
+  /**
+   * Permission Flags
+   * @see [[https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags]]
+   */
   val permissionFlags: Map[String, Int] = Map(
     "CREATE_INSTANT_INVITE" -> (1 << 0),
     "KICK_MEMBERS" -> (1 << 1),
