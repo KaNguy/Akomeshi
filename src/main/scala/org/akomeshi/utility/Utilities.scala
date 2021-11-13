@@ -82,7 +82,7 @@ case object Utilities {
    * @param permissions Integer of the permission flags.
    * @return A list of permission flags.
    */
-  def parsePermissions(permissions: Int): List[String] = {
+  def getPermissionFlags(permissions: Int): List[String] = {
     var permissionsList: List[String] = List.empty[String]
     Constants.permissionFlags.foreach(i => {
       if ((permissions & i._2) == i._2) permissionsList = permissionsList :+ i._1
