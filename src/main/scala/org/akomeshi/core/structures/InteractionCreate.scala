@@ -36,7 +36,7 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
     if (x != null) x.toString
     else "-1"
   }
-  // TODO: Handle data and member maps
+
   case class Member(m: SAMap = new SAMap) {
     case class InteractionUser(u: SAMap = new SAMap) {
       def id: String = u.get("id").toString
@@ -49,5 +49,11 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
     def roles: util.ArrayList[String] = m.get("roles").asInstanceOf[util.ArrayList[String]]
     def premiumSince: String = c(m.get("premium_since"))
     def permissions: List[String] = Util.getPermissionFlags(m.get("permissions").toString.toInt)
+    def pending: Boolean = m.get("pending").toString.toBoolean
+    def nick: String = c(m.get("nick"))
+    def mute: Boolean = m.get("mute").toString.toBoolean
+    def joinedAt: String = m.get("joined_at").toString
+    def isPending: Boolean = m.get("is_pending").toString.toBoolean
+    def deaf: Boolean = m.get("deaf").toString.toBoolean
   }
 }
