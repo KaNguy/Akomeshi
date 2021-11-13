@@ -48,6 +48,6 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
     def user: InteractionUser = InteractionUser(Util.toHashMap(m.get("user")))
     def roles: util.ArrayList[String] = m.get("roles").asInstanceOf[util.ArrayList[String]]
     def premiumSince: String = c(m.get("premium_since"))
-    //def permissions:
+    def permissions: List[String] = Util.getPermissionFlags(m.get("permissions").toString.toInt)
   }
 }
