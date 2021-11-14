@@ -56,4 +56,16 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
     def isPending: Boolean = m.get("is_pending").toString.toBoolean
     def deaf: Boolean = m.get("deaf").toString.toBoolean
   }
+
+  case class Type1Data(d: SAMap = new SAMap) {
+    case class Type1DataOptions(o: util.HashMap[String, util.ArrayList[String]]) {
+      def get: util.HashMap[String, util.ArrayList[String]] = {
+       // o.get("data").asInstanceOf[util.HashMap[String, util.ArrayList[String]]].get("options")
+        // TODO Finish
+        new util.HashMap[String, util.ArrayList[String]]()
+      }
+    }
+
+    //def options: get("data").asInstanceOf[util.HashMap[String, util.ArrayList[String]]].get("options")
+  }
 }
