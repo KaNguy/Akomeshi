@@ -14,7 +14,7 @@ import java.util
 
 case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.HashMap[String, Any]()) {
   type SAMap = util.HashMap[String, Any]
-  private val data: SAMap = Util.toHashMap(interaction.get("data"))
+  private val data: util.HashMap[String, util.ArrayList[String]] = if (interaction.containsKey("data")) interaction.get("data").asInstanceOf[util.HashMap[String, util.ArrayList[String]]]
   private val memberInteractionData: SAMap = Util.toHashMap(interaction.get("member"))
 
   def applicationID: String = interaction.get("application_id").toString
@@ -59,13 +59,11 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
 
   case class Type1Data(d: SAMap = new SAMap) {
     case class Type1DataOptions(o: util.HashMap[String, util.ArrayList[String]]) {
-      def get: util.HashMap[String, util.ArrayList[String]] = {
-       // o.get("data").asInstanceOf[util.HashMap[String, util.ArrayList[String]]].get("options")
-        // TODO Finish
-        new util.HashMap[String, util.ArrayList[String]]()
+      def get: util.ArrayList[util.HashMap[String, Any]] = {
+        o.get("data").asInstanceOf[util.HashMap[String, util.ArrayList[String]]].get("options").asInstanceOf[util.ArrayList[util.HashMap[String, Any]]]
       }
     }
 
-    //def options: get("data").asInstanceOf[util.HashMap[String, util.ArrayList[String]]].get("options")
+    def options: util.ArrayList[util.HashMap[String, Any]] = Type1Data().Type1DataOptions(data).get
   }
 }
