@@ -40,6 +40,10 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
     else "-1"
   }
 
+  /**
+   * Member class from an interaction.
+   * @param m Map of a member.
+   */
   case class Member(m: SAMap = new SAMap) {
     case class InteractionUser(u: SAMap = new SAMap) {
       def id: String = u.get("id").toString
