@@ -7,7 +7,6 @@ package org.akomeshi.core.structures
 
 // Akomeshi
 import org.akomeshi.utility.{Utilities => Util}
-import org.akomeshi.core.structures.Channel
 
 // Java Utilities
 import java.util
