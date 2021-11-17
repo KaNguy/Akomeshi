@@ -64,6 +64,10 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
     def deaf: Boolean = m.get("deaf").toString.toBoolean
   }
 
+  /**
+   * Holds options for only type 1 data.
+   * @param d Type 1 data.
+   */
   case class Type1Data(d: SAMap = new SAMap) {
     case class Type1DataOptions(o: util.HashMap[String, util.ArrayList[String]]) {
       def get: util.ArrayList[util.HashMap[String, Any]] = {
