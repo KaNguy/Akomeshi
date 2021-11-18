@@ -75,6 +75,9 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
       }
     }
 
+    def name: String = c(d.get("name"))
+    def id: String = c(d.get("id"))
+
     def options: util.ArrayList[util.HashMap[String, Any]] = Type1Data().Type1DataOptions(data).get
   }
 }
