@@ -65,8 +65,8 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
   }
 
   /**
-   * Holds options for only type 1 data.
-   * @param d Type 1 data.
+   * Holds options for only type 1 data (CHAT_INPUT data).
+   * @param d Type 1 data (CHAT_INPUT data).
    */
   case class Type1Data(d: SAMap = new SAMap) {
     case class Type1DataOptions(o: util.HashMap[String, util.ArrayList[String]]) {
@@ -80,4 +80,6 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
 
     def options: util.ArrayList[util.HashMap[String, Any]] = Type1Data().Type1DataOptions(data).get
   }
+
+  case class Type2Data()
 }
