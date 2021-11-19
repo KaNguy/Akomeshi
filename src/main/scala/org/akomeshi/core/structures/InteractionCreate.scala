@@ -88,5 +88,10 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
   case class Type2Data(d: SAMap = new SAMap) {
     def id: String = c(d.get("id"))
     def name: String = c(d.get("name"))
+    case class Resolved(r: SAMap = new SAMap) {
+      def members: Unit = {
+
+      }
+    }
   }
 }
