@@ -94,4 +94,16 @@ case class InteractionCreate(interaction: util.HashMap[String, Any] = new util.H
       }
     }
   }
+
+  case class Type2DataMember(memberT2: SAMap) {
+    private val memberInstance: Member = Member(memberT2)
+    def avatar: String = c(memberT2.get("avatar"))
+    def isPending: Boolean = memberInstance.isPending
+    def joinedAt: String = memberInstance.joinedAt
+    def nick: String = memberInstance.nick
+    def pending: Boolean = memberInstance.pending
+    def permissions: List[String] = memberInstance.permissions
+    def premiumSince: String = memberInstance.premiumSince
+    def roles: Array[String] = memberT2.get("roles").asInstanceOf[Array[String]]
+  }
 }
