@@ -2,7 +2,7 @@ package org.akomeshi
 package utility
 
 /**
- * Created by KaNguy - 07/27/2021
+ * Created by KiyonoKara - 07/27/2021
  * File org.akomeshi.utility/Utilities.scala
  */
 

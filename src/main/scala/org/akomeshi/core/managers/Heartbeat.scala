@@ -2,7 +2,7 @@ package org.akomeshi
 package core.managers
 
 /**
- * Created by KaNguy - 07/08/2021
+ * Created by KiyonoKara - 07/08/2021
  * File org.akomeshi.core/managers/Heartbeat.scala
  */
 

@@ -4,7 +4,7 @@ package core.structures
 import org.akomeshi.utility.Constants
 
 /**
- * Created by KaNguy - 07/01/2021
+ * Created by KiyonoKara - 07/01/2021
  * File org.akomeshi.core/structures/PayloadModels.scala
  */
 

@@ -2,7 +2,7 @@ package org.akomeshi
 package json
 
 /**
- * Created by KaNguy - 7/02/2021
+ * Created by KiyonoKara - 7/02/2021
  * File org.akomeshi.json/JSONString.scala
  */
 

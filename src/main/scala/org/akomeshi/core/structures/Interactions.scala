@@ -2,7 +2,7 @@ package org.akomeshi
 package core.structures
 
 /**
- * Created by KaNguy - 08/09/2021
+ * Created by KiyonoKara - 08/09/2021
  * File org.akomeshi.core/structures/Interactions.scala
  */
 

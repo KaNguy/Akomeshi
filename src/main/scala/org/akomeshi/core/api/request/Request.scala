@@ -2,7 +2,7 @@ package org.akomeshi
 package core.api.request
 
 /**
- * Created by KaNguy - 07/22/2021
+ * Created by KiyonoKara - 07/22/2021
  * File org.akomeshi.core/api/request/Request.scala
  */
 

@@ -2,7 +2,7 @@ package org.akomeshi
 package utility
 
 /**
- * Created by KaNguy - 6/30/2021
+ * Created by KiyonoKara - 6/30/2021
  * File org.akomeshi.utility/Constants.scala
  */
 

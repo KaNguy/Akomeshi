@@ -2,7 +2,7 @@ package org.akomeshi
 package websocket
 
 /**
- * Created by KaNguy - 6/28/2021
+ * Created by KiyonoKara - 6/28/2021
  * File org.akomeshi.utility.websocket/WebSocketListener.scala
  */
 

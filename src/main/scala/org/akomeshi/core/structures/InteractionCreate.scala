@@ -1,7 +1,7 @@
 package org.akomeshi.core.structures
 
 /**
- * Created by KaNguy - 10/29/2021
+ * Created by KiyonoKara - 10/29/2021
  * File org.akomeshi.core/structures/InteractionCreate.scala
  */
 

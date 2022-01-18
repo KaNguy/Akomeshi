@@ -2,7 +2,7 @@ package org.akomeshi
 package core
 
 /**
- * Created by KaNguy - 07/09/2021
+ * Created by KiyonoKara - 07/09/2021
  * File org.akomeshi.core/Client.scala
  */
 

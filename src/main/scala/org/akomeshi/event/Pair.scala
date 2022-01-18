@@ -2,7 +2,7 @@ package org.akomeshi
 package event
 
 /**
- * Created by KaNguy - 6/29/2021
+ * Created by KiyonoKara - 6/29/2021
  * File org.akomeshi.utility/Pair.scala
  */
 

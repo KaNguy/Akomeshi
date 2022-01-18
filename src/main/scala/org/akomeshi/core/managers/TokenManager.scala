@@ -2,7 +2,7 @@ package org.akomeshi
 package core.managers
 
 /**
- * Created by KaNguy - 07/29/2021
+ * Created by KiyonoKara - 07/29/2021
  * File org.akomeshi.core/managers/TokenManager.scala
  */
 

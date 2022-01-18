@@ -2,11 +2,11 @@
 
 <div>
   <p>
-    <a href="https://github.com/KaNguy/Akomeshi/pulls"><img src="https://shields.io/github/issues-pr/KaNguy/HTTPS-Requests-Scala?color=da301b" alt="PRs" /></a>
-    <a><img src="https://shields.io/github/languages/code-size/KaNguy/Akomeshi?color=da301b" /></a>
-    <a><img src="https://shields.io/tokei/lines/github/KaNguy/Akomeshi" /></a>
-    <a><img src="https://img.shields.io/github/last-commit/KaNguy/Akomeshi?color=007ace"></a>
-    <a href="LICENSE.md"><img src="https://img.shields.io/github/license/KaNguy/Akomeshi?color=007ace" alt="License" /></a>
+    <a href="https://github.com/KiyonoKara/Akomeshi/pulls"><img src="https://shields.io/github/issues-pr/KiyonoKara/HTTPS-Requests-Scala?color=da301b" alt="PRs" /></a>
+    <a><img src="https://shields.io/github/languages/code-size/KiyonoKara/Akomeshi?color=da301b" /></a>
+    <a><img src="https://shields.io/tokei/lines/github/KiyonoKara/Akomeshi" /></a>
+    <a><img src="https://img.shields.io/github/last-commit/KiyonoKara/Akomeshi?color=007ace"></a>
+    <a href="LICENSE.md"><img src="https://img.shields.io/github/license/KiyonoKara/Akomeshi?color=007ace" alt="License" /></a>
   </p>
 </div>
 

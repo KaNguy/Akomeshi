@@ -1,7 +1,7 @@
 package org.akomeshi.json;
 
 /*
- * Created by KaNguy - 07/04/2021
+ * Created by KiyonoKara - 07/04/2021
  * File org.akomeshi.json/JSONParseException.java
  */
 

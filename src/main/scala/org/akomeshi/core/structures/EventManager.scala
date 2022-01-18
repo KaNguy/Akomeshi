@@ -2,7 +2,7 @@ package org.akomeshi
 package core.structures
 
 /**
- * Created by KaNguy - 07/24/2021
+ * Created by KiyonoKara - 07/24/2021
  * File org.akomeshi.core/structures/EventManager.scala
  */
 

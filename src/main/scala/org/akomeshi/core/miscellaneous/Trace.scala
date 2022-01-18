@@ -2,7 +2,7 @@ package org.akomeshi
 package core.miscellaneous
 
 /**
- * Created by KaNguy - 07/21/2021
+ * Created by KiyonoKara - 07/21/2021
  * File org.akomeshi.core/miscellaneous/Trace.scala
  */
 
