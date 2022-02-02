@@ -13,19 +13,20 @@
 A Scala library that wraps and helps interact with Discord's API.
 
 ## Overview
-A Scala library made to interact with Discord's API for bots. The library is strictly designed for bots—any other forms of interaction that may violate Discord's developer policy are not supported nor allowed.
+A Scala library made to interact with Discord's API for bots. The library is strictly designed for bots—any other forms of interaction that may violate Discord's developer policy are not supported nor allowed.  
+This library is discontinued and will no longer receive contributions or be developed.
 
 ## Usage
-To provide a quick, mostly-synchronous, and simpler approach to making and running bots on Discord. To further expand on the permissiveness of interacting with Discord's API to create useful software for users.
+(Attempted) To provide a quick, mostly-synchronous, and simpler approach to making and running bots on Discord. To further expand on the permissiveness of interacting with Discord's API to create useful software for users.
 
 ## Author Notes
-Documentation is not completed yet. This will be added at a later date.
+Documentation won't be available. 
 
-## Project Structure
-(PLANNED PROJECT STRUCTURE HERE)
+## Project Status
+Discontinued.
 
 ## Contributing
-Read about contributing to this repository [here](CONTRIBUTING.md).
+Contributions are discontinued.
 
 ## License
 Apache 2.0 License
